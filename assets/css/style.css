@@ -184,9 +184,6 @@ body{
     overflow: hidden;
 }
 
-.ladi-ads .ads-item{
-    width:279px;
-}
 
 .ladi-ads .ads-item img {
     border-radius: 16px;
@@ -424,16 +421,61 @@ body{
     gap: 10px;
 }
 
-.filter-item a {
+.filter-item {
+    position: relative;
+    display: block;
+}
+
+
+
+.filter-item button {
     display: block;
     padding: 8px;
-    background:rgba(149, 157, 165, 0.2);
+    background:#f3f4f6;
     border-radius: 16px;
     color:#343a40;
     font-family: var(--font-family);
+    outline: none;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
 }
-.filter-item a:hover {
+.filter-item button:hover {
     opacity: .7;
+}
+
+.filter-item button.active {
+    background: #ff0000;
+    border: 1px solid #d70018;
+    color: #f1cdd1; 
+    font-weight: 700;
+}
+
+.filter-item .list-filter-child{
+    display: none;
+    /* opacity: 0;
+    visibility: hidden; */
+    position: absolute;
+    padding: 12px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 350px;
+    z-index: 1;
+}
+
+.filter-item button:focus ~ .list-filter-child{
+   display: block;
+}
+
+.filter-item .list-filter-child ul{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.filter-item .list-filter-child ul li button {
+    margin: 0 8px;
 }
 
 .ladi-btn-loader {
@@ -493,4 +535,48 @@ body{
     color: #444;
     font-size: 14px;
     font-family: var(--font-family);
+}
+
+.break-cum{
+    background: #fff;
+    padding: 8px 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.break-cum a {
+    font-size: 14px;
+    color: #707070;
+}
+
+.break-cum a:not(:last-child)::after{
+    content: ">";
+    margin: 0 8px;
+    font-size: 18px;
+    place-items: center;
+}
+
+.btn-filter-group{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    margin: 16px 0;
+}
+
+.btn-filter-group .btn {
+    font-size: 14px;
+}
+
+.btn-filter-group .btn-filter-close {
+    /* background: #bebebe; */
+    color:#d70018;
+    font-weight: 700;
+}
+
+.btn-filter-group .btn-filter-result{
+    background:#d70018;
+    color: #fff;
+    font-weight: 700;
 }
