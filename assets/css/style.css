@@ -285,14 +285,27 @@ body{
     padding: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;;
     cursor: pointer;
+    transition:  transform .2s ease-in-out;
+}
+
+.ladi-list .ladi-item:hover {
+    transform: translateY(-10px);
+    transition:  transform .2s ease-in-out;
 }
 
 .ladi-item .ladi-images {
     text-align: center;
+    overflow: hidden;
 }
 
 .ladi-item .ladi-images img {
     width: 160px;
+    transition:  transform .2s ease-in-out;
+}
+
+.ladi-item .ladi-images img:hover {
+    transform: scale(1.1);
+    transition:  transform .2s ease-in-out;
 }
 
 .ladi-item .ladi-name {
@@ -578,5 +591,108 @@ body{
 .btn-filter-group .btn-filter-result{
     background:#d70018;
     color: #fff;
+    font-weight: 700;
+}
+
+.list-filting ul li button {
+    padding: 8px 16px;
+    border: 1px solid #d70018;
+    color: #d70018;
+    margin: 0 8px;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-price .old{
+    color:#d70018;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.product-price .sale{
+    color:#707070;
+    text-decoration: line-through;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+
+.product-type ul li a, .product-color__list ul li button {
+    display: block;
+    border: 1px solid #707070;
+    text-align: center;
+    padding: 8px 12px;
+    margin-right: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #444;
+    position: relative;
+
+}
+
+.product-type ul li a.active::after, .product-color__list ul li button.active::after{
+    position: absolute;
+    content:"✓";
+    /* width: 80px; */
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    background:#d70018;
+    color:#fff;
+    padding:2px;
+    border-bottom-right-radius: 12px;
+    
+}
+
+.product-color__list ul li button {
+    display: flex;
+    /* padding: 8px 16px; */
+    justify-content: space-between;
+    gap:10px;
+    /* width:150px; */
+}
+
+.product-type ul li a.active, .product-color__list ul li button.active {
+    border: 1px solid #d70018;
+}
+
+.product-color__list ul li button img{
+    width: 40px;
+
+}
+
+.product-type .product-type__text, .product-color__text{
+    color: #343a40;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.product-color__title {
+    font-weight: 700;
+    margin: 8px 0;
+    color: #444;
+    font-size: 14px;
+}
+
+.product-color__price{
+    font-size: 12px;;
+}
+
+.btn-cart a {
+    display: block;
+    background:#d70018;
+    padding: 12px 24px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+   
+}
+
+.btn-cart a span{
+    font-size: 22px;
     font-weight: 700;
 }
