@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/animation.css">
+    <link rel="stylesheet" href="./assets/css/css.css">
+
+    <!-- LINK CDN -->
+    <!-- CDN FONT-AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-top">
+                <div class="wrap-container">
+                    <ul class="flex align-items-center justify-content-space-betweent ">
+                        <li>
+                           <div class="box-local-store">
+                                <a href="" class="logo">
+                                    <img src="./assets/img/logo.png" alt="">
+                                </a>
+                           </div>
+                        </li>
+                        <li>
+                            <a href="#" class="active">
+                                <div class="box-local-store">
+                                    <div class="box-iconls">
+                                         <span><i class="fas fa-bars"></i></span>
+                                    </div>
+                                     <div class="box-content">
+                                         Danh mục
+                                     </div>
+                                 </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="address">
+                                <div class="box-local-store">
+                                    <div class="box-iconls address">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                    </div>
+                                    <div class="box-content">
+                                        <div class="flex align-items-center-space-betweent">
+                                            <div class="box-text">
+                                                Xem giá tại
+                                            </div>
+                                            <div class="box-iconls-sub">
+                                                <i class="fas fa-angle-down"></i>
+                                            </div>
+                                        </div>
+                                        Hồ Chí Minh
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="box-local-store">
+                                <form action="">
+                                    <span><i class="fas fa-search"></i></span>
+                                    <input type="text" name="" id="" class="form-control" placeholder="Bạn cần tìm gì?">
+                                </form>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class="contact">
+                                <div class="box-local-store">
+                                    <div class="box-iconls">
+                                        <span><i class="fas fa-phone-alt"></i></span>
+                                    </div>
+                                    <div class="box-content">
+                                        Gọi mua hàng 1800.2097
+                                    </div>
+                                </div>
+                               
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="check-store">
+                                <div class="box-local-store">
+                                    <div class="box-iconls">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                    </div>
+                                    <div class="box-content">
+                                        Cửa hàng gần bạn
+                                    </div>
+                                </div>
+                        
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="check-bill">
+                                <div class="box-local-store">
+                                    <div class="box-iconls">
+                                       <span><i class="fas fa-shipping-fast"></i></span>
+                                    </div>
+                                    <div class="box-content">
+                                        Tra cứu đơn hàng
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <div class="box-local-store">
+                                    <div class="box-iconls">
+                                       <span><i class="fab fa-opencart"></i></span>
+                                    </div>
+                                    <div class="box-content">
+                                        Giỏ hàng
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <div class="account">
+                                    <div class="box-iconls">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                    <div class="box-content">Đăng nhập</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          
+        </header>
+        <main class="mg-section">
+            <div class="wrap-container">
+                <div class="ladi-title">Vui lòng nhập thông tin cá nhân dưới đây để nhận được hàng</div>
+                <div class="checkout grid gap-10">
+                    <div class="checkout-infor">
+                        <div class="checkout-group mg-section">
+                            <div class="checkout-group__item active" data-name="personal-infor">
+                                <span><i class="far fa-user-circle"></i></span>
+                                Personal Infor
+                            </div>
+                            <div class="checkout-group__item" data-name="shipping-infor">
+                                <span><i class="fas fa-truck"></i></span>
+                                Shipping Infor
+                            </div>
+                            <!-- <div class="checkout-group__item" class="payment-infor">
+                                <span><i class="far fa-money-bill-alt"></i></span>
+                                Payment Infor
+                            </div> -->
+                            <div class="checkout-group__item" data-name="finish-infor">
+                                <span><i class="fas fa-check"></i></span>
+                               Finish
+                            </div>
+                        </div>
+                        <div id="personal-infor" class="tab-content active">
+                            <div class="tab-title">Vui lòng nhập đầy đủ thông tin</div>
+                            <form action="" method="post">
+                        
+                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
+                                        <div class="form-group">
+                                            <label for="">Họ</label>
+                                            <input type="text" placeholder="Nhập họ tại đây">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Tên</label>
+                                            <input type="text" placeholder="Nhập tên tại đây">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
+                                        <div class="form-group">
+                                            <label for="">Email (Có thể có hoặc không)</label>
+                                            <input type="text" placeholder="Điền email tại đây">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Điện thoại (Bắt buộc)</label>
+                                            <input type="text" placeholder="Vui lòng nhập dúng số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="" id="" cols="30" rows="10" placeholder="Nhập địa chỉ"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú"></textarea>
+                                    </div>
+                            </form>
+                            <a href="#" class="btn btn-submit">Tiếp tục</a>
+                        </div>
+                        <div id="shipping-infor" class="tab-content">
+                            <div class="tab-title">Thông tin địa chỉ nhận hàng</div>
+                            <form action="" method="post">
+                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
+                                        <div class="form-group">
+                                            <label for="">Email (Có thể có hoặc không)</label>
+                                            <input type="text" placeholder="Điền email tại đây">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Điện thoại (Bắt buộc)</label>
+                                            <input type="text" placeholder="Vui lòng nhập dúng số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="grid  grid-tempalte-colum-2 gap-10 align-items center">
+                                        <div class="form-group">
+                                            <label for="">Chọn tỉnh/Thành phố</label>
+                                            <select name="" id="">
+                                                <option value="0">Chọn tỉnh</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Chọn Huyện</label>
+                                            <select name="" id="">
+                                                <option value="0">Chọn huyện</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Nhập địa chỉ cụ thể</label>
+                                        <input type="text" name="" placeholder="Nhập địa chỉ cụ thể tại đây" id="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Chọn phương thức thanh toán</label>
+                                        <select name="" id="">
+                                            <option value="1">Thanh toán tại nhà</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Phí Ship</label>
+                                        <select name="" id="">
+                                            <option value="1">Ship bình thường ( Miễn Phí )</option>
+                                            <option value="2">Ship bình thường ( 30k )</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú"></textarea>
+                                    </div>
+
+                            </form>
+                            <a href="#" class="btn btn-submit">Tiếp tục</a>
+                        </div>
+                        <div id="finish-infor" class="tab-content">
+                            <div class="order-success">
+                                <div class="order-success__image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="order-success__body">
+                                    <div class="order-success__text">
+                                        <p class="text-success">Cám ơn! Đơn hàng của bạn đã được đặt thành công</p>
+                                        <p class="sub-success mg-section">Bạn sẽ nhận được thông tin đơn hàng chi tiết qua mail</p>
+                                    </div>
+                                    <div class="order-code">
+                                        Mã đơn hàng của bạn là: <a href="#">VZ2451</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="checkout-cart">
+                        <div class="checkout-title">Đơn hàng tổng</div>
+                        <table class="table">
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Thông tin sản phẩm</th>
+                                <th>Giá</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="http://sinbad.anhcoder.com/assets/images/products/img-8.png" alt="">
+                                </td>
+                                <td>
+                                    <p class="product-name">Sản phẩm 1</p>
+                                    <p><span class="price">451524845</span> x <span class="quanlity">2</span></p>
+                                </td>
+                                <td>4213245452 đ</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="http://sinbad.anhcoder.com/assets/images/products/img-8.png" alt="">
+                                </td>
+                                <td>
+                                    <p class="product-name">Sản phẩm 1</p>
+                                    <p><span class="price">451524845</span> x <span class="quanlity">2</span></p>
+                                </td>
+                                <td>4213245452 đ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tạm tính</td>
+                                <td ><span class="sub-total"><strong>495.000</strong></span> đ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Giảm giá</td>
+                                <td ><span class="discount"><strong>0</strong></span> đ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Phí Ship</td>
+                                <td ><span class="shipping"><strong>30.000</strong></span> đ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Phí phát sinh</td>
+                                <td ><span class="tax"><strong>0</strong></span> đ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tổng ( VNĐ )</td>
+                                <td ><span class="total-price"><strong>512.000</strong></span> đ</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </main>
+        <footer class="foot">
+            <div class="wrap-container">
+                <div class="foot-list">
+                    <div class="foot-item">
+                       
+                        <div class="foot-body">
+                            <div class="foot-title">
+                                Tổng đài hỗ trợ miễn phí
+                            </div>
+                            <ul>
+                                <li><a href="#">Gọi mua hàng 1800.2097 (7h30 - 22h00)</a></li>
+                                <li><a href="#">Gọi mua hàng 1800.2097 (7h30 - 22h00)</a></li>
+                                <li><a href="#">Gọi mua hàng 1800.2097 (7h30 - 22h00)</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-body">
+                            <div class="foot-title">
+                                Phương thức thanh toán
+                            </div>
+                            <div class="pay-list">
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/x35/media/logo/payment/alepay-logo.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/x35/media/logo/payment/alepay-logo.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/x35/media/logo/payment/alepay-logo.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/x35/media/logo/payment/alepay-logo.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/x35/media/logo/payment/alepay-logo.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot-item">
+                       
+                        <div class="foot-body">
+                            <div class="foot-title">
+                                Thông tin và chính sách
+                            </div>
+                            <ul>
+                                <li><a href="#">Mua hàng và thanh toán Online</a></li>
+                                <li><a href="#">Mua hàng trả góp Online</a></li>
+                                <li><a href="#">Tra thông tin đơn hàng</a></li>
+                                <li><a href="#">Tra điểm Smember</a></li>
+                                <li><a href="#">Xem ưu đãi Smember</a></li>
+                                <li><a href="#">Tra thông tin bảo hành</a></li>
+                                <li><a href="#">Tra cứu hoá đơn điện tử</a></li>
+                                <li><a href="#">Thông tin hoá đơn mua hàng</a></li>
+                                <li><a href="#">Trung tâm bảo hành chính hãng</a></li>
+                                <li><a href="#">Quy định về việc sao lưu dữ liệu</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="foot-item">
+                       
+                        <div class="foot-body">
+                            <div class="foot-title">
+                                Dịch vụ và thông tin khác
+                            </div>
+                            <ul>
+                                <li><a href="#">Khách hàng doanh nghiệp (B2B)</a></li>
+                                <li><a href="#">Ưu đãi thanh toán</a></li>
+                                <li><a href="#">Quy chế hoạt động</a></li>
+                                <li><a href="#">Chính sách Bảo hành</a></li>
+                                <li><a href="#">Liên hệ hợp tác kinh doanh</a></li>
+                                <li><a href="#">Tuyển dụng</a></li>
+                                <li><a href="#">Dịch vụ bảo hành điện thoại</a></li>
+                                <li><a href="#">Dịch vụ bảo hành mở rộng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="foot-item">
+                        <div class="footer-body">
+                            <div class="foot-title">
+                                Kết nối với CellphoneS
+                            </div>
+                            <div class="pay-list">
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/44x/media/logo/social/cellphones-youtube.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/44x/media/logo/social/cellphones-facebook.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/44x/media/logo/social/cellphones-instagram.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/44x/media/logo/social/cellphones-tiktok.png" alt="">
+                                </div>
+                                <div class="pay-item">
+                                    <img src="https://image.cellphones.com.vn/44x/media/logo/social/cellphones-zalo.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div> 
+</body>
+<script src="./assets/js/js.js"></script>
+<script src="./core/slide-banner/slide-banner/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./core/slide-banner/slide-banner/slick.css">
+<link rel="stylesheet" type="text/css" href="./core/slide-banner/slide-banner/slick-theme.css">
+<script src="./core/slide-banner/slide-banner/slick.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+      
+        $(".chuyen_banner").slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    autoplay: true,
+                    arrows: true,
+                    autoplaySpeed: 3000,
+                    centerPadding: '0px'
+                });
+        $(".chuyen_banner_bacsi").slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    autoplay: false,
+                    arrows: true,
+                    autoplaySpeed: 3000,
+                    centerPadding: '0px'
+                });
+
+        $(".chuyen_banner_baochi").slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    dots: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    autoplay: false,
+                    arrows: true,
+                    autoplaySpeed: 3000,
+                    centerPadding: '0px'
+                });
+        $(".chuyen_baivietxemnhieu").slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    dots: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    autoplay: true,
+                    arrows: true,
+                    autoplaySpeed: 3000,
+                    centerPadding: '0px'
+                });
+        $(".chuyen_banner_moitruong").slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                        centerMode: true,
+                        focusOnSelect: true,
+                        autoplay: false,
+                        arrows: true,
+                        autoplaySpeed: 3000,
+                        centerPadding: '0px'
+                    });
+        $(".chuyen_banner_text").slick({
+                        slidesToShow: 5,
+                        slidesToScroll: 5,
+                        dots: false,
+                        centerMode: true,
+                        focusOnSelect: true,
+                        autoplay: true,
+                        arrows: false,
+                        autoplaySpeed: 3000,
+                        centerPadding: '0px'
+                    });
+        $(".slider-banner").slick({
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    dots: false,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    autoplay: true,
+                    arrows: false,
+                    autoplaySpeed: 3000,
+                    centerPadding: '0px'
+                });
+        
+        // $(".block-same-product .same-product-options ul li button").on('click',function(){
+        //    let dataId = $(this).attr('data-id')
+        
+        //     // console.log($(this).length)
+        //     $('.list-same-product').addClass('hide');
+        //     $('#'+dataId).toggleClass('active');
+        // })
+
+        $('.cart-quanlity').change(function(){
+           let rows = $(this).parent().parent();
+           let quanlity = rows.find('.cart-quanlity').val();
+           let price = rows.find('.cart-price').val();
+           let totalPrice = parseFloat(quanlity) * parseFloat(price);
+           let innerTotal = rows.find('.total').text(parseFloat(totalPrice))
+           totalPriceOrder();
+        })
+
+        $('.checkout-group__item').click(function(){
+
+            $('.checkout-group__item').removeClass('active');
+            $(this).addClass('active');
+            let attr = $(this).attr('data-name');
+            $('.tab-content').removeClass('active')
+            $('#'+attr).addClass('active')
+        })
+
+    });
+    totalPriceOrder();
+    function totalPriceOrder() {
+            let total = 0;
+            let rows = $('.table tr');
+         
+            for(let i = 1; i <= rows.length-1 ; i++){   
+                tP = parseFloat($(rows[i]).find('.total').text());
+                total += parseFloat(tP)
+                console.log(total)
+            }
+            $('.price-total').text(total);
+            $('.total-cart').text(total+'đ');
+    }
+
+</script>
+
+</html>

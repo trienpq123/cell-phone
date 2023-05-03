@@ -199,3 +199,35 @@ textarea{
     align-items: center;
 }
 
+table {
+
+    margin: 16px auto;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    width: 100%;
+}
+
+table th {
+    font-weight: 400;
+    font-size: 12px;
+    background:hsla(0, 6%, 78%, 0.2)
+}
+
+table th, table td {
+    text-align: center;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.text-success {
+    color: #0f5132;
+    background:#d1e7dd;
+}
