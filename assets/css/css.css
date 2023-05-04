@@ -114,6 +114,11 @@ textarea{
     border-radius: 12px;
 }
 
+.form-group{
+    padding:4px;
+    margin: 8px 0;
+}
+
 
 
 

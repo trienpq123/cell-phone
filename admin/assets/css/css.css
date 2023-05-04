@@ -241,6 +241,10 @@ form label{
     font-weight: 500;
 }
 
+.form-control{
+    width: 100%;
+}
+
 table {
 
     margin: 16px auto;
@@ -262,12 +266,14 @@ table th, table td {
     font-size: 12px;
     vertical-align: middle;
     padding: 10px;
+  
 }
 
-
-.table td, .table th {
-    vertical-align: middle;
-  
+table td {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .popup-modal{
@@ -286,6 +292,7 @@ table th, table td {
 
 .popup-modal.active{
     display: flex;
+    z-index: 1;
 }
 
 .box-alert{

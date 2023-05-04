@@ -134,184 +134,40 @@
         </header>
         <main class="mg-section">
             <div class="wrap-container">
-                <div class="ladi-title">Vui lòng nhập thông tin cá nhân dưới đây để nhận được hàng</div>
-                <div class="checkout grid gap-10">
-                    <div class="checkout-infor">
-                        <div class="checkout-group mg-section">
-                            <div class="checkout-group__item active" data-name="personal-infor">
-                                <span><i class="far fa-user-circle"></i></span>
-                                Personal Infor
+                <div class="login-form">
+                    <div class="cps-register">
+                        <div class="cps-register-image">
+                            <img src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.0251fdd.png" alt="">
+                        </div>
+                        <div class="cps-register-title">
+                            Đăng nhập tài khoản Smember
+                        </div>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" placeholder="Số điện thoại hoặc Email">
                             </div>
-                            <div class="checkout-group__item" data-name="shipping-infor">
-                                <span><i class="fas fa-truck"></i></span>
-                                Shipping Infor
+                            <div class="form-group">
+                                <input type="text" placeholder="Mật khẩu">
+                                <a href="#">Quên mật khẩu</a>
                             </div>
-                            <!-- <div class="checkout-group__item" class="payment-infor">
-                                <span><i class="far fa-money-bill-alt"></i></span>
-                                Payment Infor
-                            </div> -->
-                            <div class="checkout-group__item" data-name="finish-infor">
-                                <span><i class="fas fa-check"></i></span>
-                               Finish
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-submit">Đăng nhập</button>
+                            </div>
+                        </form>
+                        <hr>
+                        <div class="block-login-socal">
+                            <div class="block-login-google mg-section">
+                                    <img src="" alt=""> <a href="#">Đăng nhập bằng Google</a>
+                            </div>
+                            <div class="block-login-facebook mg-section">
+                                    <img src="" alt=""> <a href="#">Đăng nhập bằng Facebook</a>
                             </div>
                         </div>
-                        <div id="personal-infor" class="tab-content active">
-                            <div class="tab-title">Vui lòng nhập đầy đủ thông tin</div>
-                            <form action="" method="post">
-                        
-                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
-                                        <div class="form-group">
-                                            <label for="">Họ</label>
-                                            <input type="text" placeholder="Nhập họ tại đây">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Tên</label>
-                                            <input type="text" placeholder="Nhập tên tại đây">
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
-                                        <div class="form-group">
-                                            <label for="">Email (Có thể có hoặc không)</label>
-                                            <input type="text" placeholder="Điền email tại đây">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Điện thoại (Bắt buộc)</label>
-                                            <input type="text" placeholder="Vui lòng nhập dúng số điện thoại">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="" id="" cols="30" rows="10" placeholder="Nhập địa chỉ"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú"></textarea>
-                                    </div>
-                            </form>
-                            <a href="#" class="btn btn-submit">Tiếp tục</a>
-                        </div>
-                        <div id="shipping-infor" class="tab-content">
-                            <div class="tab-title">Thông tin địa chỉ nhận hàng</div>
-                            <form action="" method="post">
-                                    <div class="grid grid-tempalte-colum-2 gap-10 align-items-center">
-                                        <div class="form-group">
-                                            <label for="">Email (Có thể có hoặc không)</label>
-                                            <input type="text" placeholder="Điền email tại đây">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Điện thoại (Bắt buộc)</label>
-                                            <input type="text" placeholder="Vui lòng nhập dúng số điện thoại">
-                                        </div>
-                                    </div>
-                                    <div class="grid  grid-tempalte-colum-2 gap-10 align-items center">
-                                        <div class="form-group">
-                                            <label for="">Chọn tỉnh/Thành phố</label>
-                                            <select name="" id="">
-                                                <option value="0">Chọn tỉnh</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Chọn Huyện</label>
-                                            <select name="" id="">
-                                                <option value="0">Chọn huyện</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Nhập địa chỉ cụ thể</label>
-                                        <input type="text" name="" placeholder="Nhập địa chỉ cụ thể tại đây" id="" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Chọn phương thức thanh toán</label>
-                                        <select name="" id="">
-                                            <option value="1">Thanh toán tại nhà</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Phí Ship</label>
-                                        <select name="" id="">
-                                            <option value="1">Ship bình thường ( Miễn Phí )</option>
-                                            <option value="2">Ship bình thường ( 30k )</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú"></textarea>
-                                    </div>
-
-                            </form>
-                            <a href="#" class="btn btn-submit">Tiếp tục</a>
-                        </div>
-                        <div id="finish-infor" class="tab-content">
-                            <div class="order-success">
-                                <div class="order-success__image">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="order-success__body">
-                                    <div class="order-success__image">
-                                        <img src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.0251fdd.png" alt="">
-                                    </div>
-                                    <div class="order-success__text">
-                                        <p class="text-success">Cám ơn! Đơn hàng của bạn đã được đặt thành công</p>
-                                        <p class="sub-success mg-section">Bạn sẽ nhận được thông tin đơn hàng chi tiết qua mail</p>
-                                    </div>
-                                    <div class="order-code">
-                                        Mã đơn hàng của bạn là: <a href="#">VZ2451</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                        <div class="block-login-question">
+                            <span>Bạn chưa có tài khoản?</span>
+                            <a href="#">Đăng ký ngay</a>
                         </div>
                     </div>
-                    <div class="checkout-cart">
-                        <div class="checkout-title mg-section">Đơn hàng tổng</div>
-                        <table class="table">
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Thông tin sản phẩm</th>
-                                <th>Giá</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="http://sinbad.anhcoder.com/assets/images/products/img-8.png" alt="">
-                                </td>
-                                <td>
-                                    <p class="product-name">Sản phẩm 1</p>
-                                    <p><span class="price">451524845</span> x <span class="quanlity">2</span></p>
-                                </td>
-                                <td>4213245452 đ</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="http://sinbad.anhcoder.com/assets/images/products/img-8.png" alt="">
-                                </td>
-                                <td>
-                                    <p class="product-name">Sản phẩm 1</p>
-                                    <p><span class="price">451524845</span> x <span class="quanlity">2</span></p>
-                                </td>
-                                <td>4213245452 đ</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Tạm tính</td>
-                                <td ><span class="sub-total"><strong>495.000</strong></span> đ</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Giảm giá</td>
-                                <td ><span class="discount"><strong>0</strong></span> đ</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Phí Ship</td>
-                                <td ><span class="shipping"><strong>30.000</strong></span> đ</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Phí phát sinh</td>
-                                <td ><span class="tax"><strong>0</strong></span> đ</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Tổng ( VNĐ )</td>
-                                <td ><span class="total-price"><strong>512.000</strong></span> đ</td>
-                            </tr>
-                        </table>
-                    </div>
-                    </div>
-                  
                 </div>
             </div>
         </main>

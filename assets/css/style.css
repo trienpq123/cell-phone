@@ -1247,3 +1247,90 @@ body{
     color: #444;
     font-weight: 600;
 }
+
+.order-success__body .order-success__image{
+    width: 187px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.login-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cps-register .cps-register-image{
+    width: 170px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.cps-register .cps-register-title{
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    text-align: center;
+}
+
+.cps-register form input {
+    border: 1px solid #fafafa;
+    background: transparent;
+    border-radius: 3px;
+    font-size: 14px;
+
+}
+
+.cps-register form input::placeholder{
+    font-size: 14px;
+}
+
+.cps-register .form-group span {
+    font-size: 14px;
+}
+
+.cps-register .form-group .check-agree{
+    width: auto;
+}
+
+.cps-register .form-group .btn-submit{
+    width: 100%;
+    font-size: 16px;
+}
+
+.cps-register .form-group input:checked{
+    background:#d70018;
+    color: #fff;
+}
+
+.cps-register .form-group a, .cps-register .form-group p, .time-out {
+    font-size: 14px;
+    color:#d70018;
+    margin: 4px 0;
+}
+
+.block-login-google a,
+.block-login-facebook a{
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #bebebe;
+    padding: 12px;
+    border-radius: 12px;
+    color: #444;
+}
+
+.block-login-question{
+    text-align: center;
+}
+.block-login-question span, .block-login-question a{
+    font-size: 14px;
+    color: #444;
+}
+.block-login-question a{
+    color:#d70018;
+}
+
+.ladi-page__title {
+    font-size: 22px;
+    text-align: center;
+}
