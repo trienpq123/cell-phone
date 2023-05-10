@@ -107,7 +107,6 @@
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
    $(document).ready(function(){
-        $('#table').DataTable();
         $('.aside ul li a').click(function() {
             $('.menu-child').toggleClass('active');
         })
@@ -197,7 +196,8 @@
     
 </script>
 <script type="text/javascript">
-    
+    let a = document.getElementsByClassName('btn-edit');
+    console.log(a)
     function ChangeToSlug()
         {
             var slug;

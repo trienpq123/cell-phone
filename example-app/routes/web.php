@@ -32,7 +32,7 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/edit',[FilterController::class,'editFilter'])->name('editFilter');
             Route::post('/add',[FilterController::class,'postAddFilter'])->name('postAddFilter');
             Route::post('/edit',[FilterController::class,'putEditFilter'])->name('putEditFilter');
-            Route::delete('/delete/{id}',[FilterController::class,'deleteFilter'])->name('deleteFilter');
+            Route::delete('/delete',[FilterController::class,'deleteFilter'])->name('deleteFilter');
         });
     });
     Route::get('lang/{language}',[IndexController::class,'checkLanguage'])->name('checkLanguage');
