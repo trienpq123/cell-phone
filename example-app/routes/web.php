@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +36,17 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/edit',[FilterController::class,'putEditFilter'])->name('putEditFilter');
             Route::delete('/delete',[FilterController::class,'deleteFilter'])->name('deleteFilter');
         });
+        Route::prefix('category')->name('category.')->group(function() {
+            Route::get('/',[CategoryController::class,'listCategory'])->name('listCategory');
+            Route::get('/api/list',[CategoryController::class,'apiListCategory'])->name('apiListCategory');
+            Route::get('/add',[CategoryController::class,'addCategory'])->name('addCategory');
+            Route::get('/edit',[CategoryController::class,'editCategory'])->name('editCategory');
+            Route::post('/add',[CategoryController::class,'postAddCategory'])->name('postAddCategory');
+            Route::post('/edit',[CategoryController::class,'putEditCategory'])->name('putEditCategory');
+            Route::delete('/delete',[CategoryController::class,'deleteCategory'])->name('deleteCategory');
+        });
+
+        Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });
     Route::get('lang/{language}',[IndexController::class,'checkLanguage'])->name('checkLanguage');
 });

@@ -1041,3 +1041,18 @@ body{
 #table_previous, #table_next{
     font-size: 12px !important;
 }
+
+.name-error{
+    display: none;
+}
+
+.text-danger {
+    display: none;
+    font-size: 12px;
+    color:#d70018;
+    padding-left: 4px;;
+}
+
+.name-error.active{
+    display: block;
+}

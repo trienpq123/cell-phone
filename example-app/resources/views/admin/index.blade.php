@@ -105,6 +105,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('./admin/assets/js/js.js')}}"></script>
 <script>
    $(document).ready(function(){
         $('.aside ul li a').click(function() {

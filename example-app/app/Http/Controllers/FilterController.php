@@ -19,11 +19,11 @@ class FilterController extends Controller
         
     }
     public function postAddFilter(Request $request){
-        // $request->validate(
-        //   [  'name' => 'required|unique:filter,filter_name']
-        // ,[
-        //     'name.required' => '123'
-        // ]);
+        $request->validate(
+          [  'name' => 'required']
+        ,[
+            'name.required' => '123'
+        ]);
         $filter = new FilterModel();
         $filter->filter_name =  $request->name;
         $filter->slug =  $request->slug;
@@ -51,10 +51,21 @@ class FilterController extends Controller
         ]);
     }
     public function putEditFilter(Request $request){
-        $filter = FilterModel::where('filter_id','=',$request->id)->first();
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required'
+        ]
+        );
+        if($validator->fails()){
+            return response()->json([
+                'status' => 404,
+                'message' => $validator->messages()
+            ]);
+        };
+       $filter = FilterModel::where('filter_id','=',$request->id)->first();
         $filter->filter_name = $request->name;
         $filter->slug = $request->slug;
-        if($request->_parent) $filter->_parent = $request->_parent;   
+        if($request->_parent) $filter->_parent = $request->_parnt;   
         $filter->save();
         return response()->json([
             'filter' => $filter,
@@ -67,11 +78,17 @@ class FilterController extends Controller
     }
 
     public function deleteFilter(Request $request){
-        FilterModel::find($request->id)->delete();   
+        if($request->data){
+            foreach ($request->data as $item) {
+                # code...
+                FilterModel::find($item)->delete();   
+            }
+        }
         return response()->json(
            [ 
             "status" => 200,
-            "messages" => "Xoá thành công"            
+            "messages" => "Xoá thành công",
+            "data" => $request->data          
            ]
         );
     }

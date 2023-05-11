@@ -9,16 +9,10 @@
            
             </a></li>
             <li>
-                <a href="#">
+                <a href="{{route('admin.filter.listFilter')}}">
                     <span class="box-iconls"><i class="fa-solid fa-house"></i>Bộ lọc tìm kiếm</span>
            
                 </a>
-                <div class="menu-child">
-                    <ul>
-                        <li><a href="{{route('admin.filter.listFilter')}}">Danh sách bộ lọc</a></li>
-                        <li><a href="{{route('admin.filter.addFilter')}}">Thêm bộ lọc</a></li>
-                    </ul>
-                </div>
             </li>
             <li>
                 <a href="#">
@@ -46,7 +40,7 @@
                 </div>
             </li>
             <li>
-                <a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span> Quản lý danh mục</a>
+                <a href="{{route('admin.category.listCategory')}}"><span class="box-iconls"><i class="fa-solid fa-house"></i></span> Quản lý danh mục</a>
             </li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Khách hàng</a></li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Menu</a></li>

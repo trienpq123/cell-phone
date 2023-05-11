@@ -203,11 +203,11 @@ textarea{
     align-items: center;
 }
 
-/* 
+
 .form-feild{
-    width: 650px;
-    margin: 0 auto;
-} */
+    
+    margin: 0 auto; 
+}
 
 form {
     margin: 16px 0;
@@ -300,12 +300,17 @@ table td {
     background: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 48px;
-    margin: 0 auto;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    transform: translate(-25%,-25%);
     border-radius: 12px;
-    animation-name: popupToShow;
-    animation-duration: .2s;
-    
-    
+    /* animation-name: popupToShow; */
+    /* animation-duration: .2s; */
+    height: 550px;
+    overflow-y: scroll;
+    -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;  
 }
 
 .popup-modal .alert-item{
@@ -384,6 +389,7 @@ form select{
     animation-name: alert;
     animation-duration: 3s;
     animation-delay: .3s;
+    z-index: 99999;
 }
 
 .alert-success{

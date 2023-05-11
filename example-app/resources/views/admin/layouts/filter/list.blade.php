@@ -4,7 +4,7 @@
     <div class="wrap-container">
      
         <button class="btn btn-add"  data-name="add-product">Thêm mới</button>
-        <button class="btn btn-delete delete-checkbox" data-name="popup-delete-checkbox">Xoá</button>
+        <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled data-name="popup-delete-checkbox">Xoá</button>
    
         <div class="table">
             
@@ -39,9 +39,12 @@
                     @endforeach
                 </tbody> --}}
                 <tfoot>
+                    @if (count($listFilter) > 0)
                     <tr>
                         <td><input type="checkbox" name="" id="" class="check-all"></td>
                     </tr>
+                        
+                    @endif
                 </tfoot>
             </table>
         </div>
@@ -60,7 +63,7 @@
                                 Chấp nhận
                             </div>
                             <div class="action-delete">
-                                Xoá
+                                Huỷ bỏ
                             </div>
                         </div>
                     </div>
@@ -86,7 +89,7 @@
                                 Xác nhận
                             </div>
                             <div class="action-delete">
-                                Thoát
+                                Huỷ bỏ
                             </div>
                         </div>
                     </div>
@@ -103,6 +106,14 @@
                     <div class="form-title">
                         <h2>Thêm bộ lọc</h2>
                     </div>
+    
+                      @if($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+                    @endif
+
+            
                     <form action="{{route('admin.filter.postAddFilter')}}" method="post" id="form-add">
                         @csrf
                         <div class="form-group">
@@ -154,6 +165,7 @@
                         <div class="form-group">
                             <label for="">Tên Bộ lọc</label>
                             <input type="text" placeholder="Nhập tên sản phẩm" class="form-control  edit_names" id="slug" onchange="ChangeToSlug()" name="name">
+                            <span class="name-error text-danger">Tên bộ lọc không được bỏ trống</span>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
@@ -198,6 +210,19 @@
     <script>
     
     $(document).ready(function(){
+        $('body').on('change','input[type="checkbox"]',function() {
+            var anyChecked = $('input[type="checkbox"]:checked').length
+            
+            // Kiểm tra xem có checkbox nào được chọn hay không
+            if (anyChecked > 0) {
+            // Nếu có checkbox được chọn, loại bỏ thuộc tính "disable" khỏi button (nếu có)
+            $('#delete-checkbox').removeAttr('disabled');
+            } else {
+            // Nếu không có checkbox được chọn, thêm thuộc tính "disable" vào button (nếu chưa có)
+            $('#delete-checkbox').attr('disabled', 'disabled');
+            }
+        });
+        let array = [];
         getDataTable();
         function getDataTable() {
                 $('#table').DataTable({
@@ -209,7 +234,7 @@
                     {
                         data: null,
                         render: function(data,type,row,meta){
-                            return `<input type="checkbox" id="item-check" name="item-check[]" value="${data.filter_id}">`
+                            return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.filter_id}">`
                         }
                     },
                     {
@@ -266,7 +291,7 @@
                     method: "GET",
                     data: {id:id},
                     success: (res) => {   
-                      
+                        
                         $(".edit_names").val(res.filter.filter_name);
                         $(".edit_slug").val(res.filter.slug);
                         $(".edit_parent option").each(function(index,pa){
@@ -292,21 +317,26 @@
                     success: (res) => {
                         // window.location.reload();
                         // $('.table').html(res);
+                       console.log(res)
                        
-                        $('#table').DataTable().destroy()
-                        getDataTable();
-                        $('.alert').toggleClass('active')
+                        if(res.status == 200 ){
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            validator(res.status,res.message)
+                        }
+                        if(res.status == 404){
+                            validator(res.status,res.message)
+                        }
                     }
                 })
             })
         })
 
+   
         $('body').on('click','table .btn-delete',function(){
             let id = $(this).attr('data-id');
             $('#popup-delete').toggleClass('active');
-            // $('.popup-modal').click(function(){
-            //     $('.popup-modal').removeClass('active');
-            // });
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
@@ -315,7 +345,7 @@
                 $.ajax({
                     url: '{{route('admin.filter.deleteFilter',["id" =>'+id+'])}}',
                     type:"DELETE",
-                    data: {id:id,_token:"{{csrf_token()}}"},
+                    data: {data:[id],_token:"{{csrf_token()}}"},
                     success: (res) => {
                         if(res.status == 200){
                             $('#table').DataTable().destroy()
@@ -327,17 +357,34 @@
             });
         })
 
-      
+        
         $('.check-all').change(function(){
-            let array = [];
+    
             if($(this).is(':checked')){
-                $('tr input[type=checkbox]').prop('checked', 'checked');
+                if($(this).prop('checked')){
+                    $('.item-check').not(this).prop('checked',true)
+                }
+                // $('tr input:checkbox').attr('checked','checked');
+                
                 let getValueCheckbox = document.querySelectorAll('#item-check');
-                for(let i = 0; i< getValueCheckbox.length; i++){
+                
+                for(let i = 0; i < getValueCheckbox.length; i++){
+                  
                     array.push(getValueCheckbox[i].value);
+                    getValueCheckbox[i].addEventListener("click",function(){
+                        if(this.checked){
+                            array.push(getValueCheckbox[i].value)  
+                        }else{
+                           let array_new =  array.filter(function(arr){
+                                return arr != getValueCheckbox[i].value;
+                            })
+                            array = array_new;                     
+                        }
+                    })
+              
                 }
             }else{     
-                $('input:checkbox').removeAttr('checked');
+                $('tr input:checkbox').removeAttr('checked');
                 array = [];
             }
         })
@@ -350,14 +397,41 @@
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
-            $('.action-agree').click(function(){
-                console.log($('#item-check').is(':checked'));
-                // $('.popup-modal').removeClass('active');
-            });
+           
             
         })
         
-       
+        $('.action-delete').click(function(){
+            $('.popup-modal').removeClass('active');
+        })
+
+        $('.action-agree').click(function(){
+                let array = []
+                let getValueCheckbox = document.querySelectorAll('#item-check');
+                
+                for(let i = 0; i < getValueCheckbox.length; i++){
+                        if(getValueCheckbox[i].checked){
+                            array.push(getValueCheckbox[i].value);
+                        }
+    
+              
+                }
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{route('admin.filter.deleteFilter')}}",
+                    data: {data: array,_token:"{{csrf_token()}}"},
+                    success: (res) => {
+                        if(res.status == 200){
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
+                        }
+                    }
+                   
+                })
+        });
+
     })
     </script>
 @endpush
