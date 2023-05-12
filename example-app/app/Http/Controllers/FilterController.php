@@ -44,6 +44,7 @@ class FilterController extends Controller
 
     public function editFilter(Request $request){
         $filter = FilterModel::where('filter_id','=',$request->id)->first();
+        
         return response()->json([
             'filter' => $filter,
             'status' => 200,

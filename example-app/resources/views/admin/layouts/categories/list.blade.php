@@ -106,32 +106,56 @@
                     <div class="form-title">
                         <h2>Thêm danh mục mới</h2>
                     </div> 
-                    <form action="{{route('admin.filter.postAddFilter')}}" method="post" id="form-add">
+                    <form id="form-add" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên danh mục</label>
                             <input type="text" placeholder="Nhập tên Danh mục" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
+                            <p class="name-error text text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
                             <input type="text" placeholder="Nhập tên Danh mục" class="form-control slug"  id="convert_slug" name="slug">
+                            <p class="slug-error text text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả</label>
-                            <textarea name="" id="desc" cols="30" rows="10"></textarea>
+                            <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh</label>
-                            <input type="file" name="" id="" class="file" id="upload-file">
+                            <input type="file" name="image" id="" class="file" id="upload-file">
+                            <p class="image-error text text-danger"></p>
                             <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
                                 <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="radio" name="status" id="" style="width:auto;"><label for="">Ẩn</label>
-                            <input type="radio" name="status" id=""   style="width:auto;"> <label for="">Hiện</label>
+                            <input type="radio" name="status" id="status" class="status" value="0" style="width:auto;"><label for="">Ẩn</label>
+                            <input type="radio" name="status"  id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
                         </div>
-                       
+                        <div class="form-group">
+                            <label for="">Chọn bộ lọc</label>
+                            <select class="js-example-basic-single filter form-control" name="id_filter" multiple="multiple">
+                                <option value="">Chưa chọn bộ lọc</option>
+                                @if (count($listFilter) > 0)
+                                    @foreach ($listFilter as $item)
+                                        <option value={{$item->filter_id}}>{{$item->filter_name}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Chọn Danh Mục Cha</label>
+                            <select class="js-example-basic-single filter form-control" name="parent_category">
+                                <option value="">Chưa có</option>
+                                @if (count($listCategory) > 0)
+                                    @foreach ($listCategory as $item)
+                                        <option value={{$item->id_category}}>{{$item->name_category}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-submit">
                                 Xác nhận
@@ -151,28 +175,56 @@
                     <div class="form-title">
                         <h2>Chỉnh sửa</h2>
                     </div>
-                    <form class="form-edit">
+                    <form class="form-edit" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="">Tên Bộ lọc</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control  edit_names" id="slug" onchange="ChangeToSlug()" name="name">
-                            <span class="name-error text-danger">Tên bộ lọc không được bỏ trống</span>
+                            <label for="">Tên danh mục</label>
+                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
+                            <p class="name-error text text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control edit_slug" id="convert_slug" name="slug">
+                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control slug"  id="convert_slug" name="slug">
+                            <p class="slug-error text text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <label for="">Chọn bộ lọc cha</label>
-                            <select name="_parent " id="" class="form-control edit_parent">
-                                <option  value="">Chưa chọn Bộ lọc cha</option>
-                                @php
-                                    $step = 3;
-                                @endphp
-                              
+                            <label for="">Mô tả</label>
+                            <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Hình ảnh</label>
+                            <input type="file" name="image" id="" class="file" id="upload-file">
+                            <p class="image-error text text-danger"></p>
+                            <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
+                                <img class="1"   src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="radio" name="status" id="status" class="status" value="0" style="width:auto;"><label for="">Ẩn</label>
+                            <input type="radio" name="status"  id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Chọn bộ lọc</label>
+                            <select class="js-example-basic-single filter form-control " name="id_filter" multiple="multiple">
+                                <option value="">Chưa chọn bộ lọc</option>
+                                @if (count($listFilter) > 0)
+                                    @foreach ($listFilter as $item)
+                                        <option value={{$item->filter_id}}>{{$item->filter_name}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
-                       
+                        <div class="form-group">
+                            <label for="">Chọn Danh Mục Cha</label>
+                            <select class="js-example-basic-single filter form-control" name="parent_category">
+                                <option value="">Chưa có</option>
+                                @if (count($listCategory) > 0)
+                                    @foreach ($listCategory as $item)
+                                        <option value={{$item->id_category}}>{{$item->name_category}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-submit">
                                 Xác nhận
@@ -193,68 +245,83 @@
 
 @push('script-action')
     <script>
-    
+        
         $(document).ready(function(){
-        $('body').on('change','input[type="checkbox"]',function() {
-            var anyChecked = $('input[type="checkbox"]:checked').length
-            
-            // Kiểm tra xem có checkbox nào được chọn hay không
-            if (anyChecked > 0) {
-            // Nếu có checkbox được chọn, loại bỏ thuộc tính "disable" khỏi button (nếu có)
-            $('#delete-checkbox').removeAttr('disabled');
-            } else {
-            // Nếu không có checkbox được chọn, thêm thuộc tính "disable" vào button (nếu chưa có)
-            $('#delete-checkbox').attr('disabled', 'disabled');
-            }
-        });
-        let array = [];
-        getDataTable();
-        function getDataTable() {
-                $('#table').DataTable({
-                "ajax": {            
-                    url: "{{route('admin.filter.apiListFilter')}}",
-                    dataSrc: 'data'
-                },
-                "columns": [
-                    {
-                        data: null,
-                        render: function(data,type,row,meta){
-                            return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.filter_id}">`
-                        }
-                    },
-                    {
-                        data: null,
-                        render: function(data,type,row,meta){
-                            return ""
-                        }
-                    },
-                    { data: "filter_name" },
-                    { data: "slug" },
-                    {
-                        data:null,
-                        render: function(data,type,row,meta){
-                            return `<a class="btn-edit"  data-name="edit-product" data-id="${data.filter_id}">Chỉnh sửa</a>`
-                        }
-                    },
-                    {
-                        data:null,
-                        render: function(data,type,row,meta){
-                            return `<td><a  class="btn-delete"  data-id="${data.filter_id}">Xoá</a></td>`
-                        }
-                    }
-                ],
-                language:{
-                    search: "Tìm kiếm",
-                    Show: "Hiển thị"
-                },
-                paginate: {
-                    first:      "Trang Đầu",
-                    previous:   "Trang trước",
-                    next:       "Trang tiếp",
-                    last:       "Trang cuối"
-                },
+
+
+            $('body').on('change','input[type="checkbox"]',function() {
+                var anyChecked = $('input[type="checkbox"]:checked').length
+                
+                // Kiểm tra xem có checkbox nào được chọn hay không
+                if (anyChecked > 0) {
+                // Nếu có checkbox được chọn, loại bỏ thuộc tính "disable" khỏi button (nếu có)
+                $('#delete-checkbox').removeAttr('disabled');
+                } else {
+                // Nếu không có checkbox được chọn, thêm thuộc tính "disable" vào button (nếu chưa có)
+                $('#delete-checkbox').attr('disabled', 'disabled');
+                }
             });
-        }
+            let array = [];
+            getDataTable();
+            function getDataTable() {
+                    $('#table').DataTable({
+                    "ajax": {            
+                        type: "GET",
+                        url: "{{route('admin.category.apiListCategory')}}",
+                        dataSrc: 'data'
+                    },
+                    "columns": [
+                        {
+                            data: null,
+                            render: function(data,type,row,meta){
+                                return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_category}">`
+                                // console.log(row)    
+                            }
+                        },
+                        {
+                            data: null,
+                            render: function(data,type,row,meta){
+                                return `<img src="${data.image_category}" alt="${data.name_category}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
+                            }
+                        },
+                        { 
+                            data: null,
+                            render: function(data,type,row,meta){
+                                return `<span>${data.name_category}</span>`
+                            }                    
+                        },
+                        {
+                            data:null ,
+                            render: function(data,type,row,meta){
+                                // return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
+                                return data.hide == 0 ? "Hiển Thị" : "Ẩn"
+                            }
+                        },
+                        {
+                            data:null,
+                            render: function(data,type,row,meta){
+                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
+                            }
+                        },
+                        {
+                            data:null,
+                            render: function(data,type,row,meta){
+                                return `<td><a  class="btn-delete"  data-id="${data.filter_id}">Xoá</a></td>`
+                            }
+                        }
+                    ],
+                    language:{
+                        search: "Tìm kiếm",
+                        Show: "Hiển thị"
+                    },
+                    paginate: {
+                        first:      "Trang Đầu",
+                        previous:   "Trang trước",
+                        next:       "Trang tiếp",
+                        last:       "Trang cuối"
+                    }
+                })
+            }
         $('body').on('click','.btn-edit',function() {
             let name=$(this).attr('data-name');
             let id=$(this).attr('data-id');
@@ -271,17 +338,26 @@
 
             $.ajax(
                 {
-                    url: "{{route('admin.filter.editFilter')}}",
+                    url: "{{route('admin.category.editCategory')}}",
                     dataType:"json",
                     method: "GET",
                     data: {id:id},
                     success: (res) => {   
+                        console.log(res)
+                        $(".name").val(res.data.name_category);
+                        $(".slug").val(res.data.slug);
+                        // let link_img = `<img src="${res.data.image_category}"/>`
+                        $(".1").removeAttr("src");
+                        $(".1").attr("src", `${res.data.image_category}`);
+                        console.log(res.listFilter.length);
                         
-                        $(".edit_names").val(res.filter.filter_name);
-                        $(".edit_slug").val(res.filter.slug);
-                        $(".edit_parent option").each(function(index,pa){
-                            if(pa.value == res.filter.filter_id) $(this).attr('selected','selected')
-                        })
+                        id_filter = [];
+                            for(let i = 0; i< res.listFilter.length; i++){
+                                id_filter.push(res.listFilter[i].id_filter)
+                            }    
+                        console.log(id_filter)
+                        $('.filter').val(id_filter);
+                        $('.filter').trigger('change'); 
                     }
                 }
             )
@@ -417,6 +493,52 @@
                 })
         });
 
+        $('#form-add').submit(function(e) {
+                e.preventDefault();
+                let filter = $('.filter :selected');
+                let name_category = $('.form-control.name').val();
+                console.log(name_category)
+                let slug_category = $('.slug').val();
+                let desc_category = CKEDITOR.instances.desc.getData();
+                let image_category =  $('input[type=file]')[0].files[0];
+                console.log(image_category)
+                let status_category = $('.status').val()
+                var formData = new FormData();
+                formData.append('desc',desc_category)
+                formData.append('image', $('input[type=file]')[0].files[0]); 
+                formData.append('name',name_category)
+                formData.append('slug',slug_category)
+                formData.append('status',status_category)
+                formData.append('_token',"{{csrf_token()}}")
+                let status = $('.status').val();
+                idFilter = [];
+                filter.each(function(i,f) {
+                    return idFilter.push(f.value)
+                })
+                formData.append('idFilter',idFilter)
+                $.ajax({
+                    type:"POST",
+                    url: "{{route('admin.category.postAddCategory')}}",
+                    data:formData,
+                    success: (res) => {
+                        if(res.status == 404){
+                            console.log(res)
+                            validator(res.status,res.message)
+        
+                        }else{
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
+                        }               
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+
+                })
+            })
+
     })
     </script>
     <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
@@ -426,4 +548,11 @@
             filebrowserUploadMethod: 'form'
         });
         </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // SELECT 2
+            $('.js-example-basic-single').select2();
+        });
+    </script>
 @endpush

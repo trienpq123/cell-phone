@@ -1053,6 +1053,12 @@ body{
     padding-left: 4px;;
 }
 
-.name-error.active{
+.name-error.active,
+.slug-error.active,
+.image-error.active{
     display: block;
+}
+
+.select2{
+    width: 100% !important;
 }
