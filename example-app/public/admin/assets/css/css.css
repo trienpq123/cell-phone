@@ -403,3 +403,29 @@ form select{
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
+.container-size{
+    margin: 8px 0;
+}
+
+
+.badge-2 {
+    padding: 2px;
+    outline: none;
+    border: 1px solid #155724;
+    color: #fff;
+    background: #155724;
+    border-radius: 4px;
+    position: relative;
+    padding-right: 12px;
+}
+
+.container-size span {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    line-height: 1.5;
+    padding-right: 2px;
+    cursor: pointer;
+    
+}

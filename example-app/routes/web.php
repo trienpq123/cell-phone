@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,15 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[CategoryController::class,'postAddCategory'])->name('postAddCategory');
             Route::post('/edit',[CategoryController::class,'putEditCategory'])->name('putEditCategory');
             Route::delete('/delete',[CategoryController::class,'deleteCategory'])->name('deleteCategory');
+        });
+        Route::prefix('product')->name('product.')->group(function() {
+            Route::get('/',[ProductController::class,'listProduct'])->name('listProduct');
+            Route::get('/api/list',[ProductController::class,'apiListProduct'])->name('apiListProduct');
+            Route::get('/add',[ProductController::class,'addProduct'])->name('addProduct');
+            Route::get('/edit',[ProductController::class,'editProduct'])->name('editProduct');
+            Route::post('/add',[ProductController::class,'postAddProduct'])->name('postAddProduct');
+            Route::post('/edit',[ProductController::class,'putEditProduct'])->name('putEditProduct');
+            Route::delete('/delete',[ProductController::class,'deleteProduct'])->name('deleteProduct');
         });
 
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');

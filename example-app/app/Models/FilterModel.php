@@ -28,4 +28,8 @@ class FilterModel extends Model
     public function getFilter(){
         return $this->belongsTo(FilterModel::class,'filter_id','filter_id');
     }
+
+    public function Category(){
+        return $this->belongsToMany(CategoryModel::class,'filter_category','id_category','id_filter');
+    }
 }

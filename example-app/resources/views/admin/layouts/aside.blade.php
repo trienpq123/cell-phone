@@ -30,14 +30,9 @@
                 </div>
             </li>
             <li>
-                <a href="#">
-                    <span class="box-iconls"><i class="fa-solid fa-house"></i></span> Quản lý sản phẩm</a>
-                <div class="menu-child">
-                    <ul>
-                        <li><a href="#">Danh sách sản phẩm</a></li>
-                        <li><a href="#">Quản lý kho</a></li>
-                    </ul>
-                </div>
+                <a href="{{Route('admin.product.listProduct')}}">
+                    <span class="box-iconls"><i class="fa-solid fa-house"></i></span> Quản lý sản phẩm
+                </a>
             </li>
             <li>
                 <a href="{{route('admin.category.listCategory')}}"><span class="box-iconls"><i class="fa-solid fa-house"></i></span> Quản lý danh mục</a>
