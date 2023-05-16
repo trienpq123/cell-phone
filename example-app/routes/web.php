@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
@@ -54,6 +55,15 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[ProductController::class,'postAddProduct'])->name('postAddProduct');
             Route::post('/edit',[ProductController::class,'putEditProduct'])->name('putEditProduct');
             Route::delete('/delete',[ProductController::class,'deleteProduct'])->name('deleteProduct');
+        });
+        Route::prefix('brand')->name('brand.')->group(function() {
+            Route::get('/',[BrandController::class,'listBrand'])->name('listBrand');
+            Route::get('/api/list',[BrandController::class,'apiListBrand'])->name('apiListBrand');
+            Route::get('/add',[BrandController::class,'addBrand'])->name('addBrand');
+            Route::get('/edit',[BrandController::class,'editBrand'])->name('editBrand');
+            Route::post('/add',[BrandController::class,'postAddBrand'])->name('postAddBrand');
+            Route::post('/edit',[BrandController::class,'putEditBrand'])->name('putEditBrand');
+            Route::delete('/delete',[BrandController::class,'deleteBrand'])->name('deleteBrand');
         });
 
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');

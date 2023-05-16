@@ -43,6 +43,7 @@
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý banner</a></li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý liên hệ</a></li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý tin tức</a></li>
+            <li><a href="{{route('admin.brand.listBrand')}}"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý thương hiệu</a></li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Cấu hình Website</a></li>
             <li><a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Config</a></li>
             <li>

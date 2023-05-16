@@ -16,9 +16,7 @@
                         <th>Mã sản phẩm</th>
                         <th>Hình ảnh</th>
                         <th>Tên Sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Giảm giá</th>
-                        <th>Tình trạng</th>
+                        {{-- <th>Tình trạng</th> --}}
                         <th>Ẩn/Hiện</th>
                         <th></th>
                         <th></th>   
@@ -125,23 +123,24 @@
                             <p class="slug-error text text-danger"></p>
                         </div>
                         <div class="form-group">
+                            <label for="">Mã sản phẩm (SKU)</label>
+                            <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control product_sku"  id="product_sku" name="product_sku">
+                            <p class="slug-error text text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô tả</label>
+                            <textarea name="desc" class="desc_short" id="desc_short" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="">Mô tả</label>
                             <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh</label>
-                            <input type="file" name="image" id="" class="file" id="upload-file">
+                            <input type="file" name="image" id="" class="add-file" id="upload-file" multiple>
                             <p class="image-error text text-danger"></p>
                             <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
                                 {{-- <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt=""> --}}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Ảnh khác</label>
-                            <input type="file" name="image" id="" class="file edit_file" id="upload-file">
-                            <p class="image-error text text-danger"></p>
-                            <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
-                                {{-- <img class="1"   src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt=""> --}}
                             </div>
                         </div>
 
@@ -150,30 +149,57 @@
                             <table class="table">
                                 <thead>
                                     <th>Tên thuộc tính ( Size - Color )</th>
-                                    <th>Giá trị</th>
-                                    <th></th>
+                                  
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <input type="text" placeholder="kích thước" class="add-size">
                                             <div class="container-size">
-                                                <button class="badge-2" data-id="16gb">16GB <span class="close">x</span></button>
-                                                <button class="badge-2">16GB</button>
-                                                <button class="badge-2">16GB</button>
-                                                <button class="badge-2">16GB</button>
-                                                <button class="badge-2">16GB</button>
-                                                <button class="badge-2">16GB</button>
+                                                {{-- <button class="badge-2" data-id="16gb">16GB <span class="close">x</span></button> --}}
+                                              
                                             </div>
                                         </td>
                                        
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="Màu sắc">
+                                            <input type="text" placeholder="Màu sắc" class="add-color">
                                             <div class="container-color">
                                                 
                                             </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group table-price">
+                            <label for="">Chỉnh sửa bảng giá</label>
+                            <table class="table">
+                                <thead>
+                                    <th></th>
+                                    <th>Tên thuộc tính</th>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Giá giảm</th>
+                                </thead>
+                                <tbody>
+                                    <button>thêm</button>
+                                    <tr>
+                                        <td><input type="checkbox" name="" id=""></td>
+                                        <td>
+                                            16GB
+                                            Màu trắng
+                                            Da
+                                        </td>
+                                        <td>
+                                            <input type="text" value="SKU">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="" placeholder="Giá" value="0" id="">
+                                        </td>
+                                        <td>
+                                            <input type="number" name="" placeholder="Giá giảm" value="0" id="">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -184,25 +210,25 @@
                             <input type="radio" name="status"  id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
                         </div>
                         <div class="form-group">
-                            <label for="">Chọn bộ lọc</label>
-                            <select class="js-example-basic-single filter form-control" name="id_filter" multiple="multiple">
-                                <option >Chưa chọn bộ lọc</option>
-                                {{-- @if (count($listFilter) > 0)
-                                    @foreach ($listFilter as $item)
-                                        <option value={{$item->filter_id}}>{{$item->filter_name}}</option>
+                            <label for="">Chọn thương hiệu</label>
+                            <select class="js-example-basic-single brand form-control" name="id_brand" multiple="multiple">
+                                <option >Chưa chọn thương hiệu</option>
+                                @if (count($getBrands) > 0)
+                                    @foreach ($getBrands as $item)
+                                        <option value={{$item->id_brand}}>{{$item->name_brand}}</option>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Chọn Sản phẩm Cha</label>
-                            <select class="js-example-basic-single filter form-control" name="parent_category">
+                            <label for="">Danh mục</label>
+                            <select class="js-example-basic-single category form-control" name="parent_category">
                                 <option value="">Chưa có</option>
-                                {{-- @if (count($listCategory) > 0)
+                                @if (count($listCategory) > 0)
                                     @foreach ($listCategory as $item)
                                         <option value={{$item->id_category}}>{{$item->name_category}}</option>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </select>
                         </div>
                         <div class="form-group">
@@ -306,14 +332,133 @@
 @push('script-action')
     <script>
         
-        let get_add_size = document.querySelector('.add-size');
+        function InnerTableAttr(){
+            let check_size = document.querySelectorAll(".container-size .badge-2 span");
+                        let table = document.querySelector(".table-price table tbody");
+                        let tr = "";
+                        for (let i = 0; i < check_size.length; i++) {
+                            let getValueSize = check_size[i].getAttribute("data-value")
+                            let check_color = document.querySelectorAll(".container-color .badge-2 span");
+                            console.log(check_color)
+                            if(check_color.length > 0){
+                                        for (let c = 0; c < check_color.length; c++) {
+                                        let getValueColor = check_color[c].getAttribute("data-value")
+                                        tr += `<tr>
+                                                <td> <input type="checkbox" /> </td>
+                                                <td>
+                                                    <span>${getValueSize}</span>    -
+                                                    <span>${getValueColor}
+                                                    <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    <input type="text" hidden value="${getValueColor}" class="color" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" placeholder="Mã sản phẩm" class="product_sku" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                </td>
+                                        </tr>`      
+                                    }
+                            }else{
+                                tr += `<tr>
+                                                <td> <input type="checkbox" /> </td>
+                                                <td>
+                                                    <span>${getValueSize}</span>    
+                                                    <input type="text" hidden value="${getValueSize}" class="size" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" placeholder="Mã sản phẩm" class="product_sku" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                </td>
+                                        </tr>`   
+                            }
+                           
+                   
+                        }
+                        console.log(tr);
+                        table.innerHTML = tr;
+        }
+        let btn_size = 1;
+        createButtonSize();
+        function createButtonSize(){
+            let get_add_size = document.querySelector('.add-size');
             get_add_size.addEventListener("keydown",function(e){
-                if(e.keyCode === 13){
-                    let create_button = document.createElement("button");
-                    setValuteSizeButton = create_button.setAttribute("class","123 123 123")
-                    console.log(setValuteSizeButton)
-                }
-         })
+                    let i =1
+                    if(e.keyCode === 13){
+                        let value = this.value;
+                        console.log(value)
+                        let create_button = document.createElement("div");
+                        let create_span = document.createElement("span");
+                        create_span.setAttribute("class",'close');
+                        create_span.setAttribute("data-value",value);
+
+                        create_span.textContent = "x";
+                        setValuteSizeButton = create_button.setAttribute("class",`badge-2`)
+                        setValuteSizeButton = create_button.setAttribute("id",`btn-${btn_size++}`)
+                        let getValueSizeButton =create_button.getAttribute("id");
+                        create_span.setAttribute("data-id",getValueSizeButton);
+                        create_button.textContent = value
+                        create_button.appendChild(create_span)
+                        let container_size = document.querySelector('.container-size');
+                        container_size.appendChild(create_button)
+                        InnerTableAttr()
+                        this.value = "";
+                    }
+            
+            })
+        }
+        createButtonColor();
+
+        function createButtonColor() {
+            let get_add_size = document.querySelector('.add-color');
+            get_add_size.addEventListener("keydown",function(e){
+                    let i =1
+                    if(e.keyCode === 13){
+                        let value = this.value;
+                        console.log(value)
+                        let create_button = document.createElement("div");
+                        let create_span = document.createElement("span");
+                        create_span.setAttribute("class",'close');
+                        create_span.setAttribute("data-value",value);
+
+                        create_span.textContent = "x";
+                        setValuteSizeButton = create_button.setAttribute("class",`badge-2`)
+                        setValuteSizeButton = create_button.setAttribute("id",`btn-color-${btn_size++}`)
+                        let getValueSizeButton =create_button.getAttribute("id");
+                        create_span.setAttribute("data-id",getValueSizeButton);
+                        create_button.textContent = value
+                        create_button.appendChild(create_span)
+                        let container_size = document.querySelector('.container-color');
+                        container_size.appendChild(create_button)
+                        this.value = ""
+                        InnerTableAttr();
+                    }
+            
+            })
+        }
+      
+
+
+
+        $('body').on('click','.close',function(){
+               let id = $(this).attr("data-id");
+               console.log(id);
+               $(`#${id}`).remove();
+               InnerTableAttr();
+        })
+       
+        // delete_size.addEventListener('click',function() {
+        //     alert('1')
+        // })
+      
         $(document).ready(function(){
 
             $('body').on('change','input[type="checkbox"]',function() {
@@ -334,46 +479,50 @@
                     $('#table').DataTable({
                     "ajax": {            
                         type: "GET",
-                        url: "{{route('admin.category.apiListCategory')}}",
+                        url: "{{route('admin.product.apiListProduct')}}",
                         dataSrc: 'data'
                     },
                     "columns": [
                         {
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_category}">`
-                                // console.log(row)    
+                                return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_product}">`;
                             }
                         },
                         {
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<img src="${data.image_category}" alt="${data.name_category}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
+                                return `<a >${data.product_SKU}</a>`;
+                            }
+                        },
+                        {
+                            data: null,
+                            render: function(data,type,row,meta){
+                                return `<img src="${data.images[0].link_img}" alt="${data.name_product}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
                             }
                         },
                         { 
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<span>${data.name_category}</span>`
+                                return `<span>${data.name_product}</span>`
                             }                    
                         },
                         {
                             data:null ,
                             render: function(data,type,row,meta){
-                                // return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
-                                return data.hide == 0 ? "Hiển Thị" : "Ẩn"
+                                return data.status == 0 ? "Hiển Thị" : "Ẩn"
                             }
                         },
                         {
                             data:null,
                             render: function(data,type,row,meta){
-                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
+                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_product}">Chỉnh sửa</a>`
                             }
                         },
                         {
                             data:null,
                             render: function(data,type,row,meta){
-                                return `<td><a  class="btn-delete"  data-id="${data.id_category}">Xoá</a></td>`
+                                return `<td><a  class="btn-delete"  data-id="${data.id_product}">Xoá</a></td>`
                             }
                         }
                     ],
@@ -393,9 +542,6 @@
             let name=$(this).attr('data-name');
             let id=$(this).attr('data-id');
             $('.popup-modal'+'.'+name).toggleClass('active');
-            // $('.popup-modal').click(function(){
-            //     $('.popup-modal').removeClass('active');
-            // });
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
@@ -444,33 +590,6 @@
             
           
             $('.form-edit').submit(function(e){
-            //  ).val();
-                // let slug = $(".edit   // e.preventDefault();
-                // var token =  $('input[name="_token"]').attr('value'); 
-                // console.log(token);
-                // let name = $(".edit_names"_slug").val();
-                // let _parent = $(".edit_parent option:selected").val();
-                // $.ajax({
-                //     type:"POST",
-                //     dataType:"JSON",
-                //     url: "{{route('admin.filter.putEditFilter')}}",
-                //     data: {id:id,_token:"{{csrf_token()}}",name:name,slug:slug,_parent:_parent},
-                //     success: (res) => {
-                //         // window.location.reload();
-                //         // $('.table').html(res);
-                //        console.log(res)
-                       
-                //         if(res.status == 200 ){
-                //             $('#table').DataTable().destroy()
-                //             getDataTable();
-                //             $('.alert').toggleClass('active')
-                //             validator(res.status,res.message)
-                //         }
-                //         if(res.status == 404){
-                //             validator(res.status,res.message)
-                //         }
-                //     }
-                // })
                 e.preventDefault();
                 let filter = $('.edit_filter :selected');
                 let name_category = $('.form-control.edit_name').val();
@@ -513,10 +632,10 @@
                         }
                         else{
                             console.log(res)
-                            // $('#table').DataTable().destroy()
-                            // getDataTable();
-                            // $('.alert').toggleClass('active')
-                            // $('.popup-modal').removeClass('active');
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
                         }               
                     },
                     cache: false,
@@ -628,49 +747,57 @@
 
         $('#form-add').submit(function(e) {
                 e.preventDefault();
-                let filter = $('.filter :selected');
-                let name_category = $('.form-control.name').val();
-                console.log(name_category)
-                let slug_category = $('.slug').val();
-                let desc_category = CKEDITOR.instances.desc.getData();
-                let image_category =  $('input[type=file]')[0].files[0];
-                console.log(image_category)
-                let status_category = $('.status').val()
-                var formData = new FormData();
-                formData.append('desc',desc_category)
-                formData.append('image', $('input[type=file]')[0].files[0]); 
-                formData.append('name',name_category)
-                formData.append('slug',slug_category)
-                formData.append('status',status_category)
-                formData.append('_token',"{{csrf_token()}}")
-                let status = $('.status').val();
-                idFilter = [];
-                filter.each(function(i,f) {
-                    return idFilter.push(f.value)
+                let name_product = $('.form-control.name').val();
+                let idBrand = [];
+                $('.brand option:checked').each(function(i,item) {
+                    return idBrand.push(item.value)
                 })
-                formData.append('idFilter',idFilter)
+                let slug_product = $('.slug').val();
+                let desc_product = CKEDITOR.instances.desc.getData();
+                let desc_short_product = CKEDITOR.instances.desc_short.getData();
+                console.log(desc_product,desc_short_product);
+                let product_sku = $('.product_sku').val();
+                let id_category = $('.category').val();
+                // let image_category =  $('input[type=file]')[0].files[0]
+                let status_product = $('.status:checked').val()
+                var formData = new FormData();
+                formData.append('desc',desc_product)
+                formData.append('desc_short',desc_short_product)
+                for (let i = 0; i < $('input[type=file].add-file')[0].files.length; i++) {
+                    formData.append('image[]', $('input[type=file].add-file')[0].files[i]); 
+                }
+                formData.append('name',name_product)
+                formData.append('slug',slug_product)
+                formData.append('status',status_product)
+                formData.append('idBrand',idBrand)
+                formData.append('product_sku',product_sku)
+                formData.append('id_category',id_category)
+                formData.append('_token',"{{csrf_token()}}")
                 $.ajax({
                     type:"POST",
-                    url: "{{route('admin.category.postAddCategory')}}",
+                    url: "{{route('admin.product.postAddProduct')}}",
                     data:formData,
                     success: (res) => {
-                        if(res.status == 404){
-                            console.log(res)
-                            validator(res.status,res.message)
-        
-                        }
-                        else{
-                            console.log(res)
-                            $('#table').DataTable().destroy()
-                            getDataTable();
-                            $('.alert').toggleClass('active')
-                            $('.popup-modal').removeClass('active');
-                        }               
+                        console.log(res)
+                        validator(res.status,res.message) 
+                        // if(res.status == 404){
+                        //     console.log(res)
+                          
+                        // }
+                        // else{
+                        //     console.log(res)
+                        //     // $('#table').DataTable().destroy()
+                        //     // getDataTable();
+                        //     // $('.alert').toggleClass('active')
+                        //     // $('.popup-modal').removeClass('active');
+                        // }               
                     },
                     cache: false,
                     contentType: false,
                     processData: false
-
+                    // error: function(xhr) {
+                    //     console.log((xhr.responseJSON.errors));
+                    // }
                 })
             })
 
@@ -678,7 +805,13 @@
     </script>
     <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'desc', {
+        CKEDITOR.replace('desc', {
+            filebrowserUploadUrl: "{{route('admin.uploadFile', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
+    <script>
+        CKEDITOR.replace('desc_short', {
             filebrowserUploadUrl: "{{route('admin.uploadFile', ['_token' => csrf_token() ])}}",
             filebrowserUploadMethod: 'form'
         });

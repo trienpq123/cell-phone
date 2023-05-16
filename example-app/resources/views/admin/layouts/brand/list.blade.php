@@ -14,7 +14,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Hình ảnh</th>
-                        <th>Tên danh mục</th>
+                        <th>Tên Thương Hiệu</th>
                         <th>Ẩn/Hiện</th>
                         <th></th>
                         <th></th>   
@@ -38,7 +38,7 @@
                        
                     @endforeach
                 </tbody> --}}
-                @if (count($listCategory)>0)
+
                 <tfoot>
                 
                     <tr>
@@ -47,7 +47,7 @@
                         
      
                 </tfoot>
-                @endif
+        
             </table>
         </div>
         <div class="popup-modal" id="popup-delete">
@@ -106,23 +106,19 @@
             <div class="box-alert">
                 <div class="form-feild">
                     <div class="form-title">
-                        <h2>Thêm danh mục mới</h2>
+                        <h2>Thêm Thương Hiệu mới</h2>
                     </div> 
                     <form id="form-add" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
+                            <label for="">Tên Thương Hiệu</label>
+                            <input type="text" placeholder="Nhập tên Thương Hiệu" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
                             <p class="name-error text text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control slug"  id="convert_slug" name="slug">
+                            <input type="text" placeholder="Nhập tên Thương Hiệu" class="form-control slug"  id="convert_slug" name="slug">
                             <p class="slug-error text text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Hình ảnh</label>
@@ -132,31 +128,10 @@
                                 {{-- <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt=""> --}}
                             </div>
                         </div>
+
                         <div class="form-group">
                             <input type="radio" name="status" id="status" class="status" value="0" style="width:auto;"><label for="">Ẩn</label>
                             <input type="radio" name="status"  id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Chọn bộ lọc</label>
-                            <select class="js-example-basic-single filter form-control" name="id_filter" multiple="multiple">
-                                <option >Chưa chọn bộ lọc</option>
-                                @if (count($listFilter) > 0)
-                                    @foreach ($listFilter as $item)
-                                        <option value={{$item->filter_id}}>{{$item->filter_name}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Chọn Danh Mục Cha</label>
-                            <select class="js-example-basic-single filter form-control" name="parent_category">
-                                <option value="">Chưa có</option>
-                                @if (count($listCategory) > 0)
-                                    @foreach ($listCategory as $item)
-                                        <option value={{$item->id_category}}>{{$item->name_category}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-submit">
@@ -180,52 +155,26 @@
                     <form class="form-edit" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control edit_name" id="slug" onchange="ChangeToSlug()" name="name">
+                            <label for="">Tên Thương Hiệu</label>
+                            <input type="text" placeholder="Nhập tên Thương Hiệu" class="form-control edit_name" id="slug" onchange="ChangeToSlug()" name="name">
                             <p class="name-error text text-danger"></p>
                         </div>
                         <div class="form-group">
                             <label for="">Slug</label>
-                            <input type="text" placeholder="Nhập tên Danh mục" class="form-control edit_slug"  id="convert_slug" name="slug">
+                            <input type="text" placeholder="Nhập tên Thương Hiệu" class="form-control edit_slug"  id="convert_slug" name="slug">
                             <p class="slug-error text text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <textarea name="desc" class="desc edit_desc" id="desc" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Hình ảnh</label>
+                            <label for="">Hình ảnh đại diện</label>
                             <input type="file" name="image" id="" class="file edit_file" id="upload-file">
                             <p class="image-error text text-danger"></p>
                             <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
-                                <img class="1"   src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt="">
+                                <img src="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?202209082218" class="1"  alt="">
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="radio" name="status" id="status" class="edit_status" value="0" style="width:auto;"><label for="">Ẩn</label>
                             <input type="radio" name="status"  id="status" class="edit_status" value="1"   style="width:auto;"> <label for="">Hiện</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Chọn bộ lọc</label>
-                            <select class="js-example-basic-single edit_filter form-control " name="id_filter" multiple="multiple">
-                                <option value="">Chưa chọn bộ lọc</option>
-                                @if (count($listFilter) > 0)
-                                    @foreach ($listFilter as $item)
-                                        <option value={{$item->filter_id}}>{{$item->filter_name}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Chọn Danh Mục Cha</label>
-                            <select class="js-example-basic-single edit_parent_category  form-control" name="parent_category">
-                                <option value="">Chưa có</option>
-                                @if (count($listCategory) > 0)
-                                    @foreach ($listCategory as $item)
-                                        <option value={{$item->id_category}}>{{$item->name_category}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-submit">
@@ -250,9 +199,7 @@
 
 @push('script-action')
     <script>
-        
         $(document).ready(function(){
-
 
             $('body').on('change','input[type="checkbox"]',function() {
                 var anyChecked = $('input[type="checkbox"]:checked').length
@@ -272,46 +219,46 @@
                     $('#table').DataTable({
                     "ajax": {            
                         type: "GET",
-                        url: "{{route('admin.category.apiListCategory')}}",
+                        url: "{{route('admin.brand.apiListBrand')}}",
                         dataSrc: 'data'
                     },
                     "columns": [
                         {
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_category}">`
+                                return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_brand}">`
                                 // console.log(row)    
                             }
                         },
                         {
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<img src="${data.image_category}" alt="${data.name_category}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
+                                return `<img src="${data.logo_brand}" alt="${data.name_band}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
                             }
                         },
                         { 
                             data: null,
                             render: function(data,type,row,meta){
-                                return `<span>${data.name_category}</span>`
+                                return `<span>${data.name_brand}</span>`
                             }                    
                         },
                         {
                             data:null ,
                             render: function(data,type,row,meta){
                                 // return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
-                                return data.hide == 0 ? "Hiển Thị" : "Ẩn"
+                                return data.status == 1 ? "Hiển Thị" : "Ẩn"
                             }
                         },
                         {
                             data:null,
                             render: function(data,type,row,meta){
-                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_category}">Chỉnh sửa</a>`
+                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_brand}">Chỉnh sửa</a>`
                             }
                         },
                         {
                             data:null,
                             render: function(data,type,row,meta){
-                                return `<td><a  class="btn-delete"  data-id="${data.id_category}">Xoá</a></td>`
+                                return `<td><a  class="btn-delete"  data-id="${data.id_brand}">Xoá</a></td>`
                             }
                         }
                     ],
@@ -343,39 +290,22 @@
 
             $.ajax(
                 {
-                    url: "{{route('admin.category.editCategory')}}",
+                    url: "{{route('admin.brand.editBrand')}}",
                     dataType:"json",
                     method: "GET",
                     data: {id:id},
                     success: (res) => {   
                         console.log(res)
-                      let name=  $(".form-control.edit_name").val(res.data.name_category);
+                        let name=  $(".form-control.edit_name").val(res.data.name_brand);
                         $(".edit_slug").val(res.data.slug);
                         // let link_img = `<img src="${res.data.image_category}"/>`
                         $(".1").removeAttr("src");
-                        $(".1").attr("src", `${res.data.image_category}`);               
-                        id_filter = [];
-                            for(let i = 0; i< res.listFilter.length; i++){
-                                id_filter.push(res.listFilter[i].id_filter)
-                            }    
-                        $('.edit_filter').val(id_filter);
-                        $('.edit_filter').trigger('change'); 
-                        $('.edit_desc').val(res.data.desc_category);
+                        $(".1").attr("src", `${res.data.logo_brand}`);               
                         $('.edit_status').each(function(i,item) {
-                            if(res.data.hide == item.value){
+                            if(res.data.status == item.value){
                                 item.checked = true;
                             }
                         })
-                        $('.edit_parent_category option').each(function(i,item) {
-                            console.log(item.value,res.data.parent_category)
-                            if(parseInt(item.value) == res.data.parent_category){
-                                item.selected = true
-                                console.log(item.value)
-                                $('.edit_parent_category').val(item.value);
-                                $('.edit_parent_category').trigger('change'); 
-                            }
-                        })
-                        
                     }
                 }
             )
@@ -410,38 +340,25 @@
                 //     }
                 // })
                 e.preventDefault();
-                let filter = $('.edit_filter :selected');
-                let name_category = $('.form-control.edit_name').val();
-                console.log(name_category)
-                let slug_category = $('.edit_slug').val();
-                let desc_category = CKEDITOR.instances.desc.getData();
-                let image_category =  $('input[type=file].edit_file')[0].files[0];
-                let parent_category = $('.edit_parent_category').val();
-                console.log(parent_category)
-                console.log(image_category)
-                console.log(desc_category)
-                let status_category = $('.edit_status:checked').val()
-                console.log(status_category)
+             
+                let name_brand = $('.form-control.edit_name').val();
+    
+                let slug_brand = $('.form-control.edit_slug').val();
+                let image_brand =  $('input[type=file].edit_file')[0].files[0];
+                console.log(image_brand)
+                let status_brand = $('input[type=radio].edit_status:checked').val()
+                console.log(status_brand)
                 var formData = new FormData();
-                formData.append('desc',desc_category)
                 formData.append('id',id)
-                formData.append('image', $('input[type=file]')[0].files[0]); 
-                formData.append('name',name_category)
-                formData.append('slug',slug_category)
-                formData.append('status',status_category)
-                formData.append('parent_category',parent_category)
+                formData.append('image', $('input[type=file].edit_file')[0].files[0]); 
+                formData.append('name',name_brand)
+                formData.append('slug',slug_brand)
+                formData.append('status',status_brand)
                 formData.append('_token',"{{csrf_token()}}")
-                let status = $('.status').val();
-                idFilter = [];
-                filter.each(function(i,f) {
-                    return idFilter.push(f.value)
-                })
-                console.log(idFilter)
-                formData.append('idFilter',idFilter)
 
                 $.ajax({
                     type:"POST",
-                    url: "{{route('admin.category.putEditCategory')}}",
+                    url: "{{route('admin.brand.putEditBrand')}}",
                     data:formData,
                     success: (res) => {
                         if(res.status == 404){
@@ -450,11 +367,12 @@
         
                         }
                         else{
+                            validator(res.status,res.message)
                             console.log(res)
-                            // $('#table').DataTable().destroy()
-                            // getDataTable();
-                            // $('.alert').toggleClass('active')
-                            // $('.popup-modal').removeClass('active');
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
                         }               
                     },
                     cache: false,
@@ -476,7 +394,7 @@
             $('.action-agree').click(function(){
                 $('.popup-modal').removeClass('active');
                 $.ajax({
-                    url: "{{route('admin.category.deleteCategory')}}",
+                    url: "{{route('admin.brand.deleteBrand')}}",
                     type:"delete",
                     data: {data:[id],_token:"{{csrf_token()}}"},
                     success: (res) => {
@@ -550,7 +468,7 @@
                 }
                 $.ajax({
                     type: "DELETE",
-                    url: "{{route('admin.category.deleteCategory')}}",
+                    url: "{{route('admin.brand.deleteBrand')}}",
                     data: {data: array,_token:"{{csrf_token()}}"},
                     success: (res) => {
                         if(res.status == 200){
@@ -566,30 +484,23 @@
 
         $('#form-add').submit(function(e) {
                 e.preventDefault();
-                let filter = $('.filter :selected');
-                let name_category = $('.form-control.name').val();
-                console.log(name_category)
-                let slug_category = $('.slug').val();
-                let desc_category = CKEDITOR.instances.desc.getData();
-                let image_category =  $('input[type=file]')[0].files[0];
-                console.log(image_category)
-                let status_category = $('.status').val()
+                let name_brand = $('.form-control.name').val();
+                console.log(name_brand)
+                let slug_brand = $('.slug').val();
+                let image_brand =  $('input[type=file]')[0].files[0];
+                console.log(image_brand)
+                let status_brand = $('input[type="radio"].status:checked').val()
+                console.log(status_brand);
                 var formData = new FormData();
-                formData.append('desc',desc_category)
+     
                 formData.append('image', $('input[type=file]')[0].files[0]); 
-                formData.append('name',name_category)
-                formData.append('slug',slug_category)
-                formData.append('status',status_category)
+                formData.append('name',name_brand)
+                formData.append('slug',slug_brand)
+                formData.append('status',status_brand)
                 formData.append('_token',"{{csrf_token()}}")
-                let status = $('.status').val();
-                idFilter = [];
-                filter.each(function(i,f) {
-                    return idFilter.push(f.value)
-                })
-                formData.append('idFilter',idFilter)
                 $.ajax({
                     type:"POST",
-                    url: "{{route('admin.category.postAddCategory')}}",
+                    url: "{{route('admin.brand.postAddBrand')}}",
                     data:formData,
                     success: (res) => {
                         if(res.status == 404){
@@ -608,10 +519,9 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    error: (errors) =>  {
-                        return errors
+                    error: function(xhr) {
+                        console.log((xhr.responseJSON.errors));
                     }
-
                 })
             })
 
