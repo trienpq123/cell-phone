@@ -12,12 +12,15 @@ class ProductDetailModel extends Model
     protected $primaryKey = "'id_product_detail";
     protected $fillable = [
         'id_product',
-        'id_size',
-        'id_color',
+        'size',
+        'color',
         'price_sale',
         'price',
         'quanlity',
         'link_img',
-        'name_img'
+        'name_img',
+        'product_sku'
     ];
+    CONST UPDATED_AT = NULL;
+    CONST CREATED_AT = NULL;
 }

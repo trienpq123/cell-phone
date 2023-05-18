@@ -66,7 +66,7 @@ class FilterController extends Controller
        $filter = FilterModel::where('filter_id','=',$request->id)->first();
         $filter->filter_name = $request->name;
         $filter->slug = $request->slug;
-        if($request->_parent) $filter->_parent = $request->_parnt;   
+        if($request->_parent) $filter->_parent = $request->_parent;   
         $filter->save();
         return response()->json([
             'filter' => $filter,

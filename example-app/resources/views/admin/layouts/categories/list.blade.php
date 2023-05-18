@@ -2,14 +2,14 @@
 @section('articles')
 <div class="list-table">
     <div class="wrap-container">
-     
+
         <button class="btn btn-add"  data-name="add-product">Thêm mới</button>
         <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled data-name="popup-delete-checkbox">Xoá</button>
-   
+
         <div class="table">
-            
+
             <table id="table">
-                
+
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -17,7 +17,7 @@
                         <th>Tên danh mục</th>
                         <th>Ẩn/Hiện</th>
                         <th></th>
-                        <th></th>   
+                        <th></th>
                     </tr>
                 </thead>
                 {{-- <tbody>
@@ -35,17 +35,17 @@
                             <td><a class="btn-edit"  data-name="edit-product" data-id="{{$item->filter_id}}">Chỉnh sửa</a></td>
                             <td><a  class="btn-delete">Xoá</a></td>
                         </tr>
-                       
+
                     @endforeach
                 </tbody> --}}
                 @if (count($listCategory)>0)
                 <tfoot>
-                
+
                     <tr>
                         <td><input type="checkbox" name="" id="" class="check-all"></td>
                     </tr>
-                        
-     
+
+
                 </tfoot>
                 @endif
             </table>
@@ -74,7 +74,7 @@
                     <span><i class="fas fa-times"></i></span>
                 </div>
             </div>
-           
+
         </div>
         <div class="popup-modal popup-delete-checkbox" data-name="delete-check">
             <div class="box-alert">
@@ -100,14 +100,14 @@
                     <span><i class="fas fa-times"></i></span>
                 </div>
             </div>
-           
+
         </div>
         <div class="popup-modal add-product" >
             <div class="box-alert">
                 <div class="form-feild">
                     <div class="form-title">
                         <h2>Thêm danh mục mới</h2>
-                    </div> 
+                    </div>
                     <form id="form-add" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
@@ -169,7 +169,7 @@
                     <span><i class="fas fa-times"></i></span>
                 </div>
             </div>
-           
+
         </div>
         <div class="popup-modal edit-product" >
             <div class="box-alert">
@@ -234,29 +234,29 @@
                         </div>
                     </form>
                 </div>
-              
-                    
+
+
                 <div class="btn-close">
                     <span><i class="fas fa-times"></i></span>
                 </div>
 
             </div>
-           
+
         </div>
-      
+
     </div>
 </div>
 @endsection
 
 @push('script-action')
     <script>
-        
+
         $(document).ready(function(){
 
 
             $('body').on('change','input[type="checkbox"]',function() {
                 var anyChecked = $('input[type="checkbox"]:checked').length
-                
+
                 // Kiểm tra xem có checkbox nào được chọn hay không
                 if (anyChecked > 0) {
                 // Nếu có checkbox được chọn, loại bỏ thuộc tính "disable" khỏi button (nếu có)
@@ -270,7 +270,7 @@
             getDataTable();
             function getDataTable() {
                     $('#table').DataTable({
-                    "ajax": {            
+                    "ajax": {
                         type: "GET",
                         url: "{{route('admin.category.apiListCategory')}}",
                         dataSrc: 'data'
@@ -280,7 +280,7 @@
                             data: null,
                             render: function(data,type,row,meta){
                                 return `<input type="checkbox" class='item-check' id="item-check" name="item-check[]" value="${data.id_category}">`
-                                // console.log(row)    
+                                // console.log(row)
                             }
                         },
                         {
@@ -289,11 +289,11 @@
                                 return `<img src="${data.image_category}" alt="${data.name_category}" style="max-width:80px;max-height:60px;object-fit:cover"/>`
                             }
                         },
-                        { 
+                        {
                             data: null,
                             render: function(data,type,row,meta){
                                 return `<span>${data.name_category}</span>`
-                            }                    
+                            }
                         },
                         {
                             data:null ,
@@ -331,9 +331,7 @@
             let name=$(this).attr('data-name');
             let id=$(this).attr('data-id');
             $('.popup-modal'+'.'+name).toggleClass('active');
-            // $('.popup-modal').click(function(){
-            //     $('.popup-modal').removeClass('active');
-            // });
+
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
@@ -347,19 +345,19 @@
                     dataType:"json",
                     method: "GET",
                     data: {id:id},
-                    success: (res) => {   
+                    success: (res) => {
                         console.log(res)
                       let name=  $(".form-control.edit_name").val(res.data.name_category);
                         $(".edit_slug").val(res.data.slug);
                         // let link_img = `<img src="${res.data.image_category}"/>`
                         $(".1").removeAttr("src");
-                        $(".1").attr("src", `${res.data.image_category}`);               
+                        $(".1").attr("src", `${res.data.image_category}`);
                         id_filter = [];
                             for(let i = 0; i< res.listFilter.length; i++){
                                 id_filter.push(res.listFilter[i].id_filter)
-                            }    
+                            }
                         $('.edit_filter').val(id_filter);
-                        $('.edit_filter').trigger('change'); 
+                        $('.edit_filter').trigger('change');
                         $('.edit_desc').val(res.data.desc_category);
                         $('.edit_status').each(function(i,item) {
                             if(res.data.hide == item.value){
@@ -372,19 +370,19 @@
                                 item.selected = true
                                 console.log(item.value)
                                 $('.edit_parent_category').val(item.value);
-                                $('.edit_parent_category').trigger('change'); 
+                                $('.edit_parent_category').trigger('change');
                             }
                         })
-                        
+
                     }
                 }
             )
-            
-          
+
+
             $('.form-edit').submit(function(e){
             //  ).val();
                 // let slug = $(".edit   // e.preventDefault();
-                // var token =  $('input[name="_token"]').attr('value'); 
+                // var token =  $('input[name="_token"]').attr('value');
                 // console.log(token);
                 // let name = $(".edit_names"_slug").val();
                 // let _parent = $(".edit_parent option:selected").val();
@@ -397,7 +395,7 @@
                 //         // window.location.reload();
                 //         // $('.table').html(res);
                 //        console.log(res)
-                       
+
                 //         if(res.status == 200 ){
                 //             $('#table').DataTable().destroy()
                 //             getDataTable();
@@ -425,7 +423,7 @@
                 var formData = new FormData();
                 formData.append('desc',desc_category)
                 formData.append('id',id)
-                formData.append('image', $('input[type=file]')[0].files[0]); 
+                formData.append('image', $('input[type=file]')[0].files[0]);
                 formData.append('name',name_category)
                 formData.append('slug',slug_category)
                 formData.append('status',status_category)
@@ -447,7 +445,7 @@
                         if(res.status == 404){
                             console.log(res)
                             validator(res.status,res.message)
-        
+
                         }
                         else{
                             console.log(res)
@@ -455,7 +453,7 @@
                             // getDataTable();
                             // $('.alert').toggleClass('active')
                             // $('.popup-modal').removeClass('active');
-                        }               
+                        }
                     },
                     cache: false,
                     contentType: false,
@@ -465,7 +463,7 @@
             })
         })
 
-   
+
         $('body').on('click','table .btn-delete',function(){
             let id = $(this).attr('data-id');
             console.log(id)
@@ -491,33 +489,33 @@
             });
         })
 
-        
+
         $('.check-all').change(function(){
-    
+
             if($(this).is(':checked')){
                 if($(this).prop('checked')){
                     $('.item-check').not(this).prop('checked',true)
                 }
                 // $('tr input:checkbox').attr('checked','checked');
-                
+
                 let getValueCheckbox = document.querySelectorAll('#item-check');
-                
+
                 for(let i = 0; i < getValueCheckbox.length; i++){
-                  
+
                     array.push(getValueCheckbox[i].value);
                     getValueCheckbox[i].addEventListener("click",function(){
                         if(this.checked){
-                            array.push(getValueCheckbox[i].value)  
+                            array.push(getValueCheckbox[i].value)
                         }else{
                            let array_new =  array.filter(function(arr){
                                 return arr != getValueCheckbox[i].value;
                             })
-                            array = array_new;                     
+                            array = array_new;
                         }
                     })
-              
+
                 }
-            }else{     
+            }else{
                 $('tr input:checkbox').removeAttr('checked');
                 array = [];
             }
@@ -531,10 +529,10 @@
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
-           
-            
+
+
         })
-        
+
         $('.action-delete').click(function(){
             $('.popup-modal').removeClass('active');
         })
@@ -542,7 +540,7 @@
         $('.action-agree').click(function(){
                 let array = []
                 let getValueCheckbox = document.querySelectorAll('#item-check');
-                
+
                 for(let i = 0; i < getValueCheckbox.length; i++){
                         if(getValueCheckbox[i].checked){
                             array.push(getValueCheckbox[i].value);
@@ -560,7 +558,7 @@
                             $('.popup-modal').removeClass('active');
                         }
                     }
-                   
+
                 })
         });
 
@@ -576,7 +574,7 @@
                 let status_category = $('.status').val()
                 var formData = new FormData();
                 formData.append('desc',desc_category)
-                formData.append('image', $('input[type=file]')[0].files[0]); 
+                formData.append('image', $('input[type=file]')[0].files[0]);
                 formData.append('name',name_category)
                 formData.append('slug',slug_category)
                 formData.append('status',status_category)
@@ -595,7 +593,7 @@
                         if(res.status == 404){
                             console.log(res)
                             validator(res.status,res.message)
-        
+
                         }
                         else{
                             console.log(res)
@@ -603,7 +601,7 @@
                             getDataTable();
                             $('.alert').toggleClass('active')
                             $('.popup-modal').removeClass('active');
-                        }               
+                        }
                     },
                     cache: false,
                     contentType: false,

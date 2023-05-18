@@ -6,6 +6,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
+use App\Models\ProductDetailModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,8 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[ProductController::class,'postAddProduct'])->name('postAddProduct');
             Route::post('/edit',[ProductController::class,'putEditProduct'])->name('putEditProduct');
             Route::delete('/delete',[ProductController::class,'deleteProduct'])->name('deleteProduct');
+            Route::delete('/delete-product-delete',[ProductController::class,'deleteDetailProduct'])->name('deleteProductDetail');
+            Route::delete('/delete-product-image',[ProductController::class,'deleteImageProduct'])->name('deleteImageProduct');
         });
         Route::prefix('brand')->name('brand.')->group(function() {
             Route::get('/',[BrandController::class,'listBrand'])->name('listBrand');
