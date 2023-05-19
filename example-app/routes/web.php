@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Models\ProductDetailModel;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +69,24 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[BrandController::class,'postAddBrand'])->name('postAddBrand');
             Route::post('/edit',[BrandController::class,'putEditBrand'])->name('putEditBrand');
             Route::delete('/delete',[BrandController::class,'deleteBrand'])->name('deleteBrand');
+        });
+        Route::prefix('pages')->name('pages.')->group(function() {
+            Route::get('/',[PagesController::class,'listPages'])->name('listPages');
+            Route::get('/api/list',[PagesController::class,'apiListPages'])->name('apiListPages');
+            Route::get('/add',[PagesController::class,'addPages'])->name('addPages');
+            Route::get('/edit',[PagesController::class,'editPages'])->name('editPages');
+            Route::post('/add',[PagesController::class,'postAddPages'])->name('postAddPages');
+            Route::post('/edit',[PagesController::class,'putEditPages'])->name('putEditPages');
+            Route::delete('/delete',[PagesController::class,'deletePages'])->name('deletePages');
+        });
+        Route::prefix('news')->name('news.')->group(function() {
+            Route::get('/',[NewsController::class,'listNews'])->name('listNews');
+            Route::get('/api/list',[NewsController::class,'apiListNews'])->name('apiListNews');
+            Route::get('/add',[NewsController::class,'addNews'])->name('addNews');
+            Route::get('/edit',[NewsController::class,'editNews'])->name('editNews');
+            Route::post('/add',[NewsController::class,'postAddNews'])->name('postAddNews');
+            Route::post('/edit',[NewsController::class,'putEditNews'])->name('putEditNews');
+            Route::delete('/delete',[NewsController::class,'deleteNews'])->name('deleteNews');
         });
 
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');

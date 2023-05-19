@@ -65,7 +65,7 @@
     --font-size-h3-mobile-375: 1rem;
     --font-size-h3-mobile-325: 1rem;
     --font-size-h3-mobile-425: 1rem
-    
+
 }
 
 body {
@@ -183,7 +183,7 @@ textarea{
 /* FLEX */
 
 .flex {
-    display: flex; 
+    display: flex;
 }
 
 .flex-wrap {
@@ -205,8 +205,8 @@ textarea{
 
 
 .form-feild{
-    
-    margin: 0 auto; 
+
+    margin: 0 auto;
 }
 
 form {
@@ -266,7 +266,7 @@ table th, table td {
     font-size: 12px;
     vertical-align: middle;
     padding: 10px;
-  
+
 }
 
 table td {
@@ -310,7 +310,7 @@ table td {
     height: 550px;
     overflow-y: scroll;
     -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;  
+    animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .popup-modal .alert-item{
@@ -420,7 +420,10 @@ form select{
 }
 
 .container-size span,
-.container-color span {
+.container-color span,
+.container-color-edit span,
+.container-size-edit span
+ {
     position: absolute;
     top: 50%;
     right: 0;
@@ -428,5 +431,5 @@ form select{
     line-height: 1.5;
     padding-right: 2px;
     cursor: pointer;
-    
+
 }

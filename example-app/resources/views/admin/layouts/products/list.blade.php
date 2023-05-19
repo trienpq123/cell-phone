@@ -576,8 +576,17 @@
             InnerTableAttr();
         })
 
+
+
         $(document).ready(function() {
 
+            $('body').on('click', '.close', function() {
+                // let id = $(this).attr("data-id");
+                // console.log(id);
+                // $(`#${id}`).remove();
+                // InnerTableAttrEdit();
+                alert(1)
+            })
             $('body').on('change', 'input[type="checkbox"]', function() {
                 var anyChecked = $('input[type="checkbox"]:checked').length
 
@@ -609,7 +618,7 @@
                         {
                             data: null,
                             render: function(data, type, row, meta) {
-                                if (data.product_SKU == 'NULL') {
+                                if (data.product_SKU != null) {
 
                                     return `<a >${data.product_SKU}</a>`;
                                 }
@@ -679,7 +688,6 @@
                         id: id
                     },
                     success: (res) => {
-                        console.log(res)
                         let name = $(".form-control.name_edit").val(res.data.name_product);
 
                         $(".slug_edit").val(res.data.slug);
@@ -744,204 +752,8 @@
 
 
 
-                        createButtonSize();
-
-                        function createButtonSize() {
-                            let get_add_size = document.querySelector('.add-size-edit');
-                            get_add_size.addEventListener("keydown", function(e) {
-                                let i = 1
-                                if (e.keyCode === 13) {
-                                    let value = this.value;
-                                    let create_button = document.createElement("div");
-                                    let create_span = document.createElement("span");
-                                    create_span.setAttribute("class", 'close');
-                                    create_span.setAttribute("data-value", value);
-
-                                    create_span.textContent = "x";
-                                    setValuteSizeButton = create_button.setAttribute(
-                                        "class", `badge-2`)
-                                    setValuteSizeButton = create_button.setAttribute(
-                                        "id", `btn-${btn_size++}`)
-                                    let getValueSizeButton = create_button.getAttribute(
-                                        "id");
-                                    create_span.setAttribute("data-id",
-                                        getValueSizeButton);
-                                    create_button.textContent = value
-                                    create_button.appendChild(create_span)
-                                    let container_size = document.querySelector(
-                                        '.container-size-edit');
-                                    container_size.appendChild(create_button)
-                                    InnerTableAttrEdit()
-                                    this.value = "";
-                                }
-
-                            })
-                        }
-
-                        function InnerTableAttrEdit() {
-                            let check_size = document.querySelectorAll(
-                                ".container-size-edit .badge-2 span");
-                            let check_color = document.querySelectorAll(
-                                ".container-color-edit .badge-2 span");
-
-                            let table = document.querySelector(".table-price-edit table tbody");
-                            let tr = "";
-                            if (check_size.length > 0) {
-                                for (let i = 0; i < check_size.length; i++) {
-                                    let getValueSize = check_size[i].getAttribute("data-value")
-                                    let check_color = document.querySelectorAll(
-                                        ".container-color-edit .badge-2 span");
-                                    if (check_color.length > 0) {
-
-                                        for (let c = 0; c < check_color.length; c++) {
-                                            let getValueColor = check_color[c].getAttribute(
-                                                "data-value")
-                                            tr += `<tr>
-                                                                            <td> <input type="checkbox" /> </td>
-                                                                            <td>
-                                                                                <span>${getValueSize}</span>    -
-                                                                                <span>${getValueColor}
-                                                                                <input type="text" hidden value="${getValueSize}" class="size" />
-                                                                                <input type="text" hidden value="${getValueColor}" class="color" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                                            </td>
-                                                                    </tr>`
-                                        }
-                                    } else {
-                                        tr += `<tr>
-                                                                            <td> <input type="checkbox" /> </td>
-                                                                            <td>
-                                                                                <span>${getValueSize}</span>
-                                                                                <input type="text" hidden value="${getValueSize}" class="size" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                                            </td>
-                                                                    </tr>`
-                                    }
 
 
-                                }
-                            } else if (check_color.length > 0) {
-                                for (let i = 0; i < check_color.length; i++) {
-                                    let getValueColor = check_color[i].getAttribute(
-                                        "data-value")
-                                    let check_size = document.querySelectorAll(
-                                        ".container-size-edit .badge-2 span");
-                                    if (check_size.length > 0) {
-
-                                        for (let c = 0; c < check_size.length; c++) {
-                                            let getValueSize = check_size[c].getAttribute(
-                                                "data-value")
-                                            tr += `<tr>
-                                                                            <td> <input type="checkbox" /> </td>
-                                                                            <td>
-                                                                                <span>${getValueSize}
-                                                                                <span>${getValueColor}
-                                                                                <input type="text" hidden value="${getValueColor}" class="color" />
-                                                                                <input type="text" hidden value="${getValueSize}" class="size" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                                            </td>
-                                                                    </tr>`
-                                        }
-                                    } else {
-                                        tr += `<tr>
-                                                                            <td> <input type="checkbox" /> </td>
-                                                                            <td>
-                                                                                <span>${getValueColor}</span>
-                                                                                <input type="text" hidden value="${getValueColor}" class="color" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                                            </td>
-                                                                    </tr>`
-                                    }
-
-
-                                }
-                            }
-                            table.innerHTML = tr;
-                        }
-                        createButtonColor();
-
-                        function createButtonColor() {
-                            let get_add_size = document.querySelector('.add-color-edit');
-                            get_add_size.addEventListener("keydown", function(e) {
-                                let i = 1
-                                if (e.keyCode === 13) {
-                                    let value = this.value;
-                                    let create_button = document.createElement("div");
-                                    let create_span = document.createElement("span");
-                                    create_span.setAttribute("class", 'close');
-                                    create_span.setAttribute("data-value", value);
-
-                                    create_span.textContent = "x";
-                                    setValuteSizeButton = create_button.setAttribute(
-                                        "class", `badge-2`)
-                                    setValuteSizeButton = create_button.setAttribute(
-                                        "id", `btn-color-${btn_size++}`)
-                                    let getValueSizeButton = create_button.getAttribute(
-                                        "id");
-                                    create_span.setAttribute("data-id",
-                                        getValueSizeButton);
-                                    create_button.textContent = value
-                                    create_button.appendChild(create_span)
-                                    let container_size = document.querySelector(
-                                        '.container-color-edit');
-                                    container_size.appendChild(create_button)
-                                    this.value = ""
-                                    InnerTableAttrEdit();
-                                }
-
-                            })
-                        }
-
-                        $('body').on('click', '.close', function() {
-                            let id = $(this).attr("data-id");
-                            console.log(id);
-                            $(`#${id}`).remove();
-                            InnerTableAttrEdit();
-                        })
 
                         $('body').on('click', '.list-image .image-item .close', function() {
                             let id = $(this).attr("data-id");
@@ -980,17 +792,208 @@
                     }
                 })
 
+                createButtonSizeEdit();
+
+                function createButtonSizeEdit() {
+                    let get_add_size = document.querySelector('.add-size-edit');
+                    get_add_size.addEventListener("keydown", function(e) {
+                        let i = 1
+                        if (e.keyCode === 13) {
+                            let value = this.value;
+                            let create_button = document.createElement("div");
+                            let create_span = document.createElement("span");
+                            create_span.setAttribute("class", 'close');
+                            create_span.setAttribute("data-value", value);
+
+                            create_span.textContent = "x";
+                            setValuteSizeButton = create_button.setAttribute(
+                                "class", `badge-2`)
+                            setValuteSizeButton = create_button.setAttribute(
+                                "id", `btn-${btn_size++}`)
+                            let getValueSizeButton = create_button.getAttribute(
+                                "id");
+                            create_span.setAttribute("data-id",
+                                getValueSizeButton);
+                            create_button.textContent = value
+                            create_button.appendChild(create_span)
+                            let container_size = document.querySelector(
+                                '.container-size-edit');
+                            container_size.appendChild(create_button)
+                            InnerTableAttrEdit()
+                            this.value = "";
+                        }
+
+                    })
+                }
+
+                function InnerTableAttrEdit() {
+                    let check_size = document.querySelectorAll(
+                        ".container-size-edit .badge-2 span");
+                    let check_color = document.querySelectorAll(
+                        ".container-color-edit .badge-2 span");
+
+                    let table = document.querySelector(".table-price-edit table tbody");
+                    let tr = "";
+                    if (check_size.length > 0) {
+                        for (let i = 0; i < check_size.length; i++) {
+                            let getValueSize = check_size[i].getAttribute("data-value")
+                            let check_color = document.querySelectorAll(
+                                ".container-color-edit .badge-2 span");
+                            if (check_color.length > 0) {
+
+                                for (let c = 0; c < check_color.length; c++) {
+                                    let getValueColor = check_color[c].getAttribute(
+                                        "data-value")
+                                    tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${getValueSize}</span>    -
+                                                        <span>${getValueColor}
+                                                        <input type="text" hidden value="${getValueSize}" class="size" />
+                                                        <input type="text" hidden value="${getValueColor}" class="color" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                                }
+                            } else {
+                                tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${getValueSize}</span>
+                                                        <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                            }
+
+
+                        }
+                    } else if (check_color.length > 0) {
+                        for (let i = 0; i < check_color.length; i++) {
+                            let getValueColor = check_color[i].getAttribute(
+                                "data-value")
+                            let check_size = document.querySelectorAll(
+                                ".container-size-edit .badge-2 span");
+                            if (check_size.length > 0) {
+
+                                for (let c = 0; c < check_size.length; c++) {
+                                    let getValueSize = check_size[c].getAttribute(
+                                        "data-value")
+                                    tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${getValueSize}
+                                                        <span>${getValueColor}
+                                                        <input type="text" hidden value="${getValueColor}" class="color" />
+                                                        <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                                }
+                            } else {
+                                tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${getValueColor}</span>
+                                                        <input type="text" hidden value="${getValueColor}" class="color" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                            }
+
+
+                        }
+                    }
+                    table.innerHTML = tr;
+                }
+                createButtonColorEdit();
+
+                function createButtonColorEdit() {
+                    let get_add_size = document.querySelector('.add-color-edit');
+                    get_add_size.addEventListener("keydown", function(e) {
+                        let i = 1
+                        if (e.keyCode === 13) {
+                            let value = this.value;
+                            let create_button = document.createElement("div");
+                            let create_span = document.createElement("span");
+                            create_span.setAttribute("class", 'close');
+                            create_span.setAttribute("data-value", value);
+
+                            create_span.textContent = "x";
+                            setValuteSizeButton = create_button.setAttribute(
+                                "class", `badge-2`)
+                            setValuteSizeButton = create_button.setAttribute(
+                                "id", `btn-color-${btn_size++}`)
+                            let getValueSizeButton = create_button.getAttribute(
+                                "id");
+                            create_span.setAttribute("data-id",
+                                getValueSizeButton);
+                            create_button.textContent = value
+                            create_button.appendChild(create_span)
+                            let container_size = document.querySelector(
+                                '.container-color-edit');
+                            container_size.appendChild(create_button)
+                            this.value = ""
+                            InnerTableAttrEdit();
+                        }
+
+                    })
+                }
 
                 $('.form-edit').submit(function(e) {
                     e.preventDefault();
                     let name = $(".form-control.name_edit").val();
                     let slug = $(".form-control.slug_edit").val();
                     let product_sku = $(".product_sku_edit").val();
-                    let status = $('.status').val();
+                    let status = $('.status_edit:checked').val();
                     let desc_short = CKEDITOR.instances.desc_short_edit.getData()
                     let desc = CKEDITOR.instances.desc_edit.getData()
                     let idBrand = [];
-                    $('.brand-edit option:checked').each(function(i, item) {
+                    $('.brand_edit option:checked').each(function(i, item) {
                         return idBrand.push(item.value)
                     })
                     let id_category = $(".category_edit").val();
@@ -1092,7 +1095,8 @@
                         }
 
 
-                        let idProductDetail = tr.querySelector('.delete-product-detail-choose').getAttribute('data-id');
+                        let idProductDetail = tr.querySelector(
+                            '.delete-product-detail-choose').getAttribute('data-id');
 
                         let option = {
                             SizeOfProductValue: SizeOfProductValue,
@@ -1106,9 +1110,6 @@
                         product_detail.push(option)
 
                     })
-
-
-                    console.log(product_detail)
                     var formData = new FormData();
                     for (let i = 0; i < $('input[type=file].add-file-edit')[0].files.length; i++) {
                         formData.append('image[]', $('input[type=file].add-file-edit')[0].files[i]);
@@ -1133,15 +1134,15 @@
                         data: formData,
                         success: (res) => {
                             if (res.status == 404) {
-                                console.log(res)
+
                                 validator(res.status, res.message)
 
                             } else {
                                 console.log(res)
-                                // $('#table').DataTable().destroy()
-                                // getDataTable();
-                                // $('.alert').toggleClass('active')
-                                // $('.popup-modal').removeClass('active');
+                                $('#table').DataTable().destroy()
+                                getDataTable();
+                                $('.alert').toggleClass('active')
+                                $('.popup-modal').removeClass('active');
                             }
                         },
                         cache: false,
@@ -1171,7 +1172,7 @@
                         },
                         success: (res) => {
                             if (res.status == 200) {
-                                console.log(res)
+
                                 $('#table').DataTable().destroy()
                                 getDataTable();
                                 $('.alert').toggleClass('active')

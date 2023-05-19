@@ -47,6 +47,7 @@ class ProductController extends Controller
         }
     }
 
+
     public function postAddProduct(Request $request)
     {
         $validator = Validator::make(
@@ -194,14 +195,12 @@ class ProductController extends Controller
                     if(!empty($item->idProductDetail)){
 
                         $PDetail = ProductDetailModel::where('id_product_detail','=',$item->idProductDetail)->first();
-                            $PDetail->size = $item->SizeOfProductValue;
-                            $PDetail->color = $item->colorOfProductValue;
-                            $PDetail->price = $item->product_price;
+                            // $PDetail->id_product = $request;
+                             $PDetail->price = 3;
                             $PDetail->price_sale = $item->product_price_old;
                             $PDetail->quanlity = $item->product_stock;
                             $PDetail->product_sku = $item->product_type_sku;
                             $PDetail->save();
-
                     }
                     else{
 
@@ -213,6 +212,7 @@ class ProductController extends Controller
                         $PDetail->price_sale =$item->product_price_old;
                         $PDetail->quanlity =$item->product_stock;
                         $PDetail->product_sku =$item->product_type_sku;
+
                         $PDetail->save();
                     }
 
@@ -223,7 +223,8 @@ class ProductController extends Controller
         return response()->json([
             'status' => 200,
             'product_detail' => $request->all(),
-            'data' =>  json_decode($request->product_detail)
+            'data' =>  json_decode($request->product_detail),
+            'a' => $a
         ]);
     }
 

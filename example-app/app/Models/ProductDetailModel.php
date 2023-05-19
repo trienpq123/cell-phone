@@ -9,7 +9,7 @@ class ProductDetailModel extends Model
 {
     use HasFactory;
     protected $table = 'product_detail';
-    protected $primaryKey = "'id_product_detail";
+    protected $primaryKey = "id_product_detail";
     protected $fillable = [
         'id_product',
         'size',
