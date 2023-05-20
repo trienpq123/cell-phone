@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+    @yield('css')
 
 </head>
 <body>
 
     @include('admin.layouts.aside')
     @include('admin.layouts.articles')
-    
+
 </body>
 <script src="{{asset('../../assets/js/js.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -32,7 +32,7 @@
 <script src="{{asset('../../core/slide-banner/slide-banner/slick.js')}}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).on('ready', function () {
-      
+
         $(".chuyen_banner").slick({
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -102,7 +102,7 @@
                 });
     });
 
-    
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
@@ -138,7 +138,7 @@
             $('.btn-agree').click(function(){
                 $('.popup-modal').removeClass('active');
             });
-            
+
         })
         // $('.btn-edit').click(function() {
         //     let name=$(this).attr('data-name');
@@ -153,7 +153,7 @@
         //         $('.popup-modal').removeClass('active');
         //     });
         // })
-        
+
    })
 //    let myChart =  document.getElementById('chart-view').getContext('2d');
 //    console.log(myChart)
@@ -166,7 +166,7 @@
 //         borderColor: 'rgb(75, 192, 192)',
 //     }]
 //     };
- 
+
 //    const config = {
 //     type: 'line',
 //     data: data,
@@ -196,7 +196,7 @@
 //     }
 // };
 //     let PopChart = new Chart(myChart,config)
-    
+
 </script>
 <script type="text/javascript">
     let a = document.getElementsByClassName('btn-edit');
@@ -204,8 +204,8 @@
     function ChangeToSlug()
         {
             var slug;
-         
-            //Lấy text từ thẻ input title 
+
+            //Lấy text từ thẻ input title
             slug = document.getElementById("slug").value;
             slug = slug.toLowerCase();
             //Đổi ký tự có dấu thành không dấu
@@ -232,10 +232,10 @@
                 //In slug ra textbox có id “slug”
             document.getElementById('convert_slug').value = slug;
         }
-         
 
-   
-   
+
+
+
 </script>
 
 

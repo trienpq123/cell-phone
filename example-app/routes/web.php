@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
@@ -87,6 +89,24 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[NewsController::class,'postAddNews'])->name('postAddNews');
             Route::post('/edit',[NewsController::class,'putEditNews'])->name('putEditNews');
             Route::delete('/delete',[NewsController::class,'deleteNews'])->name('deleteNews');
+        });
+        Route::prefix('banner')->name('banner.')->group(function() {
+            Route::get('/',[BannerController::class,'listBanner'])->name('listBanner');
+            Route::get('/api/list',[BannerController::class,'apiListBanner'])->name('apiListBanner');
+            Route::get('/add',[BannerController::class,'addBanner'])->name('addBanner');
+            Route::get('/edit',[BannerController::class,'editBanner'])->name('editBanner');
+            Route::post('/add',[BannerController::class,'postAddBanner'])->name('postAddBanner');
+            Route::post('/edit',[BannerController::class,'putEditBanner'])->name('putEditBanner');
+            Route::delete('/delete',[BannerController::class,'deleteBanner'])->name('deleteBanner');
+        });
+        Route::prefix('menu')->name('menu.')->group(function() {
+            Route::get('/',[MenuController::class,'listMenu'])->name('listMenu');
+            // Route::get('/api/list',[BannerController::class,'apiListBanner'])->name('apiListBanner');
+            Route::get('/add',[MenuController::class,'addMenu'])->name('addMenu');
+            // Route::get('/edit',[MenuController::class,'editBanner'])->name('editBanner');
+            // Route::post('/add',[BannerController::class,'postAddBanner'])->name('postAddBanner');
+            // Route::post('/edit',[BannerController::class,'putEditBanner'])->name('putEditBanner');
+            // Route::delete('/delete',[BannerController::class,'deleteBanner'])->name('deleteBanner');
         });
 
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');

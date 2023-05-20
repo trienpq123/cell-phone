@@ -1,4 +1,5 @@
 @import url('./responsive.css');
+
 * {
     margin: 0;
     padding: 0;
@@ -11,15 +12,17 @@
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    }
+}
+
 @font-face {
     font-family: Font-Product-2;
     src: url(./fonts/MYRIADPRO-BOLDIT.OTF) format("truetype");
     font-weight: lighter;
     font-style: normal;
     font-display: swap;
-    }
-:root{
+}
+
+:root {
     /* FONT-FAMILY */
     --font-family-myriad-pro: "Myriad Pro";
 
@@ -65,7 +68,6 @@
     --font-size-h3-mobile-375: 1rem;
     --font-size-h3-mobile-325: 1rem;
     --font-size-h3-mobile-425: 1rem
-
 }
 
 body {
@@ -75,7 +77,7 @@ body {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
 }
 
-.wrap-container{
+.wrap-container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -108,11 +110,12 @@ input {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-input:focus{
-    box-shadow: rgba(41, 46, 51, 0.2) 0px 8px 24px;;
+input:focus {
+    box-shadow: rgba(41, 46, 51, 0.2) 0px 8px 24px;
+    ;
 }
 
-textarea{
+textarea {
     width: 100%;
     padding: 12px;
     border-radius: 12px;
@@ -123,18 +126,19 @@ textarea{
 
 /* COLUM */
 .grid-tempalte-colum-2 {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
+
 .grid-tempalte-colum-3 {
-    grid-template-columns: repeat(3,1fr) ;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .grid-tempalte-colum-4 {
-    grid-template-columns: repeat(4,1fr) ;
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.grid-tempalte-columns-large-5{
-    grid-template-columns: repeat(5,1fr);
+.grid-tempalte-columns-large-5 {
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
 }
 
@@ -144,16 +148,16 @@ textarea{
     grid-gap: 32px;
 }
 
-.gap-10{
+.gap-10 {
     gap: 10px;
 }
 
-.gap-16{
+.gap-16 {
     grid-gap: 16px;
 }
 
-.grid-gap{
-    grid-gap:52px;
+.grid-gap {
+    grid-gap: 52px;
 }
 
 .grid {
@@ -161,23 +165,24 @@ textarea{
 }
 
 .gap-12 {
-    grid-gap:12px;
+    grid-gap: 12px;
 }
 
-.gap-12-2{
+.gap-12-2 {
     grid-gap: 2px 12px;
 }
 
-.gap-20{
+.gap-20 {
     grid-gap: 20px;
 }
 
-.gap-4-16{
+.gap-4-16 {
     grid-gap: 4px 16px;
 }
 
-.grid-tempalte-colums-large-7-3{
-    grid-template-columns: 70% auto;;
+.grid-tempalte-colums-large-7-3 {
+    grid-template-columns: 70% auto;
+    ;
 }
 
 /* FLEX */
@@ -190,21 +195,22 @@ textarea{
     flex-wrap: wrap;
 }
 
-.justify-content-center{
+.justify-content-center {
     justify-content: center;
 }
+
 .justify-content-space-betweent {
     justify-content: space-between;
 }
 
 
 
-.align-items-center{
+.align-items-center {
     align-items: center;
 }
 
 
-.form-feild{
+.form-feild {
 
     margin: 0 auto;
 }
@@ -213,21 +219,22 @@ form {
     margin: 16px 0;
     z-index: 1;
 }
-.form-feild .form-title{
+
+.form-feild .form-title {
     font-size: 12px;
     text-align: center;
 }
 
-form .form-group{
+form .form-group {
     padding: 2px;
     margin-bottom: 8px;
 }
 
-form label{
+form label {
     font-size: 12px;
 }
 
-.btn{
+.btn {
     border: none;
     padding: 8px 24px;
     outline: unset;
@@ -241,7 +248,7 @@ form label{
     font-weight: 500;
 }
 
-.form-control{
+.form-control {
     width: 100%;
 }
 
@@ -256,10 +263,11 @@ table {
 table th {
     font-weight: 400;
     font-size: 12px;
-    background:hsla(0, 6%, 78%, 0.2)
+    background: hsla(0, 6%, 78%, 0.2)
 }
 
-table th, table td {
+table th,
+table td {
     text-align: center;
     padding: 4px 8px;
     border: 1px solid #ddd;
@@ -276,7 +284,7 @@ table td {
     overflow: hidden;
 }
 
-.popup-modal{
+.popup-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -285,17 +293,17 @@ table td {
     display: flex;
     align-items: center;
     justify-content: center;
-    background:rgba(41, 46, 51, 0.2);
+    background: rgba(41, 46, 51, 0.2);
     display: none;
     transition: all .2s ease-in-out;
 }
 
-.popup-modal.active{
+.popup-modal.active {
     display: flex;
     z-index: 1;
 }
 
-.box-alert{
+.box-alert {
     text-align: center;
     background: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -303,7 +311,7 @@ table td {
     position: fixed;
     top: 25%;
     left: 25%;
-    transform: translate(-25%,-25%);
+    transform: translate(-25%, -25%);
     border-radius: 12px;
     /* animation-name: popupToShow; */
     /* animation-duration: .2s; */
@@ -313,57 +321,58 @@ table td {
     animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-.popup-modal .alert-item{
+.popup-modal .alert-item {
     margin: 16px 0;
     min-height: 62px;
 }
 
-.popup-modal .alert-item span{
+.popup-modal .alert-item span {
     font-size: 42px;
 
 }
 
-.popup-modal .align-items .action{
+.popup-modal .align-items .action {
     margin-right: 12px;
     gap: 10px;
     justify-content: center;
 }
 
-.action-agree,.action-delete{
+.action-agree,
+.action-delete {
     padding: 8px 24px;
     border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
 }
 
-.action-delete{
+.action-delete {
     background: #f06548;
     color: #fff;
 }
 
 
-.action-delete:hover{
+.action-delete:hover {
     opacity: .8;
 }
 
-.action-agree{
+.action-agree {
     background: #f3f6f9;
     color: #000;
     margin-right: 12px;
 
 }
 
-.action-agree:hover{
+.action-agree:hover {
     opacity: .8;
 }
 
-form select{
+form select {
     padding: 8px;
-    border:1px solid rgba(149, 157, 165, 0.2);
+    border: 1px solid rgba(149, 157, 165, 0.2);
     outline: none;
 }
 
-.alert{
+.alert {
     position: fixed;
     right: -250px;
     top: 0;
@@ -378,13 +387,14 @@ form select{
         right: -250px;
         transition: all .2s ease-in-out;
     }
+
     to {
         right: 0;
         transition: all .2s ease-in-out;
     }
 }
 
-.alert.active{
+.alert.active {
     transition: all .2s ease-in-out;
     animation-name: alert;
     animation-duration: 3s;
@@ -392,18 +402,19 @@ form select{
     z-index: 99999;
 }
 
-.alert-success{
+.alert-success {
     color: #155724;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
 }
 
-.alert-danger{
+.alert-danger {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
-.container-size{
+
+.container-size {
     margin: 8px 0;
 }
 
@@ -422,8 +433,7 @@ form select{
 .container-size span,
 .container-color span,
 .container-color-edit span,
-.container-size-edit span
- {
+.container-size-edit span {
     position: absolute;
     top: 50%;
     right: 0;
