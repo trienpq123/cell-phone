@@ -4,44 +4,61 @@
 @endsection
 @section('articles')
     <div class="wraper-container">
-        <div class="action btn">
-            <div class="btn-add btn">Thêm menu</div>
+        <div class="ladi-title mg-section" style="text-align: center;text-transform:uppercase">
+            <h3>Thêm menu</h3>
         </div>
-        <br>
-        <div id="nested" class="row">
-            <div id="nestedDemo" class="list-group col nested-sortable">
-                <div data-sortable-id="1.1" class="list-group-item nested-1">Item 1.1
-                    <div class="list-group nested-sortable">
-                        <div data-sortable-id="2.1" class="list-group-item nested-2">Item 2.1</div>
-                        <div data-sortable-id="2.2" class="list-group-item nested-2">
-                            Item 2.2
-                            <div class="list-group nested-sortable">
-                                <div data-sortable-id="3.1" class="list-group-item nested-3">Item 3.1</div>
-                                <div data-sortable-id="3.2" class="list-group-item nested-3">Item 3.2</div>
-                                <div data-sortable-id="3.3" class="list-group-item nested-3">Item 3.3</div>
-                                <div data-sortable-id="3.4" class="list-group-item nested-3">Item 3.4</div>
-                            </div>
-                        </div>
-                        <div data-sortable-id="2.3" class="list-group-item nested-2">Item 2.3</div>
-                        <div data-sortable-id="2.4" class="list-group-item nested-2">Item 2.4</div>
-                    </div>
-                </div>
-                <div data-sortable-id="1.2" class="list-group-item nested-1">Item 1.2</div>
-                <div data-sortable-id="1.3" class="list-group-item nested-1">Item 1.3</div>
-                <div data-sortable-id="1.4" class="list-group-item nested-1">Item 1.4
-                    <div class="list-group nested-sortable">
-                        <div data-sortable-id="2.1" class="list-group-item nested-2">Item 2.1</div>
-                        <div data-sortable-id="2.2" class="list-group-item nested-2">Item 2.2</div>
-                        <div data-sortable-id="2.3" class="list-group-item nested-2">Item 2.3</div>
-                        <div data-sortable-id="2.4" class="list-group-item nested-2">Item 2.4</div>
-                    </div>
-                </div>
-                <div data-sortable-id="1.5" class="list-group-item nested-1">Item 1.5</div>
+
+        <form action="{{route('admin.menu.postAddMenu')}}" method="POST" id="form-add" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="">Tên menu</label>
+                <input type="text" placeholder="Nhập tên menu" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
+                <p class="name-error text text-danger"></p>
             </div>
-            <div style="padding: 0" class="col-12">
-                <button class="btn-test">test</button>
+            <div class="form-group">
+                <label for="">Slug</label>
+                <input type="text" placeholder="Đường dẫn" class="form-control slug" id="convert_slug"  name="slug">
+                <p class="name-error text text-danger"></p>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="">Chọn menu cha</label>
+                <select type="text" class="form-control parent_menu" name="parent_menu" id="parent_menu">
+                    <option value="">Chưa có</option>
+                    @if (count($menu) > 0)
+                        @foreach ($menu as $item)
+                            <option value="{{$item->id_menu}}">{{$item->name_menu}}</option>
+                        @endforeach
+                    @endif
+                </select>
+                <p class="name-error text text-danger"></p>
+            </div>
+            <div class="form-group">
+                <label for="">Trỏ đến</label>
+                <select name="typeMenu" class="type_menu" id="">
+                    <option value="">Chưa chọn</option>
+                    <option value="1">Trang</option>
+                    <option value="2">Danh  mục</option>
+                </select>
+                <select name="url" class="type_inner" id="" >
+                    <option value="">Chưa chọn</option>
+
+                </select>
+                <p class="name-error text text-danger"></p>
+            </div>
+            <div class="form-group">
+                <input type="radio" name="status"  id="status" class="status" value="0" style="width:auto;"><label for="">Ẩn</label>
+                <input type="radio" name="status" checked id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
+            </div>
+            <div class="form-group">
+                <label for="">Vị trí menu</label>
+                <input type="number"  name="position" class="position" id="position" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-submit btn-add">
+                    Xác nhận
+                </button>
+            </div>
+        </form>
     </div>
 @endsection
 
@@ -62,9 +79,6 @@
                 swapThreshold: 0.65
             });
         }
-
-
-
         const nestedQuery = '.nested-sortable';
         const identifier = 'sortableId';
         const root = document.getElementById('nestedDemo');
@@ -86,6 +100,21 @@
         $(document).ready(function(){
             $('.btn-test').click(function(){
                 console.log(serialize(root))
+            })
+
+            $('.type_menu').on('change',function(){
+                let value = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url:"{{route('admin.menu.typeMenu')}}",
+                    data: {typeMenu:value,_token:"{{csrf_token()}}"},
+                    success: (res) => {
+                        console.log(value)
+                        $('.type_inner').addClass('active')
+                        $('.type_inner').html(res);
+                        console.log(res);
+                    }
+                })
             })
         })
 

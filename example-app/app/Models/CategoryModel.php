@@ -29,4 +29,12 @@ class CategoryModel extends Model
     public function filters() {
         return $this->belongsToMany(FilterModel::class,'filter_category','id_category','id_filter');
     }
+    public function category()
+    {
+        return $this->hasMany(CategoryModel::class, 'parent_category', 'id_category');
+    }
+
+    public function childrendCategory(){
+       return $this->hasMany(CategoryModel::class,'parent_category','id_category')->with('category');
+    }
 }

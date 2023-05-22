@@ -149,7 +149,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Chọn Danh Mục Cha</label>
-                            <select class="js-example-basic-single filter form-control" name="parent_category">
+                            <select class="js-example-basic-single parent_category form-control " name="parent_category">
                                 <option value="">Chưa có</option>
                                 @if (count($listCategory) > 0)
                                     @foreach ($listCategory as $item)
@@ -566,10 +566,10 @@
                 e.preventDefault();
                 let filter = $('.filter :selected');
                 let name_category = $('.form-control.name').val();
-                console.log(name_category)
                 let slug_category = $('.slug').val();
                 let desc_category = CKEDITOR.instances.desc.getData();
                 let image_category =  $('input[type=file]')[0].files[0];
+                let parent_category = $('.parent_category').val();
                 console.log(image_category)
                 let status_category = $('.status').val()
                 var formData = new FormData();
@@ -578,6 +578,7 @@
                 formData.append('name',name_category)
                 formData.append('slug',slug_category)
                 formData.append('status',status_category)
+                formData.append('parent_category',parent_category)
                 formData.append('_token',"{{csrf_token()}}")
                 let status = $('.status').val();
                 idFilter = [];

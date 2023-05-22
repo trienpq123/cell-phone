@@ -103,12 +103,12 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/',[MenuController::class,'listMenu'])->name('listMenu');
             // Route::get('/api/list',[BannerController::class,'apiListBanner'])->name('apiListBanner');
             Route::get('/add',[MenuController::class,'addMenu'])->name('addMenu');
-            // Route::get('/edit',[MenuController::class,'editBanner'])->name('editBanner');
-            // Route::post('/add',[BannerController::class,'postAddBanner'])->name('postAddBanner');
+            Route::get('/edit',[MenuController::class,'editBanner'])->name('editBanner');
+            Route::post('/add',[MenuController::class,'postAddMenu'])->name('postAddMenu');
             // Route::post('/edit',[BannerController::class,'putEditBanner'])->name('putEditBanner');
             // Route::delete('/delete',[BannerController::class,'deleteBanner'])->name('deleteBanner');
+            Route::post('/type-menu',[MenuController::class,'typeMenu'])->name('typeMenu');
         });
-
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });
     Route::get('lang/{language}',[IndexController::class,'checkLanguage'])->name('checkLanguage');

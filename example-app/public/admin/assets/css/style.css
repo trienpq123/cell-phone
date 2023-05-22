@@ -1086,3 +1086,21 @@ body{
     opacity: .7;
     background: #495057
 }
+
+.type_inner {
+    display: none;
+}
+.type_inner.active{
+    display: unset;
+}
+
+
+.action-link{
+    position: absolute;
+    right: 25px;
+    top: 10px;;
+}
+
+.action-link {
+    gap: 10px;
+}

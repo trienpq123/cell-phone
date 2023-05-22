@@ -84,7 +84,7 @@ class CategoryController extends Controller
         $category->hide = $request->status;
         $category->save();
         $lastCategory = CategoryModel::orderBy('id_category','desc')->first();
-    
+
         if($request->idFilter){
             $filter = explode(',',$request->idFilter);
             $filterOfCategory = new FilterCategory();

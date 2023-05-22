@@ -19,4 +19,11 @@ class MenuModel extends Model
     ];
     CONST UPDATED_AT = NULL;
     CONST CREATED_AT  = NULL;
+
+    public function menu(){
+        return $this->hasMany(MenuModel::class,'parent_menu','id_menu');
+    }
+    public function chirendMenu(){
+        return $this->hasMany(MenuModel::class,'parent_menu','id_menu')->with('menu');
+    }
 }

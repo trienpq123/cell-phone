@@ -5,39 +5,52 @@
 @section('articles')
     <div class="wraper-container">
         <div class="action-link">
-            <a href="#" class="btn btn-add btn-success">Thêm menu</a>
+            <a href="{{route('admin.menu.addMenu')}}" class="btn btn-add btn-success">Thêm menu</a>
         </div>
         <br>
+
         <div id="nested" class="row">
-            <div id="nestedDemo" class="list-group col nested-sortable">
-                <div data-sortable-id="1.1" class="list-group-item nested-1">Item 1.1
-                    <div class="list-group nested-sortable">
-                        <div data-sortable-id="2.1" class="list-group-item nested-2">Item 2.1</div>
-                        <div data-sortable-id="2.2" class="list-group-item nested-2">
-                            Item 2.2
-                            <div class="list-group nested-sortable">
-                                <div data-sortable-id="3.1" class="list-group-item nested-3">Item 3.1</div>
-                                <div data-sortable-id="3.2" class="list-group-item nested-3">Item 3.2</div>
-                                <div data-sortable-id="3.3" class="list-group-item nested-3">Item 3.3</div>
-                                <div data-sortable-id="3.4" class="list-group-item nested-3">Item 3.4</div>
+
+                <div id="nestedDemo" class="list-group col nested-sortable">
+                    @foreach ($menu as $m)
+                        <div data-sortable-id="{{$m->position}}" data-position-menu="{{$m->position}}" data-id-menu="{{$m->id_menu}}" class="list-group-item nested-1">{{$m->name_menu}}
+                            <div class="action-link flex ">
+                                <a href="#" class="">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="">
+                                    <i class="fas fa-close"></i>
+                                </a>
                             </div>
+                            @if (count($m->chirendMenu) > 0)
+                            <div class="list-group nested-sortable">
+                                @foreach ($m->chirendMenu as $cm)
+                                <div data-sortable-id="{{$cm->position}}"  data-position-menu="{{$m->position}}" data-id-menu="{{$m->id_menu}}" class="list-group-item nested-2">
+                                    {{$cm->name_menu}}
+                                    <div class="action-link flex ">
+                                        <a href="#" class="">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="">
+                                            <i class="fas fa-close"></i>
+                                        </a>
+                                    </div>
+                                    {{-- <div class="list-group nested-sortable">
+                                        <div data-sortable-id="3.1" class="list-group-item nested-3">Item 3.1</div>
+                                        <div data-sortable-id="3.2" class="list-group-item nested-3">Item 3.2</div>
+                                        <div data-sortable-id="3.3" class="list-group-item nested-3">Item 3.3</div>
+                                        <div data-sortable-id="3.4" class="list-group-item nested-3">Item 3.4</div>
+                                    </div> --}}
+                                </div>
+                                @endforeach
+                            </div>
+
+                            @endif
                         </div>
-                        <div data-sortable-id="2.3" class="list-group-item nested-2">Item 2.3</div>
-                        <div data-sortable-id="2.4" class="list-group-item nested-2">Item 2.4</div>
-                    </div>
+                    @endforeach
                 </div>
-                <div data-sortable-id="1.2" class="list-group-item nested-1">Item 1.2</div>
-                <div data-sortable-id="1.3" class="list-group-item nested-1">Item 1.3</div>
-                <div data-sortable-id="1.4" class="list-group-item nested-1">Item 1.4
-                    <div class="list-group nested-sortable">
-                        <div data-sortable-id="2.1" class="list-group-item nested-2">Item 2.1</div>
-                        <div data-sortable-id="2.2" class="list-group-item nested-2">Item 2.2</div>
-                        <div data-sortable-id="2.3" class="list-group-item nested-2">Item 2.3</div>
-                        <div data-sortable-id="2.4" class="list-group-item nested-2">Item 2.4</div>
-                    </div>
-                </div>
-                <div data-sortable-id="1.5" class="list-group-item nested-1">Item 1.5</div>
-            </div>
+
+
             <div style="padding: 0" class="col-12">
                 <button class="btn-test">test</button>
             </div>
@@ -47,7 +60,6 @@
 
 @push('script-action')
     <script src="https://sortablejs.github.io/Sortable/Sortable.js"></script>
-    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         // Nested demo
