@@ -1095,12 +1095,9 @@ body{
 }
 
 
-.action-link{
+.nested-sortable .action-link{
     position: absolute;
     right: 25px;
-    top: 10px;;
-}
-
-.action-link {
+    top: 10px;
     gap: 10px;
 }

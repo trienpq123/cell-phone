@@ -449,10 +449,10 @@
                         }
                         else{
                             console.log(res)
-                            // $('#table').DataTable().destroy()
-                            // getDataTable();
-                            // $('.alert').toggleClass('active')
-                            // $('.popup-modal').removeClass('active');
+                            $('#table').DataTable().destroy()
+                            getDataTable();
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
                         }
                     },
                     cache: false,

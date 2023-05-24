@@ -72,4 +72,16 @@ class MenuController extends Controller
 
         return $option;
     }
+
+    public function putEditMenu(Request $request){
+        if($request->data){
+            foreach($request->data as $data){
+
+            }
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => $request->data
+        ]);
+    }
 }
