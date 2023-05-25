@@ -119,11 +119,35 @@
                                     id="slug" onchange="ChangeToSlug()" name="name">
                                 <p class="name-error text text-danger"></p>
                             </div>
+
                             <div class="form-group">
                                 <label for="">Slug</label>
                                 <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control slug"
                                     id="convert_slug" name="slug">
                                 <p class="slug-error text text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                        <label for="parent_category">Danh mục</label>
+                                        <select class="category " id="parent_category" name="parent_category">
+                                            <option value="">Chưa có</option>
+                                            @if (count($listCategory) > 0)
+                                                @foreach ($listCategory as $item)
+                                                    <option value={{ $item->id_category }}>{{ $item->name_category }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <select class="child-category-1" id="child-category-1" name="child-category-1">
+                                            <option value="">Chưa có</option>
+                                            <div class="list-child-category-1">
+
+                                            </div>
+                                        </select>
+                                        <select class="child-category-2" id="child-category-2" name="child-category-2">
+                                            <option value="">Chưa có</option>
+                                            <div class="list-child-category-2">
+
+                                            </div>
+                                        </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Mã sản phẩm (SKU)</label>
@@ -211,16 +235,9 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="">Danh mục</label>
-                                <select class="js-example-basic-single category form-control" name="parent_category">
-                                    <option value="">Chưa có</option>
-                                    @if (count($listCategory) > 0)
-                                        @foreach ($listCategory as $item)
-                                            <option value={{ $item->id_category }}>{{ $item->name_category }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                            <div class="product-option">
+                                <label for="">Chọn bộ lọc cho sản phẩm</label>
+                                <div class="product-option__inner"></div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-submit">
@@ -569,22 +586,83 @@
             })
         }
 
-        $('body').on('click', '.close', function() {
-            let id = $(this).attr("data-id");
-            console.log(id);
-            $(`#${id}`).remove();
-            InnerTableAttr();
-        })
+
 
 
 
         $(document).ready(function() {
+            $('.select-option').change(function(){
+                alert($(this).val())
+            })
+            $('.category').change(function(){
+                let value = $(this).val();
+                $.ajax({
+                    type:"GET",
+                    url:"{{route('admin.category.getChildCategory')}}",
+                    data:{id:value},
+                    success: (res) => {
+                        if(res.status == 200){
+                            console.log(res)
+                            let child_category = ''
+                            res.data.forEach(function(data, i){
+                                child_category+=`<option value="${data.id_category}">${data.name_category}</option>`;
+                            });
+                            $('.child-category-1').html(child_category);
+                            let filter = ''
+                            let i = 1;
+                            res.filter.forEach(function(f,i){
+                                console.log(f)
+                                f.filter.forEach(function(fp,i){
+                                    filter += `<div class="form-group">
+                                                 <label>${fp.filter_name}</label>
+                                                <select data-id="${fp.filter_id}" class="select-option"  class="select-option-${i++}">
+                                            `
+                                    f.child_filter.forEach(function(fc,l){
+                                        filter += `<option value="${fc.filter_id}">${fc.filter_name}</option>`
+                                    })
+                                    filter +=`</select>
+                                         </div>`
+                                })
+
+
+                            })
+                            console.log(filter)
+                            $('.product-option__inner').html(filter)
+                        }
+
+                    }
+                })
+
+            })
+            $('.child-category-1').change(function(){
+                let value = $(this).val();
+                $.ajax({
+                    type:"GET",
+                    url:"{{route('admin.category.getChildCategory')}}",
+                    data:{id:value},
+                    success: (res) => {
+                        console.log(res)
+                        let child_category = ''
+                        res.data.forEach(function(data, i){
+                            child_category+=`<option value="${data.id_category}">${data.name_category}</option>`;
+                        });
+                        $('.child-category-2').html(child_category);
+                    }
+                })
+
+            })
 
             $('body').on('click', '.close', function() {
-                // let id = $(this).attr("data-id");
-                // console.log(id);
-                // $(`#${id}`).remove();
-                // InnerTableAttrEdit();
+                let id = $(this).attr("data-id");
+                console.log(id);
+                $(`#${id}`).remove();
+                InnerTableAttr();
+            })
+            $('body').on('click', '.close', function() {
+                let id = $(this).attr("data-id");
+                console.log(id);
+                $(`#${id}`).remove();
+                InnerTableAttrEdit();
                 alert(1)
             })
             $('body').on('change', 'input[type="checkbox"]', function() {

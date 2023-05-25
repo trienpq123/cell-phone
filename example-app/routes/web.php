@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
@@ -51,6 +52,7 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[CategoryController::class,'postAddCategory'])->name('postAddCategory');
             Route::post('/edit',[CategoryController::class,'putEditCategory'])->name('putEditCategory');
             Route::delete('/delete',[CategoryController::class,'deleteCategory'])->name('deleteCategory');
+            Route::get('/getChild/',[CategoryController::class,'getChildCategory'])->name('getChildCategory');
         });
         Route::prefix('product')->name('product.')->group(function() {
             Route::get('/',[ProductController::class,'listProduct'])->name('listProduct');
@@ -108,6 +110,15 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/edit',[MenuController::class,'putEditMenu'])->name('putEditMenu');
             // Route::delete('/delete',[BannerController::class,'deleteBanner'])->name('deleteBanner');
             Route::post('/type-menu',[MenuController::class,'typeMenu'])->name('typeMenu');
+        });
+        Route::prefix('attr')->name('attr.')->group(function() {
+            Route::get('/',[AttributeController::class,'listAttr'])->name('listAttr');
+            Route::get('/api/list',[AttributeController::class,'apiListAttr'])->name('apiListAttr');
+            Route::get('/add',[AttributeController::class,'addAttr'])->name('addAttr');
+            Route::get('/edit/',[AttributeController::class,'editAttr'])->name('editAttr');
+            Route::post('/add',[AttributeController::class,'postAddAttr'])->name('postAddAttr');
+            Route::put('/edit',[AttributeController::class,'putEditAttr'])->name('putEditAttr');
+            Route::get('/delete',[AttributeController::class,'deleteAttr'])->name('deleteAttr');
         });
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });

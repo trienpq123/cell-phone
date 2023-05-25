@@ -16,6 +16,15 @@ class FilterCategory extends Model
     ];
     CONST CREATED_AT = NULL;
     CONST UPDATED_AT = NULL;
-    
-    
+    public function category(){
+        return $this->belongsTo(CategoryModel::class,'id_category','id_category');
+    }
+    public function childFilter(){
+        return $this->hasMany(FilterModel::class,'_parent','id_filter');
+    }
+
+    public function filter(){
+        return $this->hasMany(FilterModel::class,'filter_id','id_filter');
+    }
+
 }

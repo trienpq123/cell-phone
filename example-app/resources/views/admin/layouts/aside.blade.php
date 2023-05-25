@@ -15,6 +15,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.attr.listAttr')}}">
+                    <span class="box-iconls"><i class="fa-solid fa-house"></i>Quản lý thuộc tính của danh mục</span>
+                </a>
+            </li>
+            <li>
                 <a href="#">
                     <span class="box-iconls"><i class="fa-solid fa-house"></i>Quản lý đơn hàng</span>
 

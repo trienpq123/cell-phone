@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $listProduct = ProductModel::orderBy('id_product', 'desc')->get();
         $getBrands = BrandModel::orderBy('id_brand', 'desc')->get();
-        $listCategory = CategoryModel::orderBy('id_category', 'desc')->get();
+        $listCategory = CategoryModel::whereNull('parent_category')->orderBy('id_category', 'desc')->get();
         return view('admin.layouts.products.list', compact('getBrands', 'listCategory', 'listProduct'));
     }
 

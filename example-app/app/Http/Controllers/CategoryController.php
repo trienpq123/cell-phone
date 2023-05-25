@@ -177,4 +177,16 @@ class CategoryController extends Controller
             ]);
 
     }
+
+    public function getChildCategory(Request $request){
+        if($request->id){
+            $childCategory = CategoryModel::where('parent_category','=',$request->id)->get();
+            $filter = FilterCategory::where('id_category','=',$request->id)->with('childFilter','category','filter')->get();
+            return response()->json([
+                'status' => 200,
+                'data' => $childCategory,
+                'filter' => $filter
+            ]);
+        }
+    }
 }
