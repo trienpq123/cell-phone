@@ -4,6 +4,7 @@
         <div class="wrap-container">
 
             <button class="btn btn-add" data-name="add-product">Thêm mới</button>
+            {{-- <a href="{{route('admin.product.addProduct')}}" class="btn btn-add">Thêm mới</a> --}}
             <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled
                 data-name="popup-delete-checkbox">Xoá</button>
 
@@ -119,7 +120,6 @@
                                     id="slug" onchange="ChangeToSlug()" name="name">
                                 <p class="name-error text text-danger"></p>
                             </div>
-
                             <div class="form-group">
                                 <label for="">Slug</label>
                                 <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control slug"
@@ -591,9 +591,8 @@
 
 
         $(document).ready(function() {
-            $('.select-option').change(function(){
-                alert($(this).val())
-            })
+
+
             $('.category').change(function(){
                 let value = $(this).val();
                 $.ajax({
@@ -615,7 +614,7 @@
                                 f.filter.forEach(function(fp,i){
                                     filter += `<div class="form-group">
                                                  <label>${fp.filter_name}</label>
-                                                <select data-id="${fp.filter_id}" class="select-option"  class="select-option-${i++}">
+                                                <select data-id="${fp.filter_id}" name="${fp.slug}" class="select-option"  class="select-option-${i++}">
                                             `
                                     f.child_filter.forEach(function(fc,l){
                                         filter += `<option value="${fc.filter_id}">${fc.filter_name}</option>`
@@ -1338,7 +1337,10 @@
                 })
             });
 
-
+            $('body').on('change','.select-option',function(){
+                console.log($(this).attr('name'))
+                console.log($(this).val())
+            })
 
             $('#form-add').submit(function(e) {
                 e.preventDefault();
@@ -1402,7 +1404,9 @@
                 let desc_short_product = CKEDITOR.instances.desc_short.getData();
                 let product_sku = $('.product_sku').val();
                 let id_category = $('.category').val();
-                let status_product = $('.status:checked').val()
+                let id_category_1 = $('.child-category-1').val();
+                let id_category_2 = $('.child-category-2').val();
+                let status_product = $('.status:checked').val();
                 var formData = new FormData();
                 formData.append('product_detail', JSON.stringify(product_detail))
                 formData.append('desc', desc_product)
@@ -1458,13 +1462,19 @@
                     product_detail.push(option)
 
                 })
-
+                let option = [];
+                $('body .select-option').each(function(i,data){
+                    option.push(data.value);
+                })
+                formData.append('category_1',id_category_1)
+                formData.append('category_2',id_category_2)
                 formData.append('name', name_product)
                 formData.append('slug', slug_product)
                 formData.append('status', status_product)
                 formData.append('idBrand', idBrand)
                 formData.append('product_sku', product_sku)
                 formData.append('id_category', id_category)
+                formData.append('option',option)
                 formData.append('_token', "{{ csrf_token() }}")
                 $.ajax({
                     type: "POST",
@@ -1478,10 +1488,10 @@
 
                         } else {
                             console.log(res)
-                            $('#table').DataTable().destroy()
-                            getDataTable();
-                            $('.alert').toggleClass('active')
-                            $('.popup-modal').removeClass('active');
+                            // $('#table').DataTable().destroy()
+                            // getDataTable();
+                            // $('.alert').toggleClass('active')
+                            // $('.popup-modal').removeClass('active');
                         }
                     },
                     cache: false,

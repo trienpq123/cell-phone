@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\FilterProduct;
 use App\Models\ProductDetailModel;
 use App\Models\ProductImageModel;
 use App\Models\ProductModel;
@@ -32,6 +33,7 @@ class ProductController extends Controller
 
     public function addProduct(Request $request)
     {
+
     }
 
     public function editProduct(Request $request)
@@ -72,10 +74,20 @@ class ProductController extends Controller
         $p->p_desc_short = $request->desc_short;
         $p->p_desc = $request->desc;
         $p->id_brand = $request->idBrand;
-        $p->id_category = $request->id_category;
+
+        $id_category = '';
+        if($request->id_category){
+            $id_category = $request->id_category;
+            if($request->category_1){
+                $id_category = $request->category_1;
+                if($request->category_2){
+                    $id_category = $request->category_2;
+                }
+            }
+        }
+        $p->id_category = $id_category;
         $p->product_SKU = $request->product_sku;
         $p->status = $request->status;
-
         $p->save();
         $get_last_product = ProductModel::orderBy('id_product', 'desc')->first();
         if ($request->image) {
@@ -122,11 +134,24 @@ class ProductController extends Controller
                 }
             }
         }
+
+        if ($request->option) {
+            if (!empty($request->option)) {
+                $explode_option = explode(',',$request->option);
+                foreach ($explode_option as $o) {
+                    $fp = new FilterProduct();
+                    $fp->id_product = $get_last_product->id_product;
+                    $fp->id_filter = $o;
+                    $fp->save();
+                }
+            }
+        }
         $produc_Data = ProductModel::all();
         return response()->json([
             'status' => 200,
             'request' => json_decode($request->product_detail),
-            'product_detail' => $request->all()
+            'product_detail' => $request->all(),
+            'option' => $fp
         ]);
     }
 

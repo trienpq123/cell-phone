@@ -9,13 +9,15 @@ class MenuModel extends Model
 {
     use HasFactory;
     protected $table = "menu";
-    protected $primayKey = "id_menu";
+    protected $primaryKey = "id_menu";
     protected $fillable = [
         'name_menu',
         'parent_menu',
         'link_url',
         'position',
-        'status'
+        'status',
+        'type',
+        'slug'
     ];
     CONST UPDATED_AT = NULL;
     CONST CREATED_AT  = NULL;

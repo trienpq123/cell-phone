@@ -105,10 +105,8 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/',[MenuController::class,'listMenu'])->name('listMenu');
             // Route::get('/api/list',[BannerController::class,'apiListBanner'])->name('apiListBanner');
             Route::get('/add',[MenuController::class,'addMenu'])->name('addMenu');
-            Route::get('/edit',[MenuController::class,'editBanner'])->name('editBanner');
             Route::post('/add',[MenuController::class,'postAddMenu'])->name('postAddMenu');
             Route::get('/edit',[MenuController::class,'putEditMenu'])->name('putEditMenu');
-            // Route::delete('/delete',[BannerController::class,'deleteBanner'])->name('deleteBanner');
             Route::post('/type-menu',[MenuController::class,'typeMenu'])->name('typeMenu');
         });
         Route::prefix('attr')->name('attr.')->group(function() {
