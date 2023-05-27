@@ -112,11 +112,12 @@
                         console.log(value)
                         $('.type_inner').addClass('active')
                         $('.type_inner').html(res);
-                        console.log(res);
                     }
                 })
             })
         })
+
+
 
     </script>
 @endpush

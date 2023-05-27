@@ -48,13 +48,13 @@
             @if (count($menu) > 0)
                 @foreach ($menu as $m)
                         <li style="position: relative" id="sortableId" data-position-menu="{{$m->position}}" data-id-menu="{{$m->id_menu}}" data-parent-menu="{{$m->parent_menu}}" >
-                            <button class="btn btn-edit" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></button>
+                            <a  class="btn btn-edit" data-name="edit-menu" data-id="{{$m->id_menu}}" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></a>
                             <div class="block block-title">{{$m->name_menu}}</div>
                             <ul class="sortable list-unstyled">
                             @if (count($m->chirendMenu) > 0)
                             @foreach ($m->chirendMenu as $cm)
-                                    <li  style="position: relative" id="sortableId" data-position-menu="{{$cm->position}}" data-id-menu="{{$cm->id_menu}}" data-parent-menu="{{$cm->parent_menu}}">
-                                        <button class="btn btn-edit" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></button>
+                                    <li  style="position: relative" id="sortableId" data-position-menu="{{$cm->position}}" data-name="edit-product" data-id="{{$m->id_menu}}" data-id-menu="{{$cm->id_menu}}" data-parent-menu="{{$cm->parent_menu}}">
+                                        <a class="btn btn-edit" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></a>
                                         <div style="position: relative" class="block block-title" data-position-menu="{{$cm->position}}" data-id-menu="{{$cm->id_menu}}" data-parent-menu="{{$cm->parent_menu}}">{{$cm->name_menu}}</div>
                                         <ul class="sortable list-unstyled"></ul>
                                     </li>
@@ -67,6 +67,70 @@
 
             </ul>
             <button class="btn-test">SAVE</button>
+
+            <div class="popup-modal edit-menu" >
+                <div class="box-alert">
+                    <div class="form-feild">
+                        <div class="form-title">
+                            <h2>Chỉnh sửa</h2>
+                        </div>
+                            <form id="form-edit" class="edit-menu" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">Tên menu</label>
+                                    <input type="text" placeholder="Nhập tên menu" class="form-control name" id="slug" onchange="ChangeToSlug()" name="name">
+                                    <p class="name-error text text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Slug</label>
+                                    <input type="text" placeholder="Đường dẫn" class="form-control slug" id="convert_slug"  name="slug">
+                                    <p class="name-error text text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Chọn menu cha</label>
+                                    <select type="text" class="form-control parent_menu" name="parent_menu" id="parent_menu">
+                                        <option value="">Chưa có</option>
+                                        @if (count($menu) > 0)
+                                            @foreach ($menu as $item)
+                                                <option value="{{$item->id_menu}}">{{$item->name_menu}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    <p class="name-error text text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Trỏ đến</label>
+                                    <select name="typeMenu" class="type_menu" id="">
+                                        <option value="">Chưa chọn</option>
+                                        <option value="1">Trang</option>
+                                        <option value="2">Danh  mục</option>
+                                    </select>
+                                    <select name="url" class="type_inner" id="" >
+                                        <option value="">Chưa chọn</option>
+
+                                    </select>
+                                    <p class="name-error text text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="status"  id="status" class="status" value="0" style="width:auto;"><label for="">Ẩn</label>
+                                    <input type="radio" name="status" checked id="status" class="status" value="1"   style="width:auto;"> <label for="">Hiện</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Vị trí menu</label>
+                                    <input type="number"  name="position" class="position" id="position" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-submit btn-add">
+                                        Xác nhận
+                                    </button>
+                                </div>
+                            </form>
+                    </div>
+                    <div class="btn-close">
+                        <span><i class="fas fa-times"></i></span>
+                    </div>
+                </div>
+            </div>
     </div>
 @endsection
 
@@ -74,8 +138,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/i18n/jquery-ui-i18n.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-    {{-- <script src="https://sortablejs.github.io/Sortable/Sortable.js"></script> --}}
-    <script>
+<script>
         // Nested demo
         var nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
@@ -115,7 +178,6 @@
             }
             return serialized
         }
-
         $(document).ready(function(){
             $('.sortable').sortable({
                 connectWith:    '.sortable',
@@ -144,6 +206,120 @@
 
         })
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-edit').click(function(){
+                let name = $(this).attr('data-name');
+                let id = $(this).attr('data-id');
+                $('.popup-modal'+'.'+name).toggleClass('active');
+
+                $('.btn-close').click(function(){
+                    $('.popup-modal').removeClass('active');
+                });
+                $('.btn-agree').click(function(){
+                    $('.popup-modal').removeClass('active');
+                });
+
+                $.ajax({
+                    url: "{{route('admin.menu.editEditMenu')}}",
+                    dataType:"json",
+                    method: "GET",
+                    data: {id:id},
+                    success: (res) => {
+                        console.log(res)
+                        let name = $(".form-control.name").val(res.data.name_menu);
+                        $(".slug").val(res.data.slug)
+                        $('.status').each(function(i,item) {
+                            if(res.data.hide == item.value){
+                                item.checked = true;
+                            }
+                        })
+                        // Loop through each option element in the parent_menu select element
+                        $('.parent_menu option').each(function(i, data) {
+                            // Check if the value of the option matches the id_category property of res.category
+                            if (data.value == res.data.parent_menu) {
+                                // If it does, set the selected attribute on the option element
+                                $(data).prop('selected', true);
+                            }
+                        });
+                        // Check if res.data.type equals 'category'
+                        if (res.data.type === 'category') {
+                            // If it does, select the first option if its value equals 1
+                            $('.type_menu option[value="2"]').prop('selected', true);
+                        } else {
+                            $('.type_menu option[value="1"]').prop('selected', true);
+                        }
+                        let value = $('.type_menu').val();
+                        let position = $('.position').val(res.data.position)
+                        $.ajax({
+                            type: "POST",
+                            url:"{{route('admin.menu.typeMenu')}}",
+                            data: {typeMenu:value,_token:"{{csrf_token()}}"},
+                            success: (res) => {
+
+                                $('.type_inner').addClass('active')
+                                $('.type_inner').html(res);
+                                console.log(res);
+                            }
+                        })
+                        $('.edit_parent_category option').each(function(i,item) {
+                            console.log(item.value,res.data.parent_category)
+                            if(parseInt(item.value) == res.data.parent_category){
+                                item.selected = true
+                                console.log(item.value)
+                                $('.edit_parent_category').val(item.value);
+                                $('.edit_parent_category').trigger('change');
+                            }
+                        })
+
+                        $('#form-edit').submit(function(e){
+                            e.preventDefault();
+                            let name = $('.form-control.name').val();
+                            let slug = $('.slug').val();
+                            let parent_menu = $('.parent_menu').val();
+                            let status = $('.status:checked').val()
+                            let typeMenu = $('.type_menu').val();
+                            let url = $('.type_inner').val();
+                            let position = $('.position').val();
+                            var formData = new FormData();
+                            formData.append('name',name)
+                            formData.append('slug',slug)
+                            formData.append('id',id)
+                            formData.append('status',status)
+                            formData.append('parent_menu', parent_menu);
+                            formData.append('typeMenu',typeMenu)
+                            formData.append('url',url)
+                            formData.append('id',id)
+                            formData.append('_token',"{{csrf_token()}}")
+                            $.ajax({
+                                type:"POST",
+                                url: "{{route('admin.menu.apiPutEditMenu')}}",
+                                data:formData,
+                                success: (res) => {
+                                    if(res.status == 404){
+                                        console.log(res)
+                                        validator(res.status,res.message)
+
+                                    }
+                                    else{
+                                        console.log(res)
+                                        window.location.reaload()
+                                    }
+                                },
+                                cache: false,
+                                contentType: false,
+                                processData: false
+
+                            })
+                        })
+
+
+                    } // Missing closing parenthesis here
+                });
+            }); // Corrected placement of closing parenthesis
+        });
+</script>
+
 @endpush
 
 

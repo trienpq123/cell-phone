@@ -85,7 +85,6 @@ class MenuController extends Controller
                 $menu->save();
 
                 if(!empty($data['children']) && count($data['children']) > 0 ){
-
                     foreach($data['children'] as $child){
                         // dd($child);
                         $menu = MenuModel::where('id_menu','=',$child['id_menu'])->first();
@@ -100,5 +99,42 @@ class MenuController extends Controller
             'status' => 200,
             'message' => $request->all()
         ]);
+    }
+
+    public function apiPutEditMenu(Request $request){
+        $menu =  MenuModel::find($request->id);
+        $menu->name_menu = $request->name;
+        $menu->slug = $request->slug;
+        $menu->link_url = $request->url;
+        $menu->position = $request->position;
+        $menu->status = $request->status;
+        $menu->parent_menu = $request->parent_menu;
+        if($request->typeMenu == 1){
+            $menu->type = "pages";
+        }
+        else if($request->typeMenu == 2){
+            $menu->type = "category";
+        }
+        else{
+            $menu->type = "custom";
+        }
+        $menu->save();
+        return response()->json(
+            [
+                'status' => 200,
+                'data' => $request->all()
+            ]
+            );
+    }
+
+    public function editEditMenu(Request $request){
+        if($request->id){
+            $menu = MenuModel::find($request->id);
+            // $category = CategoryModel::where('slug','=',$menu->slug)->first();
+            return response()->json([
+                'status' => 200,
+                'data' => $menu
+            ]);
+        }
     }
 }
