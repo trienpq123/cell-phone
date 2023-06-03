@@ -60,6 +60,19 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý quyền</a>
+                <div class="menu-child">
+                    <ul>
+                        <li><a href="{{route('admin.roles.role.index')}}">Quyền Role</a></li>
+                        <li><a href="#">Quyền Permission</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#"><span class="box-iconls"><i class="fa-solid fa-house"></i></span>Quản lý user</a>
+
+            </li>
         </ul>
     </div>
 </div>

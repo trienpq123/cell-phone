@@ -4,6 +4,7 @@ use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
@@ -11,8 +12,10 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Models\ProductDetailModel;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +33,11 @@ Route::get('/', function () {
 });
 
 Route::group([ 'middleware' => 'Localization'],function() {
+
     Route::prefix('admin')->name('admin.')->group(function(){
+        Route::get('login',[DashboardController::class,'login'])->name('login');
+        Route::post('login',[DashboardController::class,'loginPost'])->name('loginPost');
+
         Route::get('/dashboard',[IndexController::class,'index'])->name('DashboardAdmin');
         Route::prefix('product')->name('product.')->group(function(){
             // Route::get('/',[])
@@ -109,6 +116,7 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/api/edit',[MenuController::class,'editEditMenu'])->name('editEditMenu');
             Route::post('/type-menu',[MenuController::class,'typeMenu'])->name('typeMenu');
             Route::post('/api/edit-menu',[MenuController::class,'apiPutEditMenu'])->name('apiPutEditMenu');
+            Route::delete('/delete-menu',[MenuController::class,'deleteMenu'])->name('deleteMenu');
         });
         Route::prefix('attr')->name('attr.')->group(function() {
             Route::get('/',[AttributeController::class,'listAttr'])->name('listAttr');
@@ -118,6 +126,24 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[AttributeController::class,'postAddAttr'])->name('postAddAttr');
             Route::put('/edit',[AttributeController::class,'putEditAttr'])->name('putEditAttr');
             Route::get('/delete',[AttributeController::class,'deleteAttr'])->name('deleteAttr');
+        });
+        Route::prefix('roles')->name('roles.')->group(function(){
+            Route::get('/',[RoleController::class,'index'])->name('role.index');
+            Route::get('/api/get',[RoleController::class,'index'])->name('role.index');
+            Route::get('/add',[RoleController::class,'RoleFormAdd'])->name('role.create');
+            Route::get('/edit-role/{id}',[RoleController::class,'RoleFormEdit'])->name('role.edit');
+            Route::put('/edit-role/{id}',[RoleController::class,'RoleFormUpdate'])->name('role.update');
+            Route::post('/add',[RoleController::class,'RoleFormPostAdd'])->name('role.store');
+            Route::get('/delete/{id}',[RoleController::class,'RoleDelete'])->name('role.delete');
+        });
+        Route::prefix('permisson')->name('permisson.')->group(function(){
+            Route::get('/',[PermissonController::class,'index'])->name('permisson.index');
+            Route::get('/api/get',[PermissonController::class,'index'])->name('permisson.index');
+            Route::get('/add',[PermissonController::class,'permissonFormAdd'])->name('permisson.create');
+            Route::get('/edit-permisson/{id}',[PermissonController::class,'permissonFormEdit'])->name('permisson.edit');
+            Route::put('/edit-permisson/{id}',[PermissonController::class,'permissonFormUpdate'])->name('permisson.update');
+            Route::post('/add',[PermissonController::class,'permissonFormPostAdd'])->name('permisson.store');
+            Route::get('/delete/{id}',[PermissonController::class,'permissonDelete'])->name('permisson.delete');
         });
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });

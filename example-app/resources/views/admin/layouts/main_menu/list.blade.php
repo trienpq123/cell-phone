@@ -48,13 +48,15 @@
             @if (count($menu) > 0)
                 @foreach ($menu as $m)
                         <li style="position: relative" id="sortableId" data-position-menu="{{$m->position}}" data-id-menu="{{$m->id_menu}}" data-parent-menu="{{$m->parent_menu}}" >
-                            <a  class="btn btn-edit" data-name="edit-menu" data-id="{{$m->id_menu}}" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></a>
+                            <a  class="btn btn-edit" data-name="edit-menu" data-id="{{$m->id_menu}}" style="position:absolute; z-index: 99999; right: 35px; " ><i class="fas fa-edit"></i></a>
+                            <a  class="btn btn-delete" data-name="edit-menu" data-id="{{$m->id_menu}}" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-close"></i></a>
                             <div class="block block-title">{{$m->name_menu}}</div>
                             <ul class="sortable list-unstyled">
                             @if (count($m->chirendMenu) > 0)
                             @foreach ($m->chirendMenu as $cm)
                                     <li  style="position: relative" id="sortableId" data-position-menu="{{$cm->position}}" data-name="edit-product" data-id="{{$m->id_menu}}" data-id-menu="{{$cm->id_menu}}" data-parent-menu="{{$cm->parent_menu}}">
-                                        <a class="btn btn-edit" style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-edit"  data-name="edit-menu" data-id="{{$cm->id_menu}}"  style="position:absolute; z-index: 99999; right: 35px; " ><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-delete"  data-name="edit-menu" data-id="{{$cm->id_menu}}"   style="position:absolute; z-index: 99999; right: 0; " ><i class="fas fa-close"></i></a>
                                         <div style="position: relative" class="block block-title" data-position-menu="{{$cm->position}}" data-id-menu="{{$cm->id_menu}}" data-parent-menu="{{$cm->parent_menu}}">{{$cm->name_menu}}</div>
                                         <ul class="sortable list-unstyled"></ul>
                                     </li>
@@ -220,6 +222,8 @@
                     $('.popup-modal').removeClass('active');
                 });
 
+
+
                 $.ajax({
                     url: "{{route('admin.menu.editEditMenu')}}",
                     dataType:"json",
@@ -316,7 +320,22 @@
 
                     } // Missing closing parenthesis here
                 });
-            }); // Corrected placement of closing parenthesis
+            });
+
+            $('.btn-delete').click(function() {
+                let id = $(this).attr('data-id');
+                formData = new FormData();
+                formData.append('id',id)
+                $.ajax({
+                    type:"DELETE",
+                    dataType:"json",
+                    url: "{{route('admin.menu.deleteMenu')}}",
+                    data: formData,
+                    success: (res) => {
+                        console.log(res);
+                    }
+                })
+            })
         });
 </script>
 

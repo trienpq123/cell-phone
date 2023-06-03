@@ -137,4 +137,21 @@ class MenuController extends Controller
             ]);
         }
     }
+
+    public function deleteMenu(Request $request){
+        if($request->id){
+            $menu = MenuModel::find($request->id);
+            if($menu){
+                $menu->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Xoá menu thành công'
+                ]);
+            }
+            return response()->json([
+                'status' => 404,
+                'message' => 'Menu không tồn tại'
+            ]);
+        }
+    }
 }
