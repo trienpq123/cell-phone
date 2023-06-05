@@ -29,7 +29,11 @@
                                 <input type="checkbox" id="item-check" name="item-check[]" value="{{$item->id}}">
                             </td>
                             <td>{{$item->name}}</td>
-                            <td class="badge badge-soft-info">{{$item->name}}</td>
+                            <td >
+                                @foreach ($item->getAllPermissions() as $p)
+                                    <span class="badge badge-soft-info">{{$p->name}}</span>
+                                @endforeach
+                            </td>
                             <td><a href="{{route('admin.roles.role.edit',['id' => $item->id])}}"  class="btn-edit" data-name="edit-product" data-id="{{$item->id}}">Chỉnh sửa</a></td>
                             {{-- class="btn-edit"  --}}
                             <td><a href="{{route('admin.roles.role.delete',['id' => $item->id])}}" class="btn-delete">Xoá</a></td>

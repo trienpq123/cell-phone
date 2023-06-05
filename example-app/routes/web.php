@@ -11,11 +11,12 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-use App\Models\ProductDetailModel;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,6 @@ use Spatie\Permission\Contracts\Role;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::group([ 'middleware' => 'Localization'],function() {
 
     Route::prefix('admin')->name('admin.')->group(function(){
@@ -137,15 +137,25 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::get('/delete/{id}',[RoleController::class,'RoleDelete'])->name('role.delete');
         });
         Route::prefix('permisson')->name('permisson.')->group(function(){
-            Route::get('/',[PermissonController::class,'index'])->name('permisson.index');
-            Route::get('/api/get',[PermissonController::class,'index'])->name('permisson.index');
-            Route::get('/add',[PermissonController::class,'permissonFormAdd'])->name('permisson.create');
-            Route::get('/edit-permisson/{id}',[PermissonController::class,'permissonFormEdit'])->name('permisson.edit');
-            Route::put('/edit-permisson/{id}',[PermissonController::class,'permissonFormUpdate'])->name('permisson.update');
-            Route::post('/add',[PermissonController::class,'permissonFormPostAdd'])->name('permisson.store');
-            Route::get('/delete/{id}',[PermissonController::class,'permissonDelete'])->name('permisson.delete');
+            Route::get('/',[PermissionController::class,'index'])->name('permisson.index');
+            Route::get('/add',[PermissionController::class,'PermissionFormAdd'])->name('permisson.create');
+            Route::get('/edit-permisson/{id}',[PermissionController::class,'PermissionFormEdit'])->name('permisson.edit');
+            Route::put('/edit-permisson/{id}',[PermissionController::class,'PermissionFormUpdate'])->name('permisson.update');
+            Route::post('/add',[PermissionController::class,'PermissionFormPostAdd'])->name('permisson.store');
+            Route::get('/delete/{id}',[PermissionController::class,'PermissionDelete'])->name('permisson.delete');
+        })->middleware("");
+        Route::prefix('User')->name('User.')->group(function(){
+            Route::get('/',[UserController::class,'index'])->name('User.index');
+            Route::get('/add',[UserController::class,'UserFormAdd'])->name('User.create');
+            Route::get('/edit-user/{id}',[UserController::class,'UserFormEdit'])->name('User.edit');
+            Route::put('/edit-user/{id}',[UserController::class,'UserFormUpdate'])->name('User.update');
+            Route::post('/add',[UserController::class,'UserFormPostAdd'])->name('User.store');
+            Route::get('/delete/{id}',[UserController::class,'UserDelete'])->name('User.delete');
         });
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });
     Route::get('lang/{language}',[IndexController::class,'checkLanguage'])->name('checkLanguage');
 });
+
+
+require __DIR__.'/auth.php';

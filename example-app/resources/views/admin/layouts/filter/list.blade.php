@@ -402,8 +402,6 @@
             $('.btn-close').click(function(){
                 $('.popup-modal').removeClass('active');
             });
-
-
         })
 
         $('.action-delete').click(function(){
@@ -418,8 +416,6 @@
                         if(getValueCheckbox[i].checked){
                             array.push(getValueCheckbox[i].value);
                         }
-
-
                 }
                 $.ajax({
                     type: "DELETE",
@@ -433,7 +429,6 @@
                             $('.popup-modal').removeClass('active');
                         }
                     }
-
                 })
         });
 

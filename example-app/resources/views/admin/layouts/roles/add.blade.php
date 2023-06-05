@@ -14,7 +14,11 @@
                 </div>
                 <div class="form-group">
                     <label for="">Cấp Quyền</label>
-                    <select class="js-example-basic-single" name="" id=""></select>
+                    <select class="js-example-basic-single" name="permission[]" id="" multiple>
+                        @foreach ($permission as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-submit">Xác nhận</button>

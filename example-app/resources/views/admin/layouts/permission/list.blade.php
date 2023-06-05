@@ -3,7 +3,7 @@
 <div class="list-table">
     <div class="wrap-container">
 
-        <a href="{{route('admin.roles.role.create')}}" class="btn btn-add"  data-name="add-product">Thêm mới</a>
+        <a href="{{route('admin.permisson.permisson.create')}}" class="btn btn-add"  data-name="add-product">Thêm mới</a>
         <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled data-name="popup-delete-checkbox">Xoá</button>
 
         <div class="table">
@@ -23,16 +23,20 @@
                     @php
                     $i = 0;
                     @endphp
-                    @foreach ($role as $item)
+                    @foreach ($permission as $item)
                         <tr>
                             <td>
                                 <input type="checkbox" id="item-check" name="item-check[]" value="{{$item->id}}">
                             </td>
                             <td>{{$item->name}}</td>
-                            <td class="badge badge-soft-info">{{$item->name}}</td>
-                            <td><a href="{{route('admin.roles.role.edit',['id' => $item->id])}}"  class="btn-edit" data-name="edit-product" data-id="{{$item->id}}">Chỉnh sửa</a></td>
+                            <td class="badge badge-soft-info">
+                                @foreach ($item->roles as $r)
+                                    <span class="badge badge-soft-info">{{$r->name}}</span>
+                                @endforeach
+                            </td>
+                            <td><a href="{{route('admin.permisson.permisson.edit',['id' => $item->id])}}"  class="btn-edit" data-name="edit-product" data-id="{{$item->id}}">Chỉnh sửa</a></td>
                             {{-- class="btn-edit"  --}}
-                            <td><a href="{{route('admin.roles.role.delete',['id' => $item->id])}}" class="btn-delete">Xoá</a></td>
+                            <td><a href="{{route('admin.permisson.permisson.delete',['id' => $item->id])}}" class="btn-delete">Xoá</a></td>
                         </tr>
                     @endforeach
                 </tbody>

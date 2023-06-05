@@ -7,14 +7,15 @@
     <title>Đăng nhập</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{{route('admin.loginPost')}}" method="post">
+        @csrf
         <div class="form-group">
             <label for="">Username</label>
-            <input type="text" name="" id="" class="form-control">
+            <input type="text" name="email" id="" class="form-control">
         </div>
         <div class="form-group">
             <label for="">Mật khẩu</label>
-            <input type="password" name="" id="" class="form-control">
+            <input type="text" name="password" id="" class="form-control">
         </div>
         <a href="#">Quên mật khẩu</a>
 

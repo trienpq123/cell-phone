@@ -10,12 +10,16 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="">Vai trò</label>
-                    <input type="text" name="role_name" id="" class="form-control" placeholder="Nhập tên quyền" value="{{$role->name}}">
+                    <label for="">Chức vụ</label>
+                    <input type="text" name="role_name" id="" class="form-control" placeholder="Chức vụ" value="{{$role->name}}">
                 </div>
                 <div class="form-group">
                     <label for="">Cấp Quyền</label>
-                    <select class="js-example-basic-single" name="" id=""></select>
+                    <select class="js-example-basic-single" name="permission[]" id="" multiple>
+                        @foreach ($permission as $item)
+                        <option value="{{$item->id}}" {{$role->hasPermissionTo($item) ? 'selected' : ''}} >{{$item->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-submit">Xác nhận</button>
