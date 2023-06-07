@@ -1,0 +1,168 @@
+@media screen and (max-width:1024px){
+ 
+  
+}
+@media screen and (max-width:960px){
+   
+
+    
+}
+@media screen and (max-width:768px){
+  .header-top a.address,
+  .header-top a.check-store,
+  .header-top a.contact,
+  .header-top a.check-bill,
+  .header-top li.contact-buy,
+  .header-top li.store,
+  .header-top li.shipping,
+  .header-top li.account,
+  .header-top li.category{
+    display: none;
+  }
+
+  .header-top li .box-local-store.cart{
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-top li.search {
+    width: 55%;
+  }
+
+  .header-main .ladi-ads {
+    display: none;
+  }
+
+  .header-top li.search form {
+    width: 100%;
+  }
+
+  .ladi-navigation{
+    grid-template-columns: 30% auto;;
+  }
+  .wrap-container{
+    max-width: 767px !important;
+  }
+
+  .context-slider .context-item .name{
+    font-size: .7rem;
+  }
+
+  .ladi-menu ul li a .cate-infor span.cate-iconls, 
+  .ladi-menu ul li a,
+  .ladi-menu ul li a span i{
+    font-size: .75rem;
+  }
+  .grid-column-md-12{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .grid {
+    display: grid !important;
+  }
+
+  .ladi-title{
+    gap: 10px;
+  }
+  
+  .ladi-title ul{
+    gap:10px;
+    justify-content: center !important;
+  }
+
+  .ladi-title .ladi-label h2{
+      font-size: 1.2rem;
+      text-align: center;
+  }
+
+  .ladi-list{
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  .ladi-item .ladi-name{
+    font-size: .8rem;
+  }
+  .ladi-item .ladi-price .old{
+    font-size: 1rem;
+  }
+
+  .ladi-item .ladi-price .new{
+    font-size: .7rem;
+  }
+  .ladi-item .ladi-text-sale{
+    font-size: .7rem;
+  }
+  
+  .ladi-item .ladi-rate span i {
+    font-size: .8rem;
+  }
+
+  .ladi-item .ladi-reaction .text,.ladi-item .ladi-reaction .reaction-iconls.love{
+    font-size: .8rem;
+  }
+  .ladi-item .ladi-reaction .reaction-iconls.love{
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width:425px){
+    
+}
+@media screen and (max-width:375px){
+
+  .wrap-container{
+    max-width: 376px !important;
+  }
+  .header-top li.search {
+    width: 34%;
+  }
+  .ladi-navigation{
+    grid-template-columns: auto;
+  }
+  .ladi-navigation .ladi-menu {
+    display: none;
+  }
+
+  .box-local-store form input{
+    padding: 8px 0 8px 24px;
+  }
+  .ladi-list{
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+  }
+
+  .ladi-item .ladi-name{
+    font-size: .75rem;
+  }
+  .ladi-item .ladi-price .old{
+    font-size: .75rem;
+  }
+
+  .ladi-item .ladi-price .new{
+    font-size: .6rem;
+  }
+  .ladi-item .ladi-text-sale{
+    font-size: .6rem;
+    line-height: 1rem;
+    min-height: 58px;
+  }
+  
+  .ladi-item .ladi-rate span i {
+    font-size: .7rem;
+  }
+
+  .ladi-item .ladi-reaction .text,.ladi-item .ladi-reaction .reaction-iconls.love{
+    font-size: .7rem;
+  }
+  .ladi-item .ladi-reaction .reaction-iconls.love{
+    font-size: .8rem;
+  }
+}
+
+@media screen and (max-width:325px){
+    
+}
+
+@media screen and (max-width:320){
+    
+}
+

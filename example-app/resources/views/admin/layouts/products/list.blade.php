@@ -3,7 +3,7 @@
     <div class="list-table">
         <div class="wrap-container">
 
-            <button class="btn btn-add" data-name="add-product">Thêm mới</button>
+            <a href="{{route('admin.product.addProduct')}}" class="btn btn-add" data-name="add-product">Thêm mới</a>
             {{-- <a href="{{route('admin.product.addProduct')}}" class="btn btn-add">Thêm mới</a> --}}
             <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled
                 data-name="popup-delete-checkbox">Xoá</button>
@@ -1531,6 +1531,7 @@
         $(document).ready(function() {
             // SELECT 2
             $('.js-example-basic-single').select2();
+
         });
     </script>
 @endpush

@@ -20,10 +20,6 @@ class DashboardController extends Controller
         if (Auth::attempt($array)){
             return redirect()->route('admin.DashboardAdmin');
         }
-
-
         return back();
     }
-
-
 }

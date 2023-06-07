@@ -10,6 +10,7 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
@@ -39,9 +40,6 @@ Route::group([ 'middleware' => 'Localization'],function() {
         Route::post('login',[DashboardController::class,'loginPost'])->name('loginPost');
 
         Route::get('/dashboard',[IndexController::class,'index'])->name('DashboardAdmin');
-        Route::prefix('product')->name('product.')->group(function(){
-            // Route::get('/',[])
-        });
         Route::prefix('filter')->name('filter.')->group(function() {
             Route::get('/',[FilterController::class,'listFilter'])->name('listFilter');
             Route::get('/api/list',[FilterController::class,'apiListFilter'])->name('apiListFilter');
@@ -80,6 +78,15 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::post('/add',[BrandController::class,'postAddBrand'])->name('postAddBrand');
             Route::post('/edit',[BrandController::class,'putEditBrand'])->name('putEditBrand');
             Route::delete('/delete',[BrandController::class,'deleteBrand'])->name('deleteBrand');
+        });
+        Route::prefix('order')->name('order.')->group(function() {
+            Route::get('/',[OrderController::class,'listOrder'])->name('listOrder');
+            Route::get('/api/list',[OrderController::class,'apiListOrder'])->name('apiListOrder');
+            Route::get('/order-detail',[OrderController::class,'orderDetail'])->name('orderDetail');
+            // Route::get('/edit',[OrderController::class,'editBrand'])->name('editBrand');
+            // Route::post('/add',[OrderController::class,'postAddBrand'])->name('postAddBrand');
+            // Route::post('/edit',[OrderController::class,'putEditBrand'])->name('putEditBrand');
+            // Route::delete('/delete',[OrderController::class,'deleteBrand'])->name('deleteBrand');
         });
         Route::prefix('pages')->name('pages.')->group(function() {
             Route::get('/',[PagesController::class,'listPages'])->name('listPages');
@@ -143,14 +150,14 @@ Route::group([ 'middleware' => 'Localization'],function() {
             Route::put('/edit-permisson/{id}',[PermissionController::class,'PermissionFormUpdate'])->name('permisson.update');
             Route::post('/add',[PermissionController::class,'PermissionFormPostAdd'])->name('permisson.store');
             Route::get('/delete/{id}',[PermissionController::class,'PermissionDelete'])->name('permisson.delete');
-        })->middleware("");
-        Route::prefix('User')->name('User.')->group(function(){
-            Route::get('/',[UserController::class,'index'])->name('User.index');
-            Route::get('/add',[UserController::class,'UserFormAdd'])->name('User.create');
-            Route::get('/edit-user/{id}',[UserController::class,'UserFormEdit'])->name('User.edit');
-            Route::put('/edit-user/{id}',[UserController::class,'UserFormUpdate'])->name('User.update');
-            Route::post('/add',[UserController::class,'UserFormPostAdd'])->name('User.store');
-            Route::get('/delete/{id}',[UserController::class,'UserDelete'])->name('User.delete');
+        });
+        Route::middleware(['role_or_permission:admin|manager user'])->prefix('User')->name('User.')->group(function(){
+            Route::get('/',[UserController::class,'index'])->name('User.index')->middleware(['permission:public user']) ;
+            Route::get('/add',[UserController::class,'UserFormAdd'])->name('User.create')->middleware(['permission:user add']);
+            Route::get('/edit-user/{id}',[UserController::class,'UserFormEdit'])->name('User.edit')->middleware(['permission:user edit']);
+            Route::put('/edit-user/{id}',[UserController::class,'UserFormUpdate'])->name('User.update')->middleware(['permission:user edit']);
+            Route::post('/add',[UserController::class,'UserFormPostAdd'])->name('User.store')->middleware(['permission:user add']);
+            Route::get('/delete/{id}',[UserController::class,'UserDelete'])->name('User.delete')->middleware(['permission:user delete']);
         });
         Route::post('ckeditor/image_upload', [FileController::class,'uploadFile'])->name('uploadFile');
     });

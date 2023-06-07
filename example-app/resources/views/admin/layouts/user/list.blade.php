@@ -45,20 +45,16 @@
                             </td>
                             <td><a href="{{route('admin.User.User.edit',['id' => $item->id])}}"  class="btn-edit" data-name="edit-product" data-id="{{$item->id}}">Chỉnh sửa</a></td>
                             {{-- class="btn-edit"  --}}
-                            <td><a href="{{route('admin.roles.role.delete',['id' => $item->id])}}" class="btn-delete">Xoá</a></td>
+                            <td><a href="{{route('admin.User.User.delete',['id' => $item->id])}}" class="btn-delete">Xoá</a></td>
                         </tr>
                     @endforeach
                 </tbody>
 
                 <tfoot>
-
                     <tr>
                         <td><input type="checkbox" name="" id="" class="check-all"></td>
                     </tr>
-
-
                 </tfoot>
-
             </table>
         </div>
         <div class="popup-modal" id="popup-delete">

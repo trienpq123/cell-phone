@@ -56,13 +56,12 @@ class UserController extends Controller
         $User->email = $request->email;
         $User->username = $request->username;
         $User->save();
-        if($request->role){
+
             $User->syncRoles($request->role);
-        }
-        if($request->permission){
+
+
            $User->syncPermissions($request->permission);
 
-        }
         return back()->with(['message' => 'Cập nhật thành công']);
     }
 

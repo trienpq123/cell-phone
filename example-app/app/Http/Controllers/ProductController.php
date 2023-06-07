@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\CategoryProductModel;
 use App\Models\FilterProduct;
 use App\Models\ProductDetailModel;
 use App\Models\ProductImageModel;
@@ -32,8 +33,10 @@ class ProductController extends Controller
     }
 
     public function addProduct(Request $request)
-    {
-
+    {  $listProduct = ProductModel::orderBy('id_product', 'desc')->get();
+        $getBrands = BrandModel::orderBy('id_brand', 'desc')->get();
+        $listCategory = CategoryModel::whereNull('parent_category')->orderBy('id_category', 'desc')->get();
+        return view('admin.layouts.products.add',compact('getBrands', 'listCategory', 'listProduct'));
     }
 
     public function editProduct(Request $request)
@@ -63,10 +66,7 @@ class ProductController extends Controller
             ]
         );
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 404,
-                'message' => $validator->messages()
-            ]);
+            return redirect()->back()->withErrors($validator);
         }
         $p = new ProductModel();
         $p->name_product = $request->name;
@@ -76,19 +76,19 @@ class ProductController extends Controller
         $p->id_brand = $request->idBrand;
 
         $id_category = '';
-        if($request->id_category){
-            $id_category = $request->id_category;
-            if($request->category_1){
-                $id_category = $request->category_1;
-                if($request->category_2){
-                    $id_category = $request->category_2;
-                }
-            }
-        }
-        $p->id_category = $id_category;
+
         $p->product_SKU = $request->product_sku;
         $p->status = $request->status;
         $p->save();
+        if($request->parent_category){
+            $cateProduct = new CategoryProductModel();
+            foreach ($request->parent_category as $cate) {
+               $cateProduct->id_category =  $cate;
+               $cateProduct->id_product = $p->id_product;
+               $cateProduct->save();
+            }
+
+        }
         $get_last_product = ProductModel::orderBy('id_product', 'desc')->first();
         if ($request->image) {
 
@@ -151,8 +151,9 @@ class ProductController extends Controller
             'status' => 200,
             'request' => json_decode($request->product_detail),
             'product_detail' => $request->all(),
-            'option' => $fp
+            // 'option' => $fp
         ]);
+        // return back()->with(['message' => 'Thêm thành công']);
     }
 
     public function putEditProduct(Request $request)

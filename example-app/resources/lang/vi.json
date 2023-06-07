@@ -1,5 +1,27 @@
 {
     "vietnam": "Việt Nam",
     "us": "Mỹ",
-    "dashboardAdmin": "Bảng điều khiển"
+    "dashboardAdmin": "Bảng điều khiển",
+    "theFilter" : "Bộ lọc tìm kiếm",
+    "theAttrOfCate": "Thuộc tính danh mục",
+    "order": "Quản lý đơn hàng",
+    "order_list": "Danh sách đơn hàng",
+    "order_delivered": "Danh sách đơn đã giao",
+    "order_processing":"Đơn hàng đang xử lý",
+    "order_yet_finished":"Đơn hàng chưa hoàn tất",
+    "order_cod":"Quản lý COD",
+    "product": "Quản lý sản phẩm",
+    "category": "Quản lý danh mục",
+    "customer": "Quản lý khách hàng",
+    "Menu": "Quản lý menu",
+    "page": "Quản lý trang",
+    "banner": "Quản lý banner",
+    "contact": "Hỗ trợ khách hàng",
+    "news": "Quản lý bài đăng",
+    "config":"Cấu hình website",
+    "seo": "SEO",
+    "permissions":"Quản lý vai trò và quyền",
+    "role":"Quản lý vai trò",
+    "permission":"Quản lý quyền",
+    "user":"Quản lý user"
 }
