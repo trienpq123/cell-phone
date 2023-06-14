@@ -20,6 +20,26 @@
     display: none;
   }
 
+  .ladi-relate.pc{
+    display: none;
+  }
+
+  .ladi-relate.mb{
+    display: block;
+  }
+
+  .ads-title{
+    font-size: 28px;
+  }
+
+  .ads-sale .count-down{
+   font-size: 12px;
+  }
+
+  .ads-sale button{
+    font-size: 4px 8px;
+  }
+
   .header-top li .box-local-store.cart{
     flex-wrap: wrap;
     align-items: center;
@@ -90,7 +110,7 @@
     font-size: .7rem;
   }
   .ladi-item .ladi-text-sale{
-    font-size: .7rem;
+    font-size: .8rem;
   }
   
   .ladi-item .ladi-rate span i {
@@ -105,7 +125,44 @@
   }
 }
 @media screen and (max-width:425px){
-    
+  .container{
+    max-width: 425px;
+  }
+  .ladi-menu{
+    display: none;
+  }
+
+  .ladi-navigation{
+    grid-template-columns: auto;
+  }
+
+  .ads-sale{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap:25px
+  }
+
+  .ads-sale span {
+    width: 72px;
+    height: 72px;
+  }
+
+  .ladi-list{
+    grid-template-columns: repeat(2,1fr);
+  }
+  .foot-list{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .header-top ul li.location{
+    display: none;
+  }
+
+  .ladi-banner .context-slider{
+    display: none;
+  }
 }
 @media screen and (max-width:375px){
 
@@ -156,6 +213,28 @@
   .ladi-item .ladi-reaction .reaction-iconls.love{
     font-size: .8rem;
   }
+
+  .foot-list{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .foot-item .foot-title{
+    font-weight: 700;
+    font-size: .8rem;
+  
+  }
+  .context-slider .context-item{
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .box-content{
+    font-size: 8px;
+  }
+  .ladi-title .ladi-label h2{
+    font-size: 1rem;
+  }
+
 }
 
 @media screen and (max-width:325px){
@@ -163,6 +242,8 @@
 }
 
 @media screen and (max-width:320){
-    
+    .ads-title{
+      font-size: 38px;
+    }
 }
 

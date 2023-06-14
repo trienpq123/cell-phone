@@ -1,11 +1,11 @@
 @media screen and (max-width:1024px){
- 
-  
+
+
 }
 @media screen and (max-width:960px){
-   
 
-    
+
+
 }
 @media screen and (max-width:768px){
   .header-top a.address,
@@ -14,18 +14,26 @@
   .header-top a.check-bill{
     display: none;
   }
+
+  .ads-sale .count-down{
+    font-size: 12px;
+  }
+
+  .ads-title{
+    font-size: 28px;
+  }
 }
 @media screen and (max-width:425px){
-    
+
 }
 @media screen and (max-width:375px){
-    
+
 }
 @media screen and (max-width:325px){
-    
+
 }
 
 @media screen and (max-width:320){
-    
+
 }
 
