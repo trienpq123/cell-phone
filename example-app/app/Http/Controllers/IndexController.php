@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class IndexController extends Controller
 {
     public function index(Request $request){
-        return view('admin.dashboad');
+        return view('index');
     }
 
     public function checkLanguage(Request $request,$language){
@@ -23,4 +23,5 @@ class IndexController extends Controller
             return back();
 
     }
+
 }
