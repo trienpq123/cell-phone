@@ -241,7 +241,7 @@
     
 }
 
-@media screen and (max-width:320){
+@media screen and (max-width:320px){
     .ads-title{
       font-size: 38px;
     }

@@ -216,15 +216,32 @@ textarea {
 }
 
 form {
-    margin: 16px 0;
+
     z-index: 1;
+
+
 }
 
 .form-feild .form-title {
     font-size: 12px;
-    text-align: center;
+    padding: 16px;
+    background: #f3f6f9;
 }
 
+.form-feild .form-edit{
+    padding: 20px;
+}
+
+.form-feild .form-edit input {
+    border: 1px solid #CED4DA;
+    padding: 12px;
+    color: #212529;
+    font-weight: 500;
+}
+
+.form-feild .form-edit label{
+    font-weight: 700;
+}
 form .form-group {
     padding: 2px;
     margin-bottom: 8px;
@@ -236,16 +253,18 @@ form label {
 
 .btn {
     border: none;
-    padding: 8px 12px;
+
     outline: unset;
     font-size: 12px;
     border-radius: 3px;
 }
 
 .btn-submit {
-    background: #4267B2;
+    background: #0ab39c;
     color: #fff;
     font-weight: 500;
+    padding: 12px 14px;
+
 }
 
 .form-control {
@@ -304,10 +323,10 @@ table td {
 }
 
 .box-alert {
-    text-align: center;
+    /* text-align: center; */
     background: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 48px;
+    /* padding: 48px; */
     position: fixed;
     top: 25%;
     left: 25%;
@@ -320,6 +339,7 @@ table td {
     -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
 
 .popup-modal .alert-item {
     margin: 16px 0;

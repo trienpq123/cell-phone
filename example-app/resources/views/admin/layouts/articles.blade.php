@@ -10,7 +10,7 @@
                 <div class="analytic-number mg-section">
                     20.05K
                 </div>
-                
+
                 <div class="analytic-compare">
                     <p><span class="scale">16.24 %</span> so với tháng trước</p>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="analytic-number mg-section">
                     20.05K
                 </div>
-                
+
                 <div class="analytic-compare">
                     <p><span class="scale">16.24 %</span> so với tháng trước</p>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="analytic-number mg-section">
                     20.05K
                 </div>
-                
+
                 <div class="analytic-compare">
                     <p><span class="scale">16.24 %</span> so với tháng trước</p>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="analytic-number mg-section">
                     20.05K
                 </div>
-                
+
                 <div class="analytic-compare">
                     <p><span class="scale">16.24 %</span> so với tháng trước</p>
                 </div>
@@ -70,7 +70,7 @@
                     <i class="fas fa-users"></i>
                 </div>
             </div>
-          
+
         </div>
 
         <div class="form-feild">
@@ -121,13 +121,13 @@
 
         <div class="list-table">
             <div class="wrap-container">
-             
+
                 <button class="btn btn-add"  data-name="add-product">Thêm mới</button>
-           
+
                 <div class="table">
-                    
+
                     <table>
-                        
+
                         <tr>
                             <th>STT</th>
                             <th>Hình Ảnh</th>
@@ -174,7 +174,7 @@
                             <span><i class="fas fa-times"></i></span>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="popup-modal add-product" >
                     <div class="box-alert">
@@ -215,7 +215,7 @@
                                     <label for="">Tên sản phẩm</label>
                                     <input type="text" placeholder="Nhập tên sản phẩm" class="form-control">
                                 </div>
-                
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-submit">
                                         OK
@@ -227,7 +227,7 @@
                             <span><i class="fas fa-times"></i></span>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -298,8 +298,8 @@
             </div>
         </div> --}}
         @yield('articles')
-        <div>
+        {{-- <div>
             <span class="alert alert-success">Cập nhật thành công</span>
-        </div>
+        </div> --}}
     </div>
 </div>

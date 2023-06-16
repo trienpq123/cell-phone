@@ -498,7 +498,7 @@ body{
     left: 0;
     top: 0;
     bottom: 0;
-    width: 220px;
+    width: 249px;
     background: #405189;
     padding: 8px 16px;
     overflow-y: auto;
@@ -572,7 +572,7 @@ body{
 
 .article{
 
-    padding-left: 220px;
+    padding-left: 249px;
 }
 
 .head-menu{
@@ -759,20 +759,21 @@ body{
     background: #FF0E3C;
     color: #fff;
     font-weight: 700;
-    padding:6px;
+
 }
 .btn-delete{
     background:#FFE30E;
     color: #fff;
     font-weight: 700;
-    padding:6px;
+
 }
 
 .btn-edit, .btn-delete{
-    padding: 8px;
+    padding: 12px 12px;
     border-radius: 5px;;
     cursor: pointer;
-    margin: 0 auto
+    margin: 0 auto;
+
 }
 
 .box-alert{
@@ -781,6 +782,7 @@ body{
     margin: 0 auto;
     z-index: 3;
     text-align: left !important;
+
 
 }
 
@@ -810,10 +812,11 @@ body{
     color: #fff;
     margin: 16px 0;
     cursor: pointer;
+    padding: 12px 14px;
 }
 
 .wrap-container{
-    width: 960px !important;
+    width: 1048px !important;
     margin: 0 auto;
 }
 
@@ -887,9 +890,32 @@ body{
     -webkit-box-orient: vertical;
 }
 
+table th {
+    background: #f3f6f9 !important;
+    padding: 12px 10px !important;
+    border: none !important;
+}
+
 .table tr td a {
-    display: block;
+    /* display: block; */
     font-size: 12px;
+
+}
+
+.table tr {
+    padding: 4px 12px !important;
+}
+
+.table tr td{
+    border-left: unset;
+    border-right: unset;
+    border-bottom: unset;
+    line-height: 3;
+
+}
+
+.table table {
+    padding-top: 12px !important;
 }
 
 .box{
@@ -1038,8 +1064,22 @@ body{
 }
 
 #table_previous, #table_next{
-    font-size: 12px !important;
+    font-size: 14px !important;
+    padding: 8px 16px;
+    background: #ffff;
+    border: 1px solid #E9EBEC !important;
+    color: #878A99 !important;
+    cursor: pointer;
 }
+
+.paginate_button.current{
+    margin: 0 4px !important;
+    padding: 6px 12px !important;
+    border: 1px solid #405189 !important;
+    background :#405189 !important;
+    color: #fff !important;
+}
+
 
 .name-error{
     display: none;
@@ -1207,4 +1247,17 @@ body{
 
 .box-title, .box-content__item-title{
     font-weight: 700;
+}
+
+
+.dataTables_wrapper .dataTables_filter input{
+    width: 212px;
+    padding: 12px !important;
+    border: 1px solid #CED4DA
+}
+
+.block-title{
+    padding: 20px !important;
+    height: auto !important;
+    line-height: 0 !important;
 }
