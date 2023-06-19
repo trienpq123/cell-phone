@@ -80,6 +80,8 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 

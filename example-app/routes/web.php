@@ -30,9 +30,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class,'index'])->name('index');
+Route::get('/category', [IndexController::class,'category'])->name('category');
+Route::get('/product', [IndexController::class,'getProduct'])->name('product');
+Route::get('/cart', [IndexController::class,'getCart'])->name('cart');
 Route::group([ 'middleware' => 'Localization'],function() {
 
     Route::prefix('admin')->name('admin.')->group(function(){
