@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,5 +28,9 @@ class MenuModel extends Model
     }
     public function chirendMenu(){
         return $this->hasMany(MenuModel::class,'parent_menu','id_menu')->with('menu');
+    }
+
+    public function getCategory(){
+        return $this->belongsTo(CategoryController::class,'link_url','slug');
     }
 }

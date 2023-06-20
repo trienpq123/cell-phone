@@ -17,7 +17,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +41,9 @@ Route::group([ 'middleware' => 'Localization'],function() {
     Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('login',[DashboardController::class,'login'])->name('login');
         Route::post('login',[DashboardController::class,'loginPost'])->name('loginPost');
+        Route::get('logout',[DashboardController::class,'logout'])->name('logout');
 
-        Route::get('/dashboard',[IndexController::class,'index'])->name('DashboardAdmin');
+        Route::middleware(['checkLogin'])->get('/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
         Route::prefix('filter')->name('filter.')->group(function() {
             Route::get('/',[FilterController::class,'listFilter'])->name('listFilter');
             Route::get('/api/list',[FilterController::class,'apiListFilter'])->name('apiListFilter');

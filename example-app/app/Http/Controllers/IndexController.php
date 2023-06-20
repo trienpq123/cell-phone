@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Session;
 class IndexController extends Controller
 {
     public function index(Request $request){
-        $menu = MenuModel::with('chirendMenu')->get();
+        $menu = MenuModel::with('chirendMenu','getCategory')->get();
+        dd($menu);
         return view('user.page.main',compact('menu'));
-    }       
+    }
 
     public function category(Request $request){
         return view('user.page.product_all');
@@ -26,16 +27,13 @@ class IndexController extends Controller
     }
 
     public function checkLanguage(Request $request,$language){
-
             $lang = config('app.locale');
             if($language == 'en')
                 $lang = 'en';
             if($language == 'vi')
                 $lang = 'vi';
             Session::put('language',$lang);
-
             return back();
-
     }
 
 }

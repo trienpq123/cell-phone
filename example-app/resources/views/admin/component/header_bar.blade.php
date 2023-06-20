@@ -15,7 +15,7 @@
     <div class="head-menu__right">
         <ul class="box-list flex align-items-center">
             <li class="language">
-                
+
                 <a href="#" class="avatar">
                     <div class="box-items">
                             <div class="box-iconls">
@@ -34,7 +34,7 @@
                 </div>
             </li>
             <li class="avatar">
-                
+
                 <a href="#" class="avatar">
                     <div class="box-items">
                             <div class="box-iconls">
@@ -51,12 +51,12 @@
                     </div>
                     <ul>
                         <li><a href="#">Thông tin cá nhân</a></li>
-                        <li><a href="#">Đăng xuất</a></li>
+                        <li><a href="{{route('admin.logout')}}">Đăng xuất</a></li>
                     </ul>
                 </div>
             </li>
             <li class="notification">
-                
+
                 <a href="#">
                     <div class="box-items">
                             <div class="box-iconls">
@@ -76,13 +76,13 @@
                     </ul>
                 </div>
             </li>
-            <li class="bg-dark">          
+            <li class="bg-dark">
                 <a href="#">
                     <div class="box-items">
                             <div class="box-iconls">
                                 <i class="far fa-moon"></i>
                             </div>
-                          
+
                     </div>
                 </a>
             </li>
