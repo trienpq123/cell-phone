@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Session;
 class IndexController extends Controller
 {
     public function index(Request $request){
-        $menu = MenuModel::with('chirendMenu','getCategory')->get();
-        dd($menu);
+        $menu = MenuModel::whereNull('parent_menu')->with('chirendMenu','category')->get();
+
+        // dd($menu);
         return view('user.page.main',compact('menu'));
     }
 

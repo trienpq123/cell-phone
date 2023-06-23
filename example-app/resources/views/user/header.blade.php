@@ -4,7 +4,7 @@
             <ul class="flex align-items-center justify-content-space-betweent ">
                 <li>
                    <div class="box-local-store">
-                        <a href="" class="logo">
+                        <a href="?" class="logo">
                             <img src="./assets/img/logo.png" alt="">
                         </a>
                    </div>

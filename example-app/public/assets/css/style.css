@@ -31,7 +31,7 @@ body{
 
 
 .header-top ul li a.active{
-   
+
 }
 
 .box-local-store{
@@ -142,7 +142,7 @@ body{
 .context-item{
     position: relative;
     text-align: center;
-   
+
 }
 
 .context-item span.name {
@@ -207,7 +207,7 @@ body{
     position: relative;
     /* overflow: hidden !important;  */
     padding: 4px;
-    
+
 }
 .ladi-menu ul li{
     /* position: relative; */
@@ -231,6 +231,7 @@ body{
     background-color:hsla(0, 6%, 78%, 0.2);
     /* background-color: var(--background-head-top);
     color: var(--text-color-white); */
+    color: var(--background-head-top);
 }
 
 
@@ -383,7 +384,7 @@ body{
 }
 
 .ladi-item .ladi-reaction .reaction-iconls.love:hover {
-    
+
 }
 
 .ladi-item .ladi-precent {
@@ -406,7 +407,7 @@ body{
 .foot {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 8px;
-    
+
 }
 
 .foot-list {
@@ -480,7 +481,7 @@ body{
 .filter-item button.active {
     background: #ff0000;
     border: 1px solid #d70018;
-    color: #f1cdd1; 
+    color: #f1cdd1;
     font-weight: 700;
 }
 
@@ -665,7 +666,7 @@ body{
     color:#fff;
     padding:2px;
     border-bottom-right-radius: 12px;
-    
+
 }
 
 .product-color__list ul li button {
@@ -913,7 +914,7 @@ body{
     align-items: center;
     gap:4px;
     padding: 4px
-    
+
 
 }
 
@@ -1446,4 +1447,9 @@ body{
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 8px;
+}
+
+.sub-three-menu a {
+    /* color: #B9B9BD !important; */
+    font-size: 300;
 }

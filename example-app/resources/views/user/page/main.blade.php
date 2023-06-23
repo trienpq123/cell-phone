@@ -6,77 +6,46 @@
             <div class="ladi-menu ">
                 <ul>
                     @foreach ($menu as $m)
-
-
                     <li>
                         <a href="#" class="flex align-items-center justify-content-space-betweent">
                             <div class="cate-infor flex align-items-center">
                                 <span class="cate-iconls">
-                                    <img src="https://cellphones.com.vn/media/icons/menu/icon-cps-3.svg" alt="">
+                                    @if ($m->category)
+
+                                    <img src="{{$m->category->image_category}}" alt="">
+                                    @endif
                                 </span>
                                 <span>{{$m->name_menu}}</span>
                             </div>
                             <span><i class="fas fa-angle-right"></i></span>
                         </a>
-                        <div class="sub-menu">
-                            <ul class="grid grid-tempalte-columns-large-5 ">
 
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Chọn theo hãng</a>
-                                    <div class="sub-three-menu">
-                                        <ul>
-                                            <li><a href="">Iphone</a></li>
-                                            <li><a href="">Sam Sung</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                            @if(count($m->chirendMenu) > 0)
+                                <div class="sub-menu">
+                                    <ul class="grid grid-tempalte-columns-large-5 ">
+                                    @foreach ($m->chirendMenu as $sm)
+                                        <li>
+                                            <a href="#">{{$sm->name_menu}}</a>
+                                            <div class="sub-three-menu">
+                                                <ul>
+                                                    @if (count($sm->filter->childrentFilter) > 0)
+                                                        @foreach ($sm->filter->childrentFilter as $Filter)
+                                                            <li><a href="#">{{$Filter->filter_name}}</a></li>
+                                                        @endforeach
+                                                    @endif
+
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endforeach
+
+
+                                    </ul>
+                                </div>
+                            @endif
+
+
+
                     </li>
                     @endforeach
                 </ul>

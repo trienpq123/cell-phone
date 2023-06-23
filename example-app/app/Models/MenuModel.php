@@ -26,11 +26,20 @@ class MenuModel extends Model
     public function menu(){
         return $this->hasMany(MenuModel::class,'parent_menu','id_menu');
     }
+
+    public function filter(){
+        return $this->belongsTo(FilterModel::class,'link_url','slug');
+    }
     public function chirendMenu(){
-        return $this->hasMany(MenuModel::class,'parent_menu','id_menu')->with('menu');
+        return $this->hasMany(MenuModel::class,'parent_menu','id_menu')->with('menu','filter','filter.childrentFilter');
     }
 
-    public function getCategory(){
-        return $this->belongsTo(CategoryController::class,'link_url','slug');
+    public function category(){
+        return $this->belongsTo(CategoryModel::class,'link_url','slug');
     }
+
+
+    // public function getCategory(){
+    //     return $this->belongsTo(CategoryController::class,'link_url','slug');
+    // }
 }

@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 @endsection
 @section('articles')
+<style>
+    .custom{
+        display: none
+    }
+</style>
     <div class="wraper-container">
         <div class="ladi-title mg-section" style="text-align: center;text-transform:uppercase">
             <h3>Thêm menu</h3>
@@ -38,11 +43,16 @@
                     <option value="">Chưa chọn</option>
                     <option value="1">Trang</option>
                     <option value="2">Danh  mục</option>
+                    <option value="3">Bộ lọc</option>
+                    <option value="4">Tuỳ chỉnh</option>
                 </select>
                 <select name="url" class="type_inner" id="" >
                     <option value="">Chưa chọn</option>
-
                 </select>
+                <div class="custom">
+                    <label for="">Nhập link url</label>
+                    <input type="text" name="url" id="url" class="fomr-control" placeholder="Nhập đường dẫn muốn trỏ đến (Bao gồm cả Https://)">
+                </div>
                 <p class="name-error text text-danger"></p>
             </div>
             <div class="form-group">
@@ -104,16 +114,20 @@
 
             $('.type_menu').on('change',function(){
                 let value = $(this).val();
-                $.ajax({
-                    type: "POST",
-                    url:"{{route('admin.menu.typeMenu')}}",
-                    data: {typeMenu:value,_token:"{{csrf_token()}}"},
-                    success: (res) => {
-                        console.log(value)
-                        $('.type_inner').addClass('active')
-                        $('.type_inner').html(res);
-                    }
-                })
+                if(value == 4 ){
+                    $('.custom').show();
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url:"{{route('admin.menu.typeMenu')}}",
+                        data: {typeMenu:value,_token:"{{csrf_token()}}"},
+                        success: (res) => {
+                            console.log(value)
+                            $('.type_inner').addClass('active')
+                            $('.type_inner').html(res);
+                        }
+                    })
+                }
             })
         })
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\FilterModel;
 use App\Models\MenuModel;
 use App\Models\PagesModel;
 use Illuminate\Http\Request;
@@ -34,8 +35,13 @@ class MenuController extends Controller
         else if($request->typeMenu == 2){
             $menu->type = "category";
         }
+
+        else if ($request->typeMenu == 3){
+            $menu->type = "filter";
+        }
         else{
             $menu->type = "custom";
+
         }
         $menu->save();
         return back();
@@ -66,7 +72,11 @@ class MenuController extends Controller
             }
 
             if($request->typeMenu == 3){
-
+                $page =  FilterModel::whereNull('_parent')->orderBy('filter_id','desc')->get();
+                $step = '-----';
+                foreach ($page as $p) {
+                    $option .= '<option value ="'.$p->slug.'" data-name="pages" data-slug ="'.$p->slug.'">'.$p->filter_name.'</option>';
+                }
             }
         }
 

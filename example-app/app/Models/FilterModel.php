@@ -24,7 +24,7 @@ class FilterModel extends Model
     public function childrentFilter(){
         return $this->hasMany(FilterModel::class,'_parent','filter_id')->with('filter');
     }
-    
+
     public function getFilter(){
         return $this->belongsTo(FilterModel::class,'filter_id','filter_id');
     }
@@ -32,4 +32,9 @@ class FilterModel extends Model
     public function Category(){
         return $this->belongsToMany(CategoryModel::class,'filter_category','id_category','id_filter');
     }
+
+    // public function Menu(){
+    //     return $this->hasMany(MenuModel::class,'link_url','slug');
+    // }
+
 }
