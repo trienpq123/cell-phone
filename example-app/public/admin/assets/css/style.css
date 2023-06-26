@@ -1254,10 +1254,18 @@ table th {
     width: 212px;
     padding: 12px !important;
     border: 1px solid #CED4DA
-}   
+}
 
 .block-title{
     padding: 20px !important;
     height: auto !important;
     line-height: 0 !important;
+}
+
+form label{
+    display: block;
+}
+
+form select{
+    width: 100%;
 }

@@ -684,7 +684,8 @@
                     "ajax": {
                         type: "GET",
                         url: "{{ route('admin.product.apiListProduct') }}",
-                        dataSrc: 'data'
+                        dataSrc: 'data',
+
                     },
                     "columns": [{
                             data: null,

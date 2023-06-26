@@ -7,8 +7,7 @@
                 <ul>
                     @foreach ($menu as $m)
                     <li>
-                        <a href="#" class="flex align-items-center justify-content-space-betweent">
-                            <div class="cate-infor flex align-items-center">
+                        <a href="{{route('category',['slug' => $m->slug])}}" class="flex align-items-center justify-content-space-betweent">                            <div class="catlex align-items-center">
                                 <span class="cate-iconls">
                                     @if ($m->category)
 
@@ -25,14 +24,16 @@
                                     <ul class="grid grid-tempalte-columns-large-5 ">
                                     @foreach ($m->chirendMenu as $sm)
                                         <li>
-                                            <a href="#">{{$sm->name_menu}}</a>
+                                            <a href="{{route('category',['slug' => $m->slug])}}?cate-slug={{$sm->slug}}">{{$sm->name_menu}}</a>
                                             <div class="sub-three-menu">
                                                 <ul>
                                                     @if (count($sm->filter->childrentFilter) > 0)
                                                         @foreach ($sm->filter->childrentFilter as $Filter)
-                                                            <li><a href="#">{{$Filter->filter_name}}</a></li>
+                                                            <li><a href="{{route('category',['slug' => $m->slug])}}?cate-slug={{$Filter->slug}}">{{$Filter->filter_name}}</a></li>
                                                         @endforeach
                                                     @endif
+
+
 
                                                 </ul>
                                             </div>

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryModel;
+use App\Models\FilterCategory;
 use App\Models\MenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+
+
 
 class IndexController extends Controller
 {
@@ -15,8 +19,12 @@ class IndexController extends Controller
         return view('user.page.main',compact('menu'));
     }
 
-    public function category(Request $request){
-        return view('user.page.product_all');
+    public function category(Request $request,$slug){
+
+        $getCategory = CategoryModel::where('slug','=',$slug)->first();
+        $filter = FilterCategory::where('id_category','=',$getCategory->id_category)->with('filter','filter.childrentFilter')->get();
+        // dd($filter);
+        return view('user.page.product_all',compact('getCategory','filter'));
     }
 
     public function getProduct(Request $request){

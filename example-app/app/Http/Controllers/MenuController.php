@@ -12,20 +12,26 @@ class MenuController extends Controller
 {
     public function listMenu(Request $request){
         $menu = MenuModel::whereNull('parent_menu')->with('chirendMenu')->get();
-        // dd($menu);
         return view('admin.layouts.main_menu.list',compact('menu'));
     }
 
     public function addMenu(Request $request){
         $menu = MenuModel::whereNull('parent_menu')->with('chirendMenu')->get();
         $category = CategoryModel::whereNull('parent_category')->with('childrendCategory')->get();
-        return view('admin.layouts.main_menu.add',compact('category','menu'));
+        $pages = PagesModel::orderBy('id_page','desc')->get();
+        return view('admin.layouts.main_menu.add',compact('category','menu','pages'));
     }
     public function postAddMenu(Request $request){
         $menu = new MenuModel();
         $menu->name_menu = $request->name;
         $menu->slug = $request->slug;
-        $menu->link_url = $request->url;
+        if($request->url){
+            $menu->link_url = $request->url;
+
+        }
+        if($request->url_custom){
+            $menu->link_url = $request->url_custom;
+        }
         $menu->position = $request->position;
         $menu->status = $request->status;
         $menu->parent_menu = $request->parent_menu;
@@ -41,11 +47,9 @@ class MenuController extends Controller
         }
         else{
             $menu->type = "custom";
-
         }
         $menu->save();
         return back();
-
     }
 
     public function typeMenu(Request $request){

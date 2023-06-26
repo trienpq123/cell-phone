@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69d143f28f3b00c341cbd08c4ae4e854",
+    "content-hash": "5ad14f15a7e8823dcd9bf1b313584d89",
     "packages": [
         {
             "name": "brick/math",
@@ -1762,6 +1762,57 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "llama-laravel/breadcrumbs",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xuanhoa88/laravel-breadcrumbs.git",
+                "reference": "5d6173222b1334c4d516458dbc674bfe49675832"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xuanhoa88/laravel-breadcrumbs/zipball/5d6173222b1334c4d516458dbc674bfe49675832",
+                "reference": "5d6173222b1334c4d516458dbc674bfe49675832",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.3",
+                "illuminate/view": ">=5.3",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "orchestra/testbench": "3.2.*|3.3.*",
+                "phpunit/phpunit": "4.*",
+                "satooshi/php-coveralls": "0.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Llama\\Breadcrumbs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "XuaNguyen",
+                    "email": "xuan.0211@gmail.com"
+                }
+            ],
+            "description": "A simple Laravel-style way to create breadcrumbs in Laravel 5+.",
+            "keywords": [
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/xuanhoa88/laravel-breadcrumbs/issues",
+                "source": "https://github.com/xuanhoa88/laravel-breadcrumbs/tree/v0.1.0"
+            },
+            "time": "2017-05-24T10:02:23+00:00"
         },
         {
             "name": "monolog/monolog",

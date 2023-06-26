@@ -1,15 +1,16 @@
 @extends('index')
 @section('main')
 <main>
-    <div class="wrap-container">
-        <section class="ladi-section">
-            <div class="break-cum">
-                <a href="#">Trang chủ</a>
-                <a href="#">Điện thoại</a>
-                <a href="#">Apple</a>
+    <section class="ladi-section">
+        <div class="break-cum">
+            <a href="#">Trang chủ</a>
+            <a href="#">{{$getCategory->name_category}}</a>
+            <a href="#">Apple</a>
 
-            </div>
-        </section>
+        </div>
+    </section>
+    <div class="wrap-container">
+
 
         <section class="filter-product mg-section">
             <div class="filter-title ladi-title">
@@ -17,46 +18,24 @@
             </div>
             <div class="list-filter flex flex-wrap mg-section">
 
-                <div class="filter-item">
+                @foreach ($filter as $cate)
+                    <div class="filter-item">
 
-                    <button ><span><i class="fas fa-filter"></i></span> Bộ lọcs</button>
-                    <div class="list-filter-child">
-                        <ul>
-                            <li><button class="active">Chơi game</button></li>
-                            <li><button>Pin trâu</button></li>
-                        </ul>
-                        <div class="btn-filter-group">
-                            <button class="btn btn-filter-close">Đóng</button>
-                            <button class="btn btn-filter-result">Xem kết quả</button>
+                        <button >{{$cate->filter[0]->filter_name}} </button>
+                        <div class="list-filter-child">
+                            <ul>
+                                @foreach ($cate->filter[0]->childrentFilter as $filterchild)
+                                    <li><button>{{$filterchild->filter_name}}</button></li>
+                                @endforeach
+                            </ul>
+                            <div class="btn-filter-group">
+                                <button class="btn btn-filter-close">Đóng</button>
+                                <button class="btn btn-filter-result">Xem kết quả</button>
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
-                <div class="filter-item">
-
-                    <button ><span><i class="fas fa-filter"></i></span> Bộ lọcs</button>
-                    <div class="list-filter-child">
-                        <ul>
-                            <li><a href="#">Chơi game</a></li>
-                            <li><a href="#">Pin trâu</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="filter-item">
-
-                    <button ><span><i class="fas fa-filter"></i></span> Bộ lọcs</button>
-                    <div class="list-filter-child">
-                        <ul>
-                            <li><a href="#">Chơi game</a></li>
-                            <li><a href="#">Pin trâu</a></li>
-                        </ul>
-                        <div class="btn-filter-group">
-                            <button class="btn btn-filter-close">Đóng</button>
-                            <button class="btn btn-filter-result">Xem kết quả</button>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </section>
 

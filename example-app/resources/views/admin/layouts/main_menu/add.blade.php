@@ -46,12 +46,12 @@
                     <option value="3">Bộ lọc</option>
                     <option value="4">Tuỳ chỉnh</option>
                 </select>
-                <select name="url" class="type_inner" id="" >
+                <select name="url" class="type_inner" id="">
                     <option value="">Chưa chọn</option>
                 </select>
                 <div class="custom">
                     <label for="">Nhập link url</label>
-                    <input type="text" name="url" id="url" class="fomr-control" placeholder="Nhập đường dẫn muốn trỏ đến (Bao gồm cả Https://)">
+                    <input type="text" name="url_custom" id="url" class="fomr-control" placeholder="Nhập đường dẫn muốn trỏ đến (Bao gồm cả Https://)">
                 </div>
                 <p class="name-error text text-danger"></p>
             </div>

@@ -66,7 +66,10 @@ class ProductController extends Controller
             ]
         );
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator);
+            return response()->json([
+                'status' => 404,
+                'message' => $validator->errors()
+            ]);
         }
         $p = new ProductModel();
         $p->name_product = $request->name;
@@ -153,7 +156,6 @@ class ProductController extends Controller
             'product_detail' => $request->all(),
             // 'option' => $fp
         ]);
-        // return back()->with(['message' => 'Thêm thành công']);
     }
 
     public function putEditProduct(Request $request)

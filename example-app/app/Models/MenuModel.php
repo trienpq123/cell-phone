@@ -38,6 +38,10 @@ class MenuModel extends Model
         return $this->belongsTo(CategoryModel::class,'link_url','slug');
     }
 
+    public function pages(){
+        return $this->belongsTo(CategoryModel::class,'link_url','slug');
+    }
+
 
     // public function getCategory(){
     //     return $this->belongsTo(CategoryController::class,'link_url','slug');

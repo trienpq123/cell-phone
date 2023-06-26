@@ -164,6 +164,7 @@
             // SELECT 2
             $('.js-example-basic-multiple-1').select2();
             $('.js-example-basic-multiple-2').select2();
+            $('#select-option-9').select2();
 
             function InnerTableAttr() {
             let check_size = document.querySelectorAll(".container-size .badge-2 span");
@@ -356,8 +357,10 @@
                                 f.filter.forEach(function(fp,i){
                                     filter += `<div class="form-group">
                                                  <label>${fp.filter_name}</label>
-                                                <select data-id="${fp.filter_id}" name="${fp.slug}" class="select-option"  class="select-option-${i++}">
+                                                <select data-id="${fp.filter_id}" name="${fp.slug}" id="select-option-${fp.filter_id}" class="select-option select-option-${fp.filter_id}" multiple>
+                                                <option value="">Chọn ${fp.filter_name}</option>
                                             `
+
                                     f.child_filter.forEach(function(fc,l){
                                         filter += `<option value="${fc.filter_id}">${fc.filter_name}</option>`
                                     })
@@ -365,7 +368,7 @@
                                          </div>`
                                 })
                             })
-                            console.log(filter)
+
                             $('.product-option__inner').html(filter)
                         }
 
@@ -528,7 +531,7 @@
                             console.log(res)
 
                         }else {
-                            console.log(res.request)
+                            console.log(res)
                             // $('#table').DataTable().destroy()
                             // getDataTable();
                             // $('.alert').toggleClass('active')
