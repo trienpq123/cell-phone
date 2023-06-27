@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\CategoryProductModel;
 use App\Models\FilterCategory;
 use App\Models\MenuModel;
 use Illuminate\Http\Request;
@@ -23,8 +24,8 @@ class IndexController extends Controller
 
         $getCategory = CategoryModel::where('slug','=',$slug)->first();
         $filter = FilterCategory::where('id_category','=',$getCategory->id_category)->with('filter','filter.childrentFilter')->get();
-        // dd($filter);
-        return view('user.page.product_all',compact('getCategory','filter'));
+        $product = CategoryProductModel::where('id_category','=',$getCategory->id_category)->with('products','productDetail')->get();
+        return view('user.page.product_all',compact('getCategory','filter','product'));
     }
 
     public function getProduct(Request $request){

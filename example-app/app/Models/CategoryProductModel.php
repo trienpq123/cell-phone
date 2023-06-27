@@ -15,4 +15,12 @@ class CategoryProductModel extends Model
     ];
     CONST UPDATED_AT = NULL;
     CONST CREATED_AT = NULL;
+
+    public function products(){
+        return $this->belongsTo(ProductModel::class,'id_product','id_product');
+    }
+
+    public function productDetail(){
+        return $this->belongsTo(ProductDetailModel::class,'id_product','id_product');
+    }
 }

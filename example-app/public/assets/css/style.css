@@ -498,7 +498,7 @@ body{
     z-index: 1;
 }
 
-.filter-item button:focus ~ .list-filter-child{
+.list-filter-child.active{
    display: block;
 }
 
@@ -509,8 +509,37 @@ body{
 }
 
 
-.filter-item .list-filter-child ul li button {
+.filter-item .list-filter-child ul li {
+    position: relative;
     margin: 0 8px;
+    padding: 8px;
+    border: 1px solid #bebebe;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-item .list-filter-child ul li.active{
+    border: 1px solid var(--background-head-top);
+}
+
+.btn-filter-group{
+    display: none;
+}
+
+.btn-filter-group.active{
+    display: flex;
+}
+.filter-item .list-filter-child ul li.active::before{
+    content:'chọn';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--background-head-top);
+    color: var(--text-color-white);
+    text-align: center;
+    font-size: 8px;
+    border-bottom-right-radius: 12px;
 }
 
 .ladi-btn-loader {
@@ -598,6 +627,7 @@ body{
     grid-template-columns: repeat(2,1fr);
     align-items: center;
     margin: 16px 0;
+    display: none;
 }
 
 .btn-filter-group .btn {

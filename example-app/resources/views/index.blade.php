@@ -22,7 +22,7 @@
         @include('user.footer')
     </div>
 </body>
-<script src="{{asset('./assets/js/js.js')}}"></script>
+
 <script src="{{asset('./core/slide-banner/slide-banner/jquery.min.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('./core/slide-banner/slide-banner/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('./core/slide-banner/slide-banner/slick-theme.css')}}">
@@ -169,5 +169,5 @@
     });
 });
 </script>
-
+<script src="{{asset('./assets/js/js.js')}}"></script>
 </html>
