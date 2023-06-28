@@ -463,8 +463,11 @@ body{
 
 
 
-.filter-item button {
-    display: block;
+.filter-item button, .btn-filter-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:4px;
     padding: 8px;
     background:#f3f4f6;
     border-radius: 16px;
@@ -473,6 +476,7 @@ body{
     outline: none;
     border: 1px solid #e5e7eb;
     cursor: pointer;
+
 }
 .filter-item button:hover {
     opacity: .7;
@@ -483,6 +487,10 @@ body{
     border: 1px solid #d70018;
     color: #f1cdd1;
     font-weight: 700;
+}
+
+.filter-item button span{
+    font-size: 14px;
 }
 
 .filter-item .list-filter-child{
@@ -646,7 +654,11 @@ body{
     font-weight: 700;
 }
 
-.list-filting ul li button {
+.list-filting{
+    display: none;
+}
+
+.list-filting ul li button, .btn-filter-result {
     padding: 8px 16px;
     border: 1px solid #d70018;
     color: #d70018;

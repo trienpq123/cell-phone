@@ -6,6 +6,7 @@ use App\Models\CategoryModel;
 use App\Models\CategoryProductModel;
 use App\Models\FilterCategory;
 use App\Models\MenuModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -28,7 +29,8 @@ class IndexController extends Controller
         return view('user.page.product_all',compact('getCategory','filter','product'));
     }
 
-    public function getProduct(Request $request){
+    public function getProduct(Request $request,$slug){
+        $product = ProductModel::where('slug','=',$slug)->first();
         return view('user.page.detail');
     }
 
