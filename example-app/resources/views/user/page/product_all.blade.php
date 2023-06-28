@@ -123,7 +123,13 @@
                                 </div>
                             </div>
                             <div class="ladi-precent">
-                                Giảm 24%
+                                @php
+                                    $price = $p->productDetail['price_sale'];
+                                    $price_sale =    $p->productDetail['price'];
+                                    $price_reduce = $p->productDetail['price'] - $p->productDetail['price_sale'];
+                                    $discount = ($price_reduce/$price_sale)*100;
+                                @endphp
+                                {{$discount}}%
                             </div>
                      </a>
                     </div>
@@ -131,7 +137,7 @@
 
             </div>
             <div class="ladi-btn-loader">
-                <a href="" class="action-loading">Xem thêm XXX sản phẩm</a>
+                <span class="action-loading">Xem thêm XXX sản phẩm</span>
             </div>
         </section>
 
@@ -174,6 +180,24 @@
 
 @push('jquery')
     <script>
+$(document).ready(function() {
+  // Số lượng sản phẩm ban đầu và số lượng cần hiển thị thêm sau mỗi lần nhấp vào "Xem thêm"
+  var initialItems = 10;
+  var loadMoreItems = 10;
+    
+  // Ẩn các sản phẩm sau số lượng sản phẩm ban đầu
+    $('.ladi-section .ladi-list:gt(' + (initialItems - 1) + ')').hide();
 
+    // Xử lý sự kiện khi nhấp vào nút "Xem thêm"
+    $('.ladi-section .ladi-list .action-loading').on('click', function() {
+        // Hiển thị thêm số lượng sản phẩm cần hiển thị
+        $('.ladi-section .ladi-list:hidden:lt(' + loadMoreItems + ')').show();
+
+        // Nếu không còn sản phẩm ẩn, ẩn nút "Xem thêm"
+        if ($('.ladi-section .ladi-list:hidden').length === 0) {
+        $('.ladi-section .ladi-list .action-loading').hide();
+        }
+    });
+    });
     </script>
 @endpush

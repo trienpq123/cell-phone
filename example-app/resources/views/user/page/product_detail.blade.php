@@ -536,7 +536,7 @@
                                         </div>
                                     </div>
                                     <div class="ladi-btn-loader mg-section">
-                                        <a href="" class="action-loading">Xem thêm XXX sản phẩm</a>
+                                        <div href="" class="action-loading">Xem thêm XXX sản phẩm</div>
                                     </div>
                                 </div>
                             </div>

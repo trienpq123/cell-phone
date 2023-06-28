@@ -561,6 +561,7 @@ body{
     font-size: 14px;
     color: #444;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
 }
 
 .ladi-btn-loader .action-loading:hover{
