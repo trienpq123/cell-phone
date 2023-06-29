@@ -27,7 +27,9 @@ class CategoryController extends Controller
     }
 
     public function addCategory(Request $request){
-
+        $listFilter = FilterModel::whereNull('_parent')->get();
+        $listCategory = CategoryModel::all();
+        return view('admin.layouts.categories.add',compact('listFilter','listCategory'));
     }
 
     public function editCategory(Request $request){

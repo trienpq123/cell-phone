@@ -34,7 +34,7 @@ class DashboardController extends Controller
            return back()->withErrors($validate)->withInput();
         }
         $array = $request->only('email','password');
-        if (Auth::attempt($array)){
+        if ($user = Auth::attempt($array)){
             session(['user' => $array]);
             return redirect()->route('admin.DashboardAdmin');
         }
@@ -45,6 +45,6 @@ class DashboardController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
-        return view('admin.login');
+        return redirect(route('loginForm'));
     }
 }

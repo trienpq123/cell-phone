@@ -44,10 +44,13 @@
                 </a>
                 <div class="sub-menus">
                     <div class="name">
-                        Nguyễn Minh Triển
+                        @if (session()->has('user'))
+                            {{Auth::user() ? Auth::user()->name : ''}}
+                        @endif
                     </div>
+
                     <div class="position">
-                        Developer
+                        {{Auth::user()->roles->first()->name}}
                     </div>
                     <ul>
                         <li><a href="#">Thông tin cá nhân</a></li>

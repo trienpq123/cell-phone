@@ -112,7 +112,7 @@
 
         <div class="login-form">
             <div class="form-title">Login</div>
-            <form action="{{route('admin.loginPost')}}" method="post">
+            <form action="{{route('loginPost')}}" method="post">
                 @csrf
                 <div class="form-group">
                     {{-- <label for="">Username</label> --}}

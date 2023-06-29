@@ -111,7 +111,8 @@
 <script>
    $(document).ready(function(){
         $('.aside ul li a').click(function() {
-            $('.menu-child').toggleClass('active');
+
+            $(this).parent().find('.menu-child').toggleClass('active');
         })
 
         $('table .btn-delete').click(function() {

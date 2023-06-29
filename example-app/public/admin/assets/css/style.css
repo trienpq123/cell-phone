@@ -13,6 +13,10 @@
 body{
     font-family:var(--font-family);
 }
+
+.p-4{
+    padding: 4px;
+}
 .header-top {
     background: var(--background-head-top);
     padding: 10px 20px;
@@ -532,7 +536,7 @@ body{
 .aside ul li a {
     display: block;
     color: #abb9e8;
-    font-size: 14px;
+    font-size: 16px;
     font-family: Grotesk;
     margin: 16px 0;
 }
@@ -543,6 +547,16 @@ body{
 
 .aside ul li a span i{
     margin-right: 12px;
+    text-align: center;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    left: 5px;
+    top: 50%;
+    margin-top: -17px;
+    font-size: 1.5rem;
+    opacity: .3;
+    transition: color 300ms;
 }
 
 /* .aside ul li a:focus ~ .menu-child{
@@ -773,7 +787,7 @@ body{
     border-radius: 5px;;
     cursor: pointer;
     margin: 0 auto;
-
+    border: none !important;
 }
 
 .box-alert{
@@ -1114,6 +1128,7 @@ table th {
 
 }
 
+
 .image-item span.close{
     position: absolute;
     top: 0;
@@ -1201,29 +1216,6 @@ table th {
 
 
   /* BUTTON DELETE CATEGORY */
-.badge{
-    font-size: .6rem;
-    border-radius: 10px;
-    padding: 2px 4px;
-}
-
-.badge-warning {
-    background:#ffc107!important;
-    color: #333;
-    font-weight: 700;
-}
-
-.badge-success{
-    background: #198754!important;
-    color: #fff;
-    font-weight: 700;
-}
-
-.badge-danger {
-    background: #dc3545!important;
-    color: #fff;
-    font-weight: 70;
-}
 
 .bg-white{
     background: #fff;
@@ -1252,7 +1244,7 @@ table th {
 
 .dataTables_wrapper .dataTables_filter input{
     width: 212px;
-    padding: 12px !important;
+    padding: 4px !important;
     border: 1px solid #CED4DA
 }
 
@@ -1262,10 +1254,45 @@ table th {
     line-height: 0 !important;
 }
 
-form label{
-    display: block;
-}
-
 form select{
     width: 100%;
+}
+
+table.dataTable tbody tr{
+    background: #fff !important;
+}
+
+.table tbody img {
+    max-width: 80px !important;
+    max-height: 40px !important;
+}
+
+
+#show-file{
+    display: grid;
+    grid-template-columns: repeat(3,1fr) ;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:10px
+}
+
+#show-file .image-item{
+    position: relative;
+    padding: 8px;
+    background: #fff;
+    text-align: center;
+}
+
+#show-file .image-item span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#show-file .image-item img {
+    max-height: 60px;
+    margin: 0 auto;
+    max-width: 60px;
 }

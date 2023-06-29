@@ -1,7 +1,7 @@
 @extends('admin.index')
 @section('articles')
 <div class="list-table">
-    <div class="wrap-container">
+
 
         <button class="btn btn-add"  data-name="add-product">Thêm mới</button>
         <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled data-name="popup-delete-checkbox">Xoá</button>
@@ -17,27 +17,9 @@
                         <th>Tên Bộ lọc</th>
                         <th>slug</th>
                         <th></th>
-                        <th></th>
+
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @php
-                    $i = 0;
-                    @endphp
-                    @foreach ($listFilter as $item)
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="item-check" name="item-check[]" value="{{$item->filter_id}}">
-                            </td>
-                            <td></td>
-                            <td class="badge badge-soft-info">{{$item->filter_name}}</td>
-                            <td>{{$item->slug}}</td>
-                            <td><a class="btn-edit"  data-name="edit-product" data-id="{{$item->filter_id}}">Chỉnh sửa</a></td>
-                            <td><a  class="btn-delete">Xoá</a></td>
-                        </tr>
-
-                    @endforeach
-                </tbody> --}}
                 <tfoot>
                     @if (count($listFilter) > 0)
                     <tr>
@@ -202,7 +184,7 @@
 
         </div>
 
-    </div>
+
 </div>
 @endsection
 
@@ -252,13 +234,8 @@
                                     <a class="btn btn-edit" data-name="edit-product" data-id="${data.filter_id}" >
                                       Chỉnh sửa
                                     </a>
+                                    <a  class="btn-delete"  data-id="${data.filter_id}">Xoá</a>
                                     `
-                        }
-                    },
-                    {
-                        data:null,
-                        render: function(data,type,row,meta){
-                            return `<td><a  class="btn-delete"  data-id="${data.filter_id}">Xoá</a></td>`
                         }
                     }
                 ],

@@ -36,13 +36,12 @@ Route::get('/', [IndexController::class,'index'])->name('index');
 Route::get('/category/{slug}/', [IndexController::class,'category'])->name('category');
 Route::get('/product/{slug}', [IndexController::class,'getProduct'])->name('product');
 Route::get('/cart', [IndexController::class,'getCart'])->name('cart');
-Route::group([ 'middleware' => 'Localization'],function() {
+Route::get('admin/login',[DashboardController::class,'login'])->name('loginForm');
+Route::post('admin/login',[DashboardController::class,'loginPost'])->name('loginPost');
 
+Route::middleware(['role_or_permission:admin|manager user','Localization'])->group(function() {
     Route::prefix('admin')->name('admin.')->group(function(){
-        Route::get('login',[DashboardController::class,'login'])->name('login');
-        Route::post('login',[DashboardController::class,'loginPost'])->name('loginPost');
         Route::get('logout',[DashboardController::class,'logout'])->name('logout');
-
         Route::middleware(['checkLogin'])->get('/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
         Route::prefix('filter')->name('filter.')->group(function() {
             Route::get('/',[FilterController::class,'listFilter'])->name('listFilter');
