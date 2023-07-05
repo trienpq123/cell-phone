@@ -1,4 +1,5 @@
 <div class="aside">
+    <span class="close-bar"><i class="fas fa-times"></i></span>
     <div class="logo">
         <img src="http://sinbad.anhcoder.com/assets/images/logo-light.png" alt="">
     </div>

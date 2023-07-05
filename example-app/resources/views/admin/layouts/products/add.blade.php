@@ -1,149 +1,153 @@
 @extends('admin.index')
 @section('articles')
-<div class="list-table">
-    <div class="wrap-container">
 
-
-
-        <div class="container">
-            <form id="form-add" enctype="multipart/form-data" method="post">
-                @csrf
-                <div class="grid grid-tempalte-colum-7-3 gap-16">
-                    <div class="form-left">
-                        <div class="form-group">
-                            <label for="">Tên sản phẩm</label>
-                            <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control name"
-                            id="slug" onchange="ChangeToSlug()" name="name">
-                            <p class="name-error alert-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Slug</label>
-                            <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control slug"
-                                    id="convert_slug" name="slug">
-                            @if($errors->has('slug'))
-                            <span class="text alert-danger fs-6" style="font-size: 12px">{{$errors->first('slug')}}</span>
-                        @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="parent_category">Danh mục</label>
-                            <select class="category js-example-basic-multiple-2" id="parent_category" name="parent_category[]" multiple>
-                                <option value="">Chưa có</option>
-                                @if (count($listCategory) > 0)
-                                    @foreach ($listCategory as $item)
-                                        <option value={{ $item->id_category }}>{{ $item->name_category }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Mã sản phẩm (SKU)</label>
-                            <input type="text"  placeholder="Nhập tên Sản phẩm" class="form-control product_sku"
-                                id="product_sku" name="product_sku">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <textarea name="desc_short" class="desc_short" id="desc_short" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Thêm thuộc tính</label>
-                            <table class="table">
-                                <thead>
-                                    <th>Tên thuộc tính ( Size - Color )</th>
-
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="text" placeholder="kích thước" class="add-size">
-                                            <div class="container-size">
-                                                {{-- <button class="badge-2" data-id="16gb">16GB <span class="close">x</span></button> --}}
-
-                                            </div>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text" placeholder="Màu sắc" class="add-color">
-                                            <div class="container-color">
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="form-group table-price">
-                            <label for="">Chỉnh sửa bảng giá</label>
-                            <table class="table">
-                                <thead>
-                                    <th></th>
-                                    <th>Tên thuộc tính</th>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Giá</th>
-                                    <th>Giá giảm</th>
-                                    <th>Hàng tồn kho</th>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-
-
+<div class="form-action">
+    <div class="form-bg">
+        <form id="form-add" enctype="multipart/form-data" method="post">
+            @csrf
+            <div class="grid grid-tempalte-colum-7-3 gap-16">
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="">Tên sản phẩm</label>
+                        <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control name"
+                        id="slug" onchange="ChangeToSlug()" name="name">
+                        <p class="name-error alert-danger"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Slug</label>
+                        <input type="text" placeholder="Đường dẫn" class="form-control slug"
+                                id="convert_slug" name="slug">
+                        @if($errors->has('slug'))
+                        <span class="text alert-danger fs-6" style="font-size: 12px">{{$errors->first('slug')}}</span>
+                    @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="parent_category">Danh mục</label>
+                        <select class="category js-example-basic-multiple-2" id="parent_category" name="parent_category[]" multiple>
+                            <option value="">Chưa có</option>
+                            @if (count($listCategory) > 0)
+                                @foreach ($listCategory as $item)
+                                    <option value={{ $item->id_category }}>{{ $item->name_category }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mã sản phẩm (SKU)</label>
+                        <input type="text"  placeholder="Nhập tên Sản phẩm" class="form-control product_sku"
+                            id="product_sku" name="product_sku">
 
                     </div>
+                    <div class="form-group">
+                        <label for="">Mô tả</label>
+                        <textarea name="desc_short" class="desc_short" id="desc_short" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mô tả</label>
+                        <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
+                    </div>
 
-                    <div class="form-right">
-                        <div class="form-group">
-                            <input type="radio" name="status" id="status" class="status" value="0"
-                                style="width:auto;"><label for="">Ẩn</label>
-                            <input type="radio" name="status" checked id="status" class="status" value="1"
-                                style="width:auto;"> <label for="">Hiện</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Chọn thương hiệu</label>
-                            <select class="js-example-basic-single brand form-control" name="idBrand"
-                                multiple="multiple">
-                                <option>Chưa chọn thương hiệu</option>
-                                @if (count($getBrands) > 0)
-                                    @foreach ($getBrands as $item)
-                                        <option value={{ $item->id_brand }}>{{ $item->name_brand }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Hình ảnh</label>
-                            <input type="file" name="image" id="" class="add-file" id="upload-file"
-                                multiple>
-                            <p class="image-error text text-danger"></p>
-                            <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
-                                {{-- <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt=""> --}}
-                            </div>
-                        </div>
-                        <div class="product-option">
-                            <label for="">Chọn Thông số kỹ thuật</label>
-                            <div class="product-option__inner"></div>
+                    <div class="form-group">
+                        <label for="">Thêm thuộc tính</label>
+                        <table class="table">
+                            <thead>
+                                <th>Tên thuộc tính ( Size - Color )</th>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="kích thước" class="add-size">
+                                        <div class="container-size">
+                                            {{-- <button class="badge-2" data-id="16gb">16GB <span class="close">x</span></button> --}}
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Màu sắc" class="add-color">
+                                        <div class="container-color">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group table-price">
+                        <label for="">Chỉnh sửa bảng giá</label>
+                        <table class="table">
+                            <thead>
+                                <th></th>
+                                <th>Tên thuộc tính</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Giá giảm</th>
+                                <th>Hàng tồn kho</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+                <div class="form-right">
+                    <div class="form-group">
+                        <input type="radio" name="status" id="status" class="status" value="0"
+                            style="width:auto;"><label for="">Ẩn</label>
+                        <input type="radio" name="status" checked id="status" class="status" value="1"
+                            style="width:auto;"> <label for="">Hiện</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Chọn thương hiệu</label>
+                        <select class="js-example-basic-single brand form-control" name="idBrand"
+                            multiple="multiple">
+                            <option>Chưa chọn thương hiệu</option>
+                            @if (count($getBrands) > 0)
+                                @foreach ($getBrands as $item)
+                                    <option value={{ $item->id_brand }}>{{ $item->name_brand }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Hình ảnh</label>
+                        <input type="file" name="image" id="" class="add-file" id="upload-file"
+                            multiple>
+                        <p class="image-error text text-danger"></p>
+                        <div class="form-group" id="show-file" style="width:120px;height:120px; padding-top: 8px">
+                            {{-- <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"  alt=""> --}}
                         </div>
                     </div>
+                    <div class="product-option">
+                        <label for="">Chọn Thông số kỹ thuật</label>
+                        <div class="product-option__inner"></div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-submit">Xác nhận</button>
-                </div>
-            </form>
-        </div>
-
-
-
+            <div class="form-group">
+                <button type="submit" class="btn btn-submit">Xác nhận</button>
+            </div>
+        </form>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 @endsection
 
 @push('script-action')
@@ -367,6 +371,7 @@
                                     filter +=`</select>
                                          </div>`
                                 })
+                                console.log(1);
                             })
 
                             $('.product-option__inner').html(filter)
@@ -383,7 +388,7 @@
                     url:"{{route('admin.category.getChildCategory')}}",
                     data:{id:value},
                     success: (res) => {
-                        console.log(res)
+
                         let child_category = ''
                         res.data.forEach(function(data, i){
                             child_category+=`<option value="${data.id_category}">${data.name_category}</option>`;

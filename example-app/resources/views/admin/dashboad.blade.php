@@ -75,7 +75,7 @@
 
     <div class="chart-editor"><canvas id="chart-view"></canvas></div>
     <div class="grid align-items-center mg-section">
-        <div class="box-statistical grid grid-tempalte-colum-3 gap-10 align-items-center mg-section">
+        <div class="wrap-container grid-tempalte-colum-425-2 box-statistical grid grid-tempalte-colum-3 gap-10 align-items-center mg-section">
             <div class="statistical-item box-top-product">
                 <div class="box-title"><span><i class="fa-brands fa-product-hunt"></i></span> Sản phẩm bán chạy</div>
                 <div class="box-list">
@@ -141,3 +141,48 @@
 
 </div>
 @endsection
+@push('script-action')
+    <script>
+           let myChart =  document.getElementById('chart-view').getContext('2d');
+   console.log(myChart)
+   const data = {
+    labels: ['Tháng 1', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [{
+        label: 'Thống Kê Doanh Thu',
+        data: [65, 59, 80, 81, 26, 55, 40],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+    }]
+    };
+
+   const config = {
+    type: 'line',
+    data: data,
+    options: {
+        transitions: {
+        show: {
+            animations: {
+            x: {
+                from: 0
+            },
+            y: {
+                from: 0
+            }
+            }
+        },
+        hide: {
+            animations: {
+            x: {
+                to: 0
+            },
+            y: {
+                to: 0
+            }
+            }
+        }
+        }
+    }
+};
+    let PopChart = new Chart(myChart,config)
+    </script>
+@endpush

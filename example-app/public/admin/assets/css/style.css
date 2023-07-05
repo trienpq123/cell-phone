@@ -507,6 +507,14 @@ body{
     padding: 8px 16px;
     overflow-y: auto;
 }
+
+.aside .close-bar{
+    display: none;
+}
+
+.head-menu .bar-mb{
+    display: none
+}
 ::-webkit-scrollbar {
     width: 5px;
     height: 25px;
@@ -554,7 +562,6 @@ body{
     left: 5px;
     top: 50%;
     margin-top: -17px;
-    font-size: 1.5rem;
     opacity: .3;
     transition: color 300ms;
 }
@@ -571,17 +578,19 @@ body{
 
 .aside ul li .menu-child {
     margin-left: 22px;
-    height: 0;
-    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
 }
 
 .aside ul li .menu-child.active{
+
     margin-left: 22px;
-    height: unset;
-    visibility: visible;
-    animation-name: toShow;
-    animation-duration: .2s;
-    /* transition: all .2s ease-in-out; */
+    /* animation-name: toShow;
+    animation-duration: .2s; */
+    transition: all .5s ease-in-out;
+    max-height: 1500px;
+
 }
 
 .article{
@@ -829,10 +838,7 @@ body{
     padding: 12px 14px;
 }
 
-.wrap-container{
-    width: 1048px !important;
-    margin: 0 auto;
-}
+
 
 .box-items {
     position: relative;
@@ -902,12 +908,21 @@ body{
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
+
+.list-table .table-action{
+
+    gap: 10px;
+    padding: 16px;
+    margin: 0 4px;
+}
 table th {
     background: #f3f6f9 !important;
     padding: 12px 10px !important;
     border: none !important;
+    text-align: center;
 }
 
 .table tr td a {
@@ -1295,4 +1310,24 @@ table.dataTable tbody tr{
     max-height: 60px;
     margin: 0 auto;
     max-width: 60px;
+}
+
+
+.dataTables_wrapper .dataTables_length{
+    padding-left: 16px;
+}
+
+.dataTables_wrapper .dataTables_filter{
+    padding-right: 16px;;
+}
+
+.form-action{
+    margin: 16px;
+
+}
+
+.form-bg{
+    padding: 16px;
+    background: #fff;
+    border-radius: 16px;
 }

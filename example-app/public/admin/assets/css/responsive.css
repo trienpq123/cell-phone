@@ -1,26 +1,93 @@
 @media screen and (max-width:1024px){
- 
-  
+
+
 }
 @media screen and (max-width:960px){
-   
 
-    
 }
 @media screen and (max-width:768px){
-  
+
+    .head-menu{
+        grid-template-columns: 50% auto;
+        cursor: pointer;
+    }
+    .head-menu .bar-mb {
+        display: block;
+        cursor: pointer;
+    }
+    .head-menu span {
+        font-size: 24px;
+    }
+    .head-menu__left form .box-iconls{
+        font-size: 14px;
+    }
+    .wrap-container{
+        max-width: 768px !important;
+        padding: 8px;
+       }
+
+       .grid-template-tablet-md-2{
+
+       }
+
+       .aside{
+        left: -100%;
+        transition: .5s all ease-in-out;
+        z-index: 2;
+       }
+
+       .aside.active{
+        left: 0;
+
+       }
+
+       .aside .close-bar{
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 24px;
+            padding: 8px;
+            background: #4958CF;
+            color: #fff;
+       }
+
+
+
+       .article{
+        padding-left: unset;
+       }
+
+       .head-menu__right ul{
+        display: none;;
+       }
+
+       .head-menu__left form input{
+        width: 199px
+       }
+
 }
 @media screen and (max-width:425px){
-    
+    .wrap-container{
+        max-width: 425px !important;
+    }
+
+    .grid-tempalte-colum-425-2{
+        grid-template-columns: repeat(2,1fr) !important;
+    }
+
+    .box-statistical .statistical-item .box-title{
+        font-size: 14px;
+    }
 }
 @media screen and (max-width:375px){
-    
+
 }
 @media screen and (max-width:325px){
-    
+
 }
 
 @media screen and (max-width:320){
-    
+
 }
 

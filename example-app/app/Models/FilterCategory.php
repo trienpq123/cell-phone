@@ -20,7 +20,7 @@ class FilterCategory extends Model
         return $this->belongsTo(CategoryModel::class,'id_category','id_category');
     }
     public function childFilter(){
-        return $this->hasMany(FilterModel::class,'filter_id','_parent');
+        return $this->hasMany(FilterModel::class,'_parent','id_filter');
     }
 
     public function filter(){

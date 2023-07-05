@@ -4,7 +4,7 @@ function validator(status,data){
         if(data.name){
             $('.name-error').addClass('active');
             $('.name-error').html(data.name);
-            
+
         }
         if(data.image){
             $('.image-error').addClass('active');
@@ -19,3 +19,12 @@ function validator(status,data){
         }
     }
 }
+// ADMIN
+// open sidebar ADMIN
+$('.bar-mb').click(function(){
+    $('.aside').toggleClass('active')
+})
+// Close side bar
+$('.aside .close-bar').click(function(){
+    $('.aside').toggleClass('active')
+})

@@ -156,47 +156,7 @@
         // })
 
    })
-//    let myChart =  document.getElementById('chart-view').getContext('2d');
-//    console.log(myChart)
-//    const data = {
-//     labels: ['Tháng 1', 'February', 'March', 'April', 'May', 'June', 'July'],
-//     datasets: [{
-//         label: 'Thống Kê Doanh Thu',
-//         data: [65, 59, 80, 81, 26, 55, 40],
-//         fill: false,
-//         borderColor: 'rgb(75, 192, 192)',
-//     }]
-//     };
 
-//    const config = {
-//     type: 'line',
-//     data: data,
-//     options: {
-//         transitions: {
-//         show: {
-//             animations: {
-//             x: {
-//                 from: 0
-//             },
-//             y: {
-//                 from: 0
-//             }
-//             }
-//         },
-//         hide: {
-//             animations: {
-//             x: {
-//                 to: 0
-//             },
-//             y: {
-//                 to: 0
-//             }
-//             }
-//         }
-//         }
-//     }
-// };
-//     let PopChart = new Chart(myChart,config)
 
 </script>
 <script type="text/javascript">

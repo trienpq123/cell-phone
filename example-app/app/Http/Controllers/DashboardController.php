@@ -16,7 +16,7 @@ class DashboardController extends Controller
 {
 
     public function index(){
-        return view('admin.index');
+        return view('admin.dashboad');
     }
     public function login(Request $request){
         return view('admin.login');

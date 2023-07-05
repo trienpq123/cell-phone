@@ -71,7 +71,6 @@
 }
 
 body {
-    max-width: var(--width-all-main) !important;
     margin: 0 auto !important;
     background: var(--background-main) !important;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
@@ -276,8 +275,10 @@ table {
     margin: 16px auto;
     border-collapse: collapse;
     border: 1px solid #ebebeb;
-    width: 100%;
+    width: 100% !important;
+    padding: 16px;
 }
+
 
 table th {
     font-weight: 400;
@@ -287,7 +288,7 @@ table th {
 
 table th,
 table td {
-    text-align: center;
+    text-align: center !important;
     padding: 4px 8px;
     border: 1px solid #ddd;
     font-size: 12px;

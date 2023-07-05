@@ -1,13 +1,15 @@
 @extends('admin.index')
 @section('articles')
     <div class="list-table">
-        <div class="wrap-container">
 
-            <a href="{{route('admin.product.addProduct')}}" class="btn btn-add" data-name="add-product">Thêm mới</a>
-            {{-- <a href="{{route('admin.product.addProduct')}}" class="btn btn-add">Thêm mới</a> --}}
-            <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled
-                data-name="popup-delete-checkbox">Xoá</button>
 
+            <div class="table-action">
+                <a href="{{route('admin.product.addProduct')}}" class="btn btn-add" data-name="add-product">Thêm mới</a>
+                {{-- <a href="{{route('admin.product.addProduct')}}" class="btn btn-add">Thêm mới</a> --}}
+                <button class="btn btn-delete delete-checkbox" id="delete-checkbox" disabled
+                    data-name="popup-delete-checkbox">Xoá</button>
+
+            </div>
             <div class="table">
 
                 <table id="table">
@@ -405,7 +407,7 @@
 
             </div>
 
-        </div>
+
     </div>
 @endsection
 

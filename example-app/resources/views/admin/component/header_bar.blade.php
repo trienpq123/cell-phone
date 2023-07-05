@@ -1,5 +1,7 @@
 <div class="head-menu">
-
+    <div class="bar-mb">
+        <span><i class="fas fa-bars"></i></span>
+    </div>
     <div class="head-menu__left">
         <div class="search-bar">
             <form action="">
@@ -50,7 +52,7 @@
                     </div>
 
                     <div class="position">
-                        {{Auth::user()->roles->first()->name}}
+                        {{-- {{Auth::user()->roles->first()->name}} --}}
                     </div>
                     <ul>
                         <li><a href="#">Thông tin cá nhân</a></li>

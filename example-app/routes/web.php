@@ -38,11 +38,11 @@ Route::get('/product/{slug}', [IndexController::class,'getProduct'])->name('prod
 Route::get('/cart', [IndexController::class,'getCart'])->name('cart');
 Route::get('admin/login',[DashboardController::class,'login'])->name('loginForm');
 Route::post('admin/login',[DashboardController::class,'loginPost'])->name('loginPost');
-
-Route::middleware(['role_or_permission:admin|manager user','Localization'])->group(function() {
+// 'role_or_permission:admin|manager user',
+Route::middleware(['Localization'])->group(function() {
     Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('logout',[DashboardController::class,'logout'])->name('logout');
-        Route::middleware(['checkLogin'])->get('/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
+        Route::get('/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
         Route::prefix('filter')->name('filter.')->group(function() {
             Route::get('/',[FilterController::class,'listFilter'])->name('listFilter');
             Route::get('/api/list',[FilterController::class,'apiListFilter'])->name('apiListFilter');
@@ -60,7 +60,7 @@ Route::middleware(['role_or_permission:admin|manager user','Localization'])->gro
             Route::post('/add',[CategoryController::class,'postAddCategory'])->name('postAddCategory');
             Route::post('/edit',[CategoryController::class,'putEditCategory'])->name('putEditCategory');
             Route::delete('/delete',[CategoryController::class,'deleteCategory'])->name('deleteCategory');
-            Route::get('/getChild/',[CategoryController::class,'getChildCategory'])->name('getChildCategory');
+            Route::get('/getChild',[CategoryController::class,'getChildCategory'])->name('getChildCategory');
         });
         Route::prefix('product')->name('product.')->group(function() {
             Route::get('/',[ProductController::class,'listProduct'])->name('listProduct');
@@ -154,7 +154,8 @@ Route::middleware(['role_or_permission:admin|manager user','Localization'])->gro
             Route::post('/add',[PermissionController::class,'PermissionFormPostAdd'])->name('permisson.store');
             Route::get('/delete/{id}',[PermissionController::class,'PermissionDelete'])->name('permisson.delete');
         });
-        Route::middleware(['role_or_permission:admin|manager user'])->prefix('User')->name('User.')->group(function(){
+        // middleware(['role_or_permission:admin|manager user'])->
+        Route::prefix('User')->name('User.')->group(function(){
             Route::get('/',[UserController::class,'index'])->name('User.index')->middleware(['permission:public user']) ;
             Route::get('/add',[UserController::class,'UserFormAdd'])->name('User.create')->middleware(['permission:user add']);
             Route::get('/edit-user/{id}',[UserController::class,'UserFormEdit'])->name('User.edit')->middleware(['permission:user edit']);
