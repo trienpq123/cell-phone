@@ -727,13 +727,13 @@
                         {
                             data: null,
                             render: function(data, type, row, meta) {
-                                return `<a class="btn-edit"  data-name="edit-product" data-id="${data.id_product}">Chỉnh sửa</a>`
+                                return `<a href="{{route('admin.product.editProduct')}}?id=${data.id_product}" class="btn-edit"  data-name="edit-product" data-id="${data.id_product}"><i class="far fa-edit"></i></a>`
                             }
                         },
                         {
                             data: null,
                             render: function(data, type, row, meta) {
-                                return `<td><a  class="btn-delete"  data-id="${data.id_product}">Xoá</a></td>`
+                                return `<td><a  class="btn-delete"  data-id="${data.id_product}"><i class="fas fa-trash-alt"></i></a></td>`
                             }
                         }
                     ],
@@ -760,117 +760,117 @@
                     $('.popup-modal').removeClass('active');
                 });
 
-                $.ajax({
-                    url: "{{ route('admin.product.editProduct') }}",
-                    dataType: "json",
-                    method: "GET",
-                    data: {
-                        id: id
-                    },
-                    success: (res) => {
-                        let name = $(".form-control.name_edit").val(res.data.name_product);
+                // $.ajax({
+                //     url: "",
+                //     dataType: "json",
+                //     method: "GET",
+                //     data: {
+                //         id: id
+                //     },
+                //     success: (res) => {
+                //         let name = $(".form-control.name_edit").val(res.data.name_product);
 
-                        $(".slug_edit").val(res.data.slug);
-                        $(".product_sku_edit").val(res.data.product_SKU);
-                        CKEDITOR.instances.desc_short_edit.setData(res.data.p_desc_short)
-                        CKEDITOR.instances.desc_edit.setData(res.data.p_desc)
-                        console.log(res.data.images.length)
-                        if (res.data.images.length > 0) {
-
-
-                            let list_img = $('.list-image');
-                            let img = ''
-                            console.log(res.data.images)
-                            $.each(res.data.images, function(i, image) {
-                                img += `<div class="image-item" style="padding:8px;">
-                                        <img src="${image.link_img}" alt="${res.data.name_product}" style="width:80px;height:80px">
-                                        <span class="close" data-id="${image.id_product_image}"><i class="fas fa-close"></i></span>
-                                    </div>`;
-
-                            });
-                            list_img.html(img)
-                        }
-
-                        $('.status_edit').each(function(i, status) {
-                            if (res.data.status && res.data.status == status.value) {
-                                status.checked = true;
-                            }
-                        })
-                        $('.brand_edit').val(res.data.id_brand);
-                        $('.brand_edit').trigger('change');
-
-                        if (res.data.product_detail.length > 0) {
-                            let product_detail = res.data.product_detail;
-                            $table = $('.table-price-edit-choose table tbody');
-                            let tr = '';
-                            $.each(product_detail, function(i, PD) {
-                                tr += `<tr>
-                                                                            <td> <input type="checkbox" /> </td>
-                                                                            <td>
-                                                                                <span>${PD.size}</span>    -
-                                                                                <span>${PD.color}
-                                                                                <input type="text" hidden value="${PD.size}" class="size" />
-                                                                                <input type="text" hidden value="${PD.color}" class="color" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="${PD.product_sku}" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá" class="product_price" value="${PD.price}" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Giá giảm" class="product_price_old" value="${PD.price_sale}" />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="number" placeholder="Số lượng" class="product_stock" value="${PD.quanlity}" />
-                                                                            </td>
-                                                                            <td><span class="delete-product-detail-choose" data-id ="${PD.id_product_detail}"><i class="fas fa-close"></i></span></td>
-                                            </tr>`
-                            })
-                            $table.html(tr)
-                        }
+                //         $(".slug_edit").val(res.data.slug);
+                //         $(".product_sku_edit").val(res.data.product_SKU);
+                //         CKEDITOR.instances.desc_short_edit.setData(res.data.p_desc_short)
+                //         CKEDITOR.instances.desc_edit.setData(res.data.p_desc)
+                //         console.log(res.data.images.length)
+                //         if (res.data.images.length > 0) {
 
 
+                //             let list_img = $('.list-image');
+                //             let img = ''
+                //             console.log(res.data.images)
+                //             $.each(res.data.images, function(i, image) {
+                //                 img += `<div class="image-item" style="padding:8px;">
+                //                         <img src="${image.link_img}" alt="${res.data.name_product}" style="width:80px;height:80px">
+                //                         <span class="close" data-id="${image.id_product_image}"><i class="fas fa-close"></i></span>
+                //                     </div>`;
+
+                //             });
+                //             list_img.html(img)
+                //         }
+
+                //         $('.status_edit').each(function(i, status) {
+                //             if (res.data.status && res.data.status == status.value) {
+                //                 status.checked = true;
+                //             }
+                //         })
+                //         $('.brand_edit').val(res.data.id_brand);
+                //         $('.brand_edit').trigger('change');
+
+                //         if (res.data.product_detail.length > 0) {
+                //             let product_detail = res.data.product_detail;
+                //             $table = $('.table-price-edit-choose table tbody');
+                //             let tr = '';
+                //             $.each(product_detail, function(i, PD) {
+                //                 tr += `<tr>
+                //                                                             <td> <input type="checkbox" /> </td>
+                //                                                             <td>
+                //                                                                 <span>${PD.size}</span>    -
+                //                                                                 <span>${PD.color}
+                //                                                                 <input type="text" hidden value="${PD.size}" class="size" />
+                //                                                                 <input type="text" hidden value="${PD.color}" class="color" />
+                //                                                             </td>
+                //                                                             <td>
+                //                                                                 <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="${PD.product_sku}" />
+                //                                                             </td>
+                //                                                             <td>
+                //                                                                 <input type="number" placeholder="Giá" class="product_price" value="${PD.price}" />
+                //                                                             </td>
+                //                                                             <td>
+                //                                                                 <input type="number" placeholder="Giá giảm" class="product_price_old" value="${PD.price_sale}" />
+                //                                                             </td>
+                //                                                             <td>
+                //                                                                 <input type="number" placeholder="Số lượng" class="product_stock" value="${PD.quanlity}" />
+                //                                                             </td>
+                //                                                             <td><span class="delete-product-detail-choose" data-id ="${PD.id_product_detail}"><i class="fas fa-close"></i></span></td>
+                //                             </tr>`
+                //             })
+                //             $table.html(tr)
+                //         }
 
 
 
 
-                        $('body').on('click', '.list-image .image-item .close', function() {
-                            let id = $(this).attr("data-id");
-                            console.log(id);
-                            $.ajax({
-                                type: "DELETE",
-                                url: "{{ route('admin.product.deleteImageProduct') }}",
-                                data: {
-                                    id: id,
-                                    _token: "{{ csrf_token() }}"
-                                },
-                                success: (res) => {
-                                    console.log(res);
-                                    $(this).parent().remove();
-                                }
-                            })
-                        })
 
-                        $('body').on('click', '.delete-product-detail-choose', function() {
-                            let id = $(this).attr("data-id");
-                            console.log(id);
-                            $(this).parent().parent().remove();
-                            $.ajax({
-                                type: "DELETE",
-                                url: "{{ route('admin.product.deleteProductDetail') }}",
-                                data: {
-                                    id: id,
-                                    _token: "{{ csrf_token() }}"
-                                },
-                                success: (res) => {
-                                    console.log(res);
-                                }
-                            })
-                        })
 
-                    }
-                })
+                //         $('body').on('click', '.list-image .image-item .close', function() {
+                //             let id = $(this).attr("data-id");
+                //             console.log(id);
+                //             $.ajax({
+                //                 type: "DELETE",
+                //                 url: "{{ route('admin.product.deleteImageProduct') }}",
+                //                 data: {
+                //                     id: id,
+                //                     _token: "{{ csrf_token() }}"
+                //                 },
+                //                 success: (res) => {
+                //                     console.log(res);
+                //                     $(this).parent().remove();
+                //                 }
+                //             })
+                //         })
+
+                //         $('body').on('click', '.delete-product-detail-choose', function() {
+                //             let id = $(this).attr("data-id");
+                //             console.log(id);
+                //             $(this).parent().parent().remove();
+                //             $.ajax({
+                //                 type: "DELETE",
+                //                 url: "{{ route('admin.product.deleteProductDetail') }}",
+                //                 data: {
+                //                     id: id,
+                //                     _token: "{{ csrf_token() }}"
+                //                 },
+                //                 success: (res) => {
+                //                     console.log(res);
+                //                 }
+                //             })
+                //         })
+
+                //     }
+                // })
 
                 createButtonSizeEdit();
 

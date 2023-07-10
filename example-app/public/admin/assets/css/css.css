@@ -81,6 +81,7 @@ body {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    padding: 6px 15px 0 15px
 }
 
 
@@ -324,27 +325,25 @@ table td {
 }
 
 .box-alert {
-    /* text-align: center; */
     background: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    /* padding: 48px; */
-    position: fixed;
+    position: absolute !important;
+
     top: 25%;
-    left: 25%;
-    transform: translate(-25%, -25%);
+
     border-radius: 12px;
-    /* animation-name: popupToShow; */
-    /* animation-duration: .2s; */
-    height: 550px;
+    height: 550px !important;
     overflow-y: scroll;
     -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
 }
 
 
 .popup-modal .alert-item {
     margin: 16px 0;
     min-height: 62px;
+    text-align: center;
 }
 
 .popup-modal .alert-item span {
@@ -463,4 +462,17 @@ form select {
     padding-right: 2px;
     cursor: pointer;
 
+}
+
+.p-16{
+    padding: 16px;
+}
+
+.show-image__item  span{
+    font-size: 14px;
+}
+
+.show-image__item{
+    padding: 4px;
+    border: 1px solid rgba(149, 157, 165, 0.2);
 }

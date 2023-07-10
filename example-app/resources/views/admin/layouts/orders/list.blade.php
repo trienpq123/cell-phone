@@ -43,7 +43,7 @@
             <div class="popup-modal" id="popup-delete">
                 <div class="box-alert">
                     <div class="alert-item">
-                        <span><i class="fas fa-trash-alt"></i></span>
+                        <span class="recyble-delete"><i class="fas fa-trash-alt  "></i></span>
                     </div>
                     <div class="alert-item">
                         <p>Bạn có chắc chắn là muốn xoá?</p>

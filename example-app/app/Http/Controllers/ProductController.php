@@ -9,6 +9,7 @@ use App\Models\FilterProduct;
 use App\Models\ProductDetailModel;
 use App\Models\ProductImageModel;
 use App\Models\ProductModel;
+use DeepCopy\Filter\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -41,15 +42,10 @@ class ProductController extends Controller
 
     public function editProduct(Request $request)
     {
-        if ($request->id) {
-            $a = ProductModel::where('id_product', '=', $request->id);
-            $b = $a->FirstOrFail();
-            $product = ProductModel::where('id_product', '=', $request->id)->with('brands', 'images', 'category', 'product_detail')->first();
-            return response()->json([
-                'status' => 200,
-                'data' => $product
-            ]);
-        }
+        $listProduct = ProductModel::where('id_product','=',$request->id)->with('productOfCategory')->first();
+        $getBrands = BrandModel::orderBy('id_brand', 'desc')->get();
+        $listCategory = CategoryModel::whereNull('parent_category')->orderBy('id_category', 'desc')->get();
+        return view('admin.layouts.products.edit',compact('getBrands', 'listCategory', 'listProduct'));
     }
 
 
@@ -142,10 +138,12 @@ class ProductController extends Controller
             if (!empty($request->option)) {
                 $explode_option = explode(',',$request->option);
                 foreach ($explode_option as $o) {
-                    $fp = new FilterProduct();
-                    $fp->id_product = $get_last_product->id_product;
-                    $fp->id_filter = $o;
-                    $fp->save();
+                    if(!empty($o)){
+                        $fp = new FilterProduct();
+                        $fp->id_product = $get_last_product->id_product;
+                        $fp->id_filter = $o;
+                        $fp->save();
+                    }
                 }
             }
         }
@@ -153,7 +151,7 @@ class ProductController extends Controller
         return response()->json([
             'status' => 200,
             'request' => json_decode($request->product_detail),
-            'product_detail' => $request->all(),
+            'product_detail' => $request->option,
             // 'option' => $fp
         ]);
     }

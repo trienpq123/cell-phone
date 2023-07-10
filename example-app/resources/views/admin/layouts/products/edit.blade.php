@@ -1,6 +1,5 @@
 @extends('admin.index')
 @section('articles')
-
 <div class="form-action">
     <div class="p-16">
         <form id="form-add" enctype="multipart/form-data" method="post" >
@@ -10,13 +9,13 @@
                     <div class="form-group">
                         <label for="">Tên sản phẩm</label>
                         <input type="text" placeholder="Nhập tên Sản phẩm" class="form-control name"
-                        id="slug" onchange="ChangeToSlug()" name="name">
+                        id="slug" onchange="ChangeToSlug()" name="name" value="{{old('name') ? old('name') : $listProduct->name_product }}">
                         <p class="name-error alert-danger"></p>
                     </div>
                     <div class="form-group">
                         <label for="">Slug</label>
                         <input type="text" placeholder="Đường dẫn" class="form-control slug"
-                                id="convert_slug" name="slug">
+                                id="convert_slug" name="slug" value="{{old('slug') ? old('slug') : $listProduct->slug}}">
                         @if($errors->has('slug'))
                         <span class="text alert-danger fs-6" style="font-size: 12px">{{$errors->first('slug')}}</span>
                     @endif
@@ -27,15 +26,15 @@
                             <option value="">Chưa có</option>
                             @if (count($listCategory) > 0)
                                 @foreach ($listCategory as $item)
-                                    <option value={{ $item->id_category }}>{{ $item->name_category }}</option>
+                                    <option {{$listProduct->productOfCategory->id_category == $item->id_category ? 'selected' : ''}} value={{ $item->id_category }}>{{ $item->name_category }}</option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Mã sản phẩm (SKU)</label>
-                        <input type="text"  placeholder="Nhập tên Sản phẩm" class="form-control product_sku"
-                            id="product_sku" name="product_sku">
+                        <input type="text"  placeholder="Nhập mã Sản phẩm" class="form-control product_sku"
+                            id="product_sku" name="product_sku" value="{{old('product_sku') ? old('product_sku') : $listProduct->product_sku}}">
 
                     </div>
                     <div class="form-group">
@@ -136,17 +135,6 @@
         </form>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 @endsection
 
 @push('script-action')

@@ -33,7 +33,7 @@
         <div class="popup-modal" id="popup-delete">
             <div class="box-alert">
                 <div class="alert-item">
-                    <span><i class="fas fa-trash-alt"></i></span>
+                    <span><i class="fas fa-trash-alt recyble-delete"></i></span>
                 </div>
                 <div class="alert-item">
                     <p>Bạn có chắc chắn là muốn xoá?</p>
@@ -59,7 +59,7 @@
         <div class="popup-modal popup-delete-checkbox" data-name="delete-check">
             <div class="box-alert">
                 <div class="alert-item">
-                    <span><i class="fas fa-trash-alt"></i></span>
+                    <span><i class="fas fa-trash-alt recyble-delete"></i></span>
                 </div>
                 <div class="alert-item">
                     <p>Bạn có chắc chắn là muốn xoá?</p>
@@ -232,9 +232,9 @@
                         render: function(data,type,row,meta){
                             return `
                                     <a class="btn btn-edit" data-name="edit-product" data-id="${data.filter_id}" >
-                                      Chỉnh sửa
+                                        <i class="far fa-edit"></i>
                                     </a>
-                                    <a  class="btn-delete"  data-id="${data.filter_id}">Xoá</a>
+                                    <a  class="btn-delete"  data-id="${data.filter_id}"><i class="fas fa-trash-alt"></i></a>
                                     `
                         }
                     }

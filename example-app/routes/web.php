@@ -32,6 +32,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+
 Route::get('/', [IndexController::class,'index'])->name('index');
 Route::get('/category/{slug}/', [IndexController::class,'category'])->name('category');
 Route::get('/product/{slug}', [IndexController::class,'getProduct'])->name('product');

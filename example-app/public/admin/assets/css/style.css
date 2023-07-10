@@ -593,6 +593,12 @@ body{
 
 }
 
+.recyble-delete{
+    animation-name: recyble;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
 .article{
 
     padding-left: 249px;
@@ -797,6 +803,7 @@ body{
     cursor: pointer;
     margin: 0 auto;
     border: none !important;
+    margin: 0 4px;
 }
 
 .box-alert{
@@ -806,7 +813,10 @@ body{
     z-index: 3;
     text-align: left !important;
 
+}
 
+.popup-modal.active .box-alert span i.fa-trash-alt {
+    color: red;
 }
 
 .box-alert .btn-close{
@@ -817,6 +827,13 @@ body{
     background:rgba(0, 0, 0, 0.35);
     border-radius: 100px;
     cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    margin-top: 8px;
 }
 
 .box-alert .btn-close span {
@@ -915,8 +932,11 @@ body{
 .list-table .table-action{
 
     gap: 10px;
-    padding: 16px;
-    margin: 0 4px;
+    /* padding: 16px; */
+    /* margin: 0 4px; */
+}
+.table {
+    margin-top: 4px;
 }
 table th {
     background: #f3f6f9 !important;
@@ -945,6 +965,7 @@ table th {
 
 .table table {
     padding-top: 12px !important;
+    padding-left: unset;
 }
 
 .box{
@@ -1314,7 +1335,7 @@ table.dataTable tbody tr{
 
 
 .dataTables_wrapper .dataTables_length{
-    padding-left: 16px;
+    padding-left: 0;
 }
 
 .dataTables_wrapper .dataTables_filter{
@@ -1330,4 +1351,14 @@ table.dataTable tbody tr{
     padding: 16px;
     background: #fff;
     border-radius: 16px;
+}
+
+.container-size,.container-color{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.show-image__item .delete-image{
+    cursor: pointer;
 }
