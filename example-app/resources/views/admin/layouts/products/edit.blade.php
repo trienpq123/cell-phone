@@ -34,16 +34,20 @@
                     <div class="form-group">
                         <label for="">Mã sản phẩm (SKU)</label>
                         <input type="text"  placeholder="Nhập mã Sản phẩm" class="form-control product_sku"
-                            id="product_sku" name="product_sku" value="{{old('product_sku') ? old('product_sku') : $listProduct->product_sku}}">
+                            id="product_sku" name="product_sku" value="{{old('product_sku') ? old('product_sku') : $listProduct->product_SKU}}">
 
                     </div>
                     <div class="form-group">
                         <label for="">Mô tả</label>
-                        <textarea name="desc_short" class="desc_short" id="desc_short" cols="30" rows="10"></textarea>
+                        <textarea name="desc_short" class="desc_short" id="desc_short" cols="30" rows="10">
+                            {{old('desc_short') ? old('desc_short') : $listProduct->p_desc_short}}
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Mô tả</label>
-                        <textarea name="desc" class="desc" id="desc" cols="30" rows="10"></textarea>
+                        <textarea name="desc" class="desc" id="desc" cols="30" rows="10">
+                            {{old('desc') ? old('desc') : $listProduct->p_desc}}
+                        </textarea>
                     </div>
 
                     <div class="form-group">
@@ -58,7 +62,11 @@
                                     <td>
                                         <input type="text" placeholder="kích thước" class="add-size">
                                         <div class="container-size">
-                                            {{-- <button class="badge-2" data-id="16gb">16GB <span class="close">x</span></button> --}}
+
+
+                                            @foreach ($listProduct->GroupBySizeProduct() as $item)
+                                            <div class="badge-2" id="btn-2">{{$item->size}}<span class="close" data-value="{{$item->size}}" data-id="btn-2">x</span></div>
+                                            @endforeach
 
                                         </div>
                                     </td>
@@ -68,7 +76,9 @@
                                     <td>
                                         <input type="text" placeholder="Màu sắc" class="add-color">
                                         <div class="container-color">
-
+                                            @foreach ($listProduct->GroupByColorProduct() as $item)
+                                            <div class="badge-2" id="btn-color-2">{{$item->color}}<span class="close" data-value="{{$item->color}}" data-id="btn-color-2">x</span></div>
+                                            @endforeach
                                         </div>
                                     </td>
                                 </tr>
@@ -87,6 +97,30 @@
                                 <th>Hàng tồn kho</th>
                             </thead>
                             <tbody>
+                            @foreach ($listProduct->product_detail()->get() as $item)
+                                <tr>
+                                    <td> <input type="checkbox" /> </td>
+                                    <td>
+                                        <span>{{$item->size}}</span>    -
+                                        <span>{{$item->color}}</span>
+                                        <input type="text" hidden value="{{$item->size}}" class="size" />
+                                        <input type="text" hidden value="{{$item->color}}" class="color" />
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Mã sản phẩm" name="product_type_sku" class="product_type_sku" value="{{$item->product_sku}}" />
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Giá" class="product_price" value="{{$item->price}}" />
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="{{$item->price_sale}}" />
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Số lượng" class="product_stock" value="{{$item->quanlity}}" />
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -97,34 +131,57 @@
 
                 <div class="form-right form-bg">
                     <div class="form-group">
-                        <input type="radio" name="status" id="status" class="status" value="0"
+                        <input type="radio" {{$listProduct->status == 0 ? 'checked' : '' }} name="status" id="status" class="status" value="0"
                             style="width:auto;"><label for="">Ẩn</label>
-                        <input type="radio" name="status" checked id="status" class="status" value="1"
+                        <input type="radio"  {{$listProduct->status == 1 ? 'checked' : '' }} name="status" checked id="status" class="status" value="1"
                             style="width:auto;"> <label for="">Hiện</label>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Chọn thương hiệu</label>
                         <select class="js-example-basic-single brand form-control" name="idBrand"
                             multiple="multiple">
                             <option>Chưa chọn thương hiệu</option>
                             @if (count($getBrands) > 0)
                                 @foreach ($getBrands as $item)
-                                    <option value={{ $item->id_brand }}>{{ $item->name_brand }}</option>
+                                    <option  value={{ $item->id_brand }}>{{ $item->name_brand }}</option>
                                 @endforeach
                             @endif
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="">Hình ảnh</label>
                         <input type="file" name="image" class="add-file" id="upload-file" multiple />
                         <p class="image-error text text-danger"></p>
                         <div class="form-group" id="show-file" >
+                            @foreach ($listProduct->images()->get() as $item)
 
+                            <div class="show-image__item" style="width:80px;height:80px; padding: 8px;position:relative">
+                                <img src="{{$item->link_img}}"  alt="{{$listProduct->name_product}}">
+                                <span class="delete-image" style="position: absolute;right:0;top:0;"><i class="fas fa-times"></i></span>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="product-option">
                         <label for="">Chọn Thông số kỹ thuật</label>
-                        <div class="product-option__inner"></div>
+                        <div class="product-option__inner">
+                        @foreach ($listProduct->category() as $item)
+                            <div class="form-group">
+                                <label for=""></label>
+                            </div>
+                        @endforeach
+                            {{-- <div class="form-group">
+                                    <label>${fp.filter_name}</label>
+                                <select data-id="${fp.filter_id}" name="${fp.slug}" id="select-option-${fp.filter_id}" class="select-option select-option-${fp.filter_id}" multiple>
+                                <option value="">Chọn ${fp.filter_name}</option>
+
+
+                    f.child_filter.forEach(function(fc,l){
+                        filter += `<option value="${fc.filter_id}">${fc.filter_name}</option>`
+                    })
+                    filter +=`</select>
+                            </div>` --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,26 +214,42 @@
             $('.js-example-basic-multiple-1').select2();
             $('.js-example-basic-multiple-2').select2();
             $('#select-option-9').select2();
+            // let btn_size = 1;
+            createButtonSize();
 
-            function InnerTableAttr() {
-            let check_size = document.querySelectorAll(".container-size .badge-2 span");
-            let check_color = document.querySelectorAll(".container-color .badge-2 span");
-            let table = document.querySelector(".table-price table tbody");
-            let tr = "";
-            if (check_size.length > 0) {
-                for (let i = 0; i < check_size.length; i++) {
-                    let getValueSize = check_size[i].getAttribute("data-value")
-                    let check_color = document.querySelectorAll(".container-color .badge-2 span");
-                    if (check_color.length > 0) {
+            function createButtonSize() {
+                let table = document.querySelector(".table-price table tbody");
+                let get_add_size = document.querySelector('.add-size');
+                get_add_size.addEventListener("keydown", function(e) {
+                    let i = 1
+                    if (e.keyCode == 13) {
+                        let value = this.value;
+                        let create_button = document.createElement("div");
+                        let create_span = document.createElement("span");
+                        create_span.setAttribute("class", 'close');
+                        create_span.setAttribute("data-value", value);
+                        create_span.textContent = "x";
+                        setValuteSizeButton = create_button.setAttribute("class", `badge-2`)
+                        setValuteSizeButton = create_button.setAttribute("id", `btn-${btn_size++}`)
+                        let getValueSizeButton = create_button.getAttribute("id");
+                        create_span.setAttribute("data-id", getValueSizeButton);
+                        create_button.textContent = value
+                        create_button.appendChild(create_span)
+                        let container_size = document.querySelector('.container-size');
+                        container_size.appendChild(create_button)
+                        let check_color = document.querySelectorAll(".container-color .badge-2 span");
+                        let tr = "";
+                        if (check_color.length > 0) {
 
                         for (let c = 0; c < check_color.length; c++) {
                             let getValueColor = check_color[c].getAttribute("data-value")
+
                             tr += `<tr>
                                                 <td> <input type="checkbox" /> </td>
                                                 <td>
-                                                    <span>${getValueSize}</span>    -
+                                                    <span>${value}</span>    -
                                                     <span>${getValueColor}
-                                                    <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    <input type="text" hidden value="${value}" class="size" />
                                                     <input type="text" hidden value="${getValueColor}" class="color" />
                                                 </td>
                                                 <td>
@@ -193,43 +266,12 @@
                                                 </td>
                                         </tr>`
                         }
-                    } else {
-                        tr += `<tr>
-                                                <td> <input type="checkbox" /> </td>
-                                                <td>
-                                                    <span>${getValueSize}</span>
-                                                    <input type="text" hidden value="${getValueSize}" class="size" />
-                                                </td>
-                                                <td>
-                                                    <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                </td>
-                                        </tr>`
-                    }
-                }
-            } else if (check_color.length > 0) {
-                for (let i = 0; i < check_color.length; i++) {
-                    let getValueColor = check_color[i].getAttribute("data-value")
-                    let check_size = document.querySelectorAll(".container-size .badge-2 span");
-                    if (check_size.length > 0) {
-
-                        for (let c = 0; c < check_size.length; c++) {
-                            let getValueSize = check_size[c].getAttribute("data-value")
+                        } else {
                             tr += `<tr>
                                                 <td> <input type="checkbox" /> </td>
                                                 <td>
-                                                    <span>${getValueSize}
-                                                    <span>${getValueColor}
-                                                    <input type="text" hidden value="${getValueColor}" class="color" />
-                                                    <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    <span>${value}</span>
+                                                    <input type="text" hidden value="${value}" class="size" />
                                                 </td>
                                                 <td>
                                                     <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
@@ -245,64 +287,14 @@
                                                 </td>
                                         </tr>`
                         }
-                    } else {
-                        tr += `<tr>
-                                                <td> <input type="checkbox" /> </td>
-                                                <td>
-                                                    <span>${getValueColor}</span>
-                                                    <input type="text" hidden value="${getValueColor}" class="color" />
-                                                </td>
-                                                <td>
-                                                    <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Giá" class="product_price" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
-                                                </td>
-                                                <td>
-                                                    <input type="number" placeholder="Số lượng" class="product_stock" value="" />
-                                                </td>
-                                        </tr>`
-                    }
-
-
-                }
-            }
-            table.innerHTML = tr;
-            }
-            let btn_size = 1;
-            createButtonSize();
-
-            function createButtonSize() {
-                let get_add_size = document.querySelector('.add-size');
-                get_add_size.addEventListener("keydown", function(e) {
-                    let i = 1
-                    if (e.keyCode === 13) {
-                        let value = this.value;
-                        let create_button = document.createElement("div");
-                        let create_span = document.createElement("span");
-                        create_span.setAttribute("class", 'close');
-                        create_span.setAttribute("data-value", value);
-
-                        create_span.textContent = "x";
-                        setValuteSizeButton = create_button.setAttribute("class", `badge-2`)
-                        setValuteSizeButton = create_button.setAttribute("id", `btn-${btn_size++}`)
-                        let getValueSizeButton = create_button.getAttribute("id");
-                        create_span.setAttribute("data-id", getValueSizeButton);
-                        create_button.textContent = value
-                        create_button.appendChild(create_span)
-                        let container_size = document.querySelector('.container-size');
-                        container_size.appendChild(create_button)
-                        InnerTableAttr()
+                        table.insertAdjacentHTML('beforeend',tr);
                         this.value = "";
                     }
                 })
             }
             createButtonColor();
-
             function createButtonColor() {
+                let table = document.querySelector(".table-price table tbody");
                 let get_add_size = document.querySelector('.add-color');
                 get_add_size.addEventListener("keydown", function(e) {
                     let i = 1
@@ -322,8 +314,58 @@
                         create_button.appendChild(create_span)
                         let container_size = document.querySelector('.container-color');
                         container_size.appendChild(create_button)
+                        let check_size = document.querySelectorAll(".container-size .badge-2 span");
+                        let tr = "";
+                        if (check_size.length > 0) {
+
+                            for (let c = 0; c < check_size.length; c++) {
+                                let getValueSize = check_size[c].getAttribute("data-value")
+                                tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${getValueSize}
+                                                        <span>${value}
+                                                        <input type="text" hidden value="${value}" class="color" />
+                                                        <input type="text" hidden value="${getValueSize}" class="size" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                            }
+                        } else {
+                            tr += `<tr>
+                                                    <td> <input type="checkbox" /> </td>
+                                                    <td>
+                                                        <span>${value}</span>
+                                                        <input type="text" hidden value="${value}" class="color" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" placeholder="Mã sản phẩm" class="product_type_sku" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá" class="product_price" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Giá giảm" class="product_price_old" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" placeholder="Số lượng" class="product_stock" value="" />
+                                                    </td>
+                                            </tr>`
+                        }
+                        table.insertAdjacentHTML('beforeend',tr);
                         this.value = ""
-                        InnerTableAttr();
+
                     }
 
                 })

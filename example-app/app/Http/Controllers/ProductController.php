@@ -11,6 +11,7 @@ use App\Models\ProductImageModel;
 use App\Models\ProductModel;
 use DeepCopy\Filter\Filter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,9 +43,11 @@ class ProductController extends Controller
 
     public function editProduct(Request $request)
     {
-        $listProduct = ProductModel::where('id_product','=',$request->id)->with('productOfCategory')->first();
+        $listProduct = ProductModel::where('id_product','=',$request->id)->with('productOfCategory.filters','productOfCategory.getFilter')->first();
+        dd($listProduct->productOfCategory()->get());
         $getBrands = BrandModel::orderBy('id_brand', 'desc')->get();
         $listCategory = CategoryModel::whereNull('parent_category')->orderBy('id_category', 'desc')->get();
+        $ArrayProduct = ProductModel::where('id_product','=',$request->id)->get();
         return view('admin.layouts.products.edit',compact('getBrands', 'listCategory', 'listProduct'));
     }
 
