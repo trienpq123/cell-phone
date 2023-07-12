@@ -1,8 +1,9 @@
 @extends('admin.index')
 @section('articles')
 <div class="form-action">
+    <h2 style="font-size:18px;padding-left:16px">Cập nhật sản phẩm: {{$listProduct->name_product}}</h2>
     <div class="p-16">
-        <form id="form-add" enctype="multipart/form-data" method="post" >
+        <form id="form-edit" enctype="multipart/form-data" method="post" >
             @csrf
             <div class="grid grid-tempalte-colum-7-3 gap-16">
                 <div class="form-left form-bg">
@@ -157,7 +158,7 @@
 
                             <div class="show-image__item" style="width:80px;height:80px; padding: 8px;position:relative">
                                 <img src="{{$item->link_img}}"  alt="{{$listProduct->name_product}}">
-                                <span class="delete-image" style="position: absolute;right:0;top:0;"><i class="fas fa-times"></i></span>
+                                <span data-id="{{$item->id_product_image}}" class="delete-image" style="position: absolute;right:0;top:0;"><i class="fas fa-times"></i></span>
                             </div>
                             @endforeach
                         </div>
@@ -165,22 +166,25 @@
                     <div class="product-option">
                         <label for="">Chọn Thông số kỹ thuật</label>
                         <div class="product-option__inner">
-                        @foreach ($listProduct->category() as $item)
+                        @foreach ($listProduct->productOfCategory->getFilter()->get() as $item)
                             <div class="form-group">
-                                <label for=""></label>
+                                <label for=""><b>{{$item->filter[0]->filter_name}}</b></label>
+                                <select id="select-option-{{$item->filter[0]->filter_id}}" class="select-option select-option-{{$item->filter[0]->filter_id}}" multiple="multiple" name="{{$item->filter[0]->slug}}" data-id="{{$item->filter[0]->filter_id}}">
+                                    <option value="">Chưa Chọn</option>
+                                    @foreach ($item->childFilter as $items)
+                                        <option {{count($listProduct->filterProduct()->where('id_filter','=',$items->filter_id)->get()) > 0 ? 'selected' : ''}} value="{{$items->filter_id}}">{{$items->filter_name}}</option>
+                                    @endforeach
+                                    @push('script-action')
+                                        <script>
+                                            $(document).ready(function(){
+                                                $("#select-option-{{$item->filter[0]->filter_id}}").select2();
+                                            })
+                                        </script>
+                                    @endpush
+
+                                </select>
                             </div>
                         @endforeach
-                            {{-- <div class="form-group">
-                                    <label>${fp.filter_name}</label>
-                                <select data-id="${fp.filter_id}" name="${fp.slug}" id="select-option-${fp.filter_id}" class="select-option select-option-${fp.filter_id}" multiple>
-                                <option value="">Chọn ${fp.filter_name}</option>
-
-
-                    f.child_filter.forEach(function(fc,l){
-                        filter += `<option value="${fc.filter_id}">${fc.filter_name}</option>`
-                    })
-                    filter +=`</select>
-                            </div>` --}}
                         </div>
                     </div>
                 </div>
@@ -195,7 +199,7 @@
 @endsection
 
 @push('script-action')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -213,7 +217,7 @@
             // SELECT 2
             $('.js-example-basic-multiple-1').select2();
             $('.js-example-basic-multiple-2').select2();
-            $('#select-option-9').select2();
+
             // let btn_size = 1;
             createButtonSize();
 
@@ -400,8 +404,9 @@
                                     })
                                     filter +=`</select>
                                          </div>`
+                                         $("#select-option-"+fp.filter_id+"").select2();
                                 })
-                                console.log(1);
+
                             })
 
                             $('.product-option__inner').html(filter)
@@ -429,7 +434,7 @@
 
             })
 
-            $('#form-add').submit(function(e) {
+            $('#form-edit').submit(function(e) {
                 e.preventDefault();
                 let product_detail = [];
                 $('.table-price table tbody tr').each(function(i, tr) {
@@ -543,7 +548,7 @@
                 $('body .select-option').each(function(i,data){
                     option.push(data.value);
                 })
-                console.log(product_detail);
+
                 formData.append('product_detail', JSON.stringify(product_detail))
                 formData.append('desc', desc_product)
                 formData.append('desc_short', desc_short_product)
@@ -557,16 +562,15 @@
                 formData.append('_token', "{{ csrf_token() }}")
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('admin.product.postAddProduct') }}",
+                    url: "{{ route('admin.product.putEditProduct') }}",
                     data: formData,
                     success: (res) => {
-
                         validator(res.status, res.message)
                         if (res.status == 404) {
                             console.log(res)
 
                         }else {
-                            console.log(res)
+                            // console.log(res)
                             // $('#table').DataTable().destroy()
                             // getDataTable();
                             // $('.alert').toggleClass('active')
@@ -576,7 +580,6 @@
                     cache: false,
                     contentType: false,
                     processData: false
-
                 })
             })
 
@@ -607,11 +610,11 @@
                 show_image.append(image);
 
             })
-
-            $('body').on('click','.show-image__item .delete-image',function(){
-                $(this).parent().remove();
-            })
         });
+
+        $('.delete-image').click(function(){
+            $(this).parent().remove();
+        })
 
 
     </script>

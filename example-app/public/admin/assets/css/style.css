@@ -1362,3 +1362,8 @@ table.dataTable tbody tr{
 .show-image__item .delete-image{
     cursor: pointer;
 }
+
+/* SELECT 2 */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    
+}

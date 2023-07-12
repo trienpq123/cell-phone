@@ -68,6 +68,7 @@ Route::middleware(['Localization'])->group(function() {
             Route::get('/api/list',[ProductController::class,'apiListProduct'])->name('apiListProduct');
             Route::get('/add',[ProductController::class,'addProduct'])->name('addProduct');
             Route::get('/edit',[ProductController::class,'editProduct'])->name('editProduct');
+            // Route::post('/edit',[ProductController::class,'postEditProduct'])->name('postEditProduct');
             Route::post('/add',[ProductController::class,'postAddProduct'])->name('postAddProduct');
             Route::post('/edit',[ProductController::class,'putEditProduct'])->name('putEditProduct');
             Route::delete('/delete',[ProductController::class,'deleteProduct'])->name('deleteProduct');

@@ -16,4 +16,7 @@ class FilterProduct extends Model
     ];
     CONST UPDATED_AT = NULL;
     CONST CREATED_AT = NULL;
+    public function DetailFilerChildProduct(){
+        return $this->belongsTo(FilterModel::class,'id_filter','filter_id');
+    }
 }

@@ -44,7 +44,9 @@ class ProductController extends Controller
     public function editProduct(Request $request)
     {
         $listProduct = ProductModel::where('id_product','=',$request->id)->with('productOfCategory.filters','productOfCategory.getFilter')->first();
-        dd($listProduct->productOfCategory()->get());
+        // dd($listProduct->productOfCategory->getFilter->filter[0]->filter_name);
+        // dd($listProduct);
+        // dd($listProduct->filterProduct->where('id_product','=',$listProduct->id_product)->get());
         $getBrands = BrandModel::orderBy('id_brand', 'desc')->get();
         $listCategory = CategoryModel::whereNull('parent_category')->orderBy('id_category', 'desc')->get();
         $ArrayProduct = ProductModel::where('id_product','=',$request->id)->get();

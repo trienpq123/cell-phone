@@ -25,7 +25,8 @@
 
 </body>
 <script src="{{asset('../../assets/js/js.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{asset('../../core/slide-banner/slide-banner/jquery.min.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('../../core/slide-banner/slide-banner/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('../../core/slide-banner/slide-banner/slick-theme.css')}}">
