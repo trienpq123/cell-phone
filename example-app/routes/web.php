@@ -68,11 +68,10 @@ Route::middleware(['Localization'])->group(function() {
             Route::get('/api/list',[ProductController::class,'apiListProduct'])->name('apiListProduct');
             Route::get('/add',[ProductController::class,'addProduct'])->name('addProduct');
             Route::get('/edit',[ProductController::class,'editProduct'])->name('editProduct');
-            // Route::post('/edit',[ProductController::class,'postEditProduct'])->name('postEditProduct');
             Route::post('/add',[ProductController::class,'postAddProduct'])->name('postAddProduct');
             Route::post('/edit',[ProductController::class,'putEditProduct'])->name('putEditProduct');
             Route::delete('/delete',[ProductController::class,'deleteProduct'])->name('deleteProduct');
-            Route::delete('/delete-product-delete',[ProductController::class,'deleteDetailProduct'])->name('deleteProductDetail');
+            Route::delete('/delete-product-detail',[ProductController::class,'deleteDetailProduct'])->name('deleteProductDetail');
             Route::delete('/delete-product-image',[ProductController::class,'deleteImageProduct'])->name('deleteImageProduct');
         });
         Route::prefix('brand')->name('brand.')->group(function() {

@@ -96,11 +96,12 @@
                                 <th>Giá</th>
                                 <th>Giá giảm</th>
                                 <th>Hàng tồn kho</th>
+                                <th></th>
                             </thead>
                             <tbody>
                             @foreach ($listProduct->product_detail()->get() as $item)
                                 <tr>
-                                    <td> <input type="checkbox" /> </td>
+                                    <td> <input type="checkbox" class="id_product_detail" value="{{$item->id_product_detail}}" /> </td>
                                     <td>
                                         <span>{{$item->size}}</span>    -
                                         <span>{{$item->color}}</span>
@@ -119,6 +120,8 @@
                                     <td>
                                         <input type="number" placeholder="Số lượng" class="product_stock" value="{{$item->quanlity}}" />
                                     </td>
+
+                                    <td><span data-id="{{$item->id_product_detail}}" class="close-product-detail" style="color: #fff; background: red; font-weight: 700; padding:8px; cursor: pointer"><i class="fas fa-times"></i></span></td>
                                 </tr>
                             @endforeach
 
@@ -218,7 +221,7 @@
             $('.js-example-basic-multiple-1').select2();
             $('.js-example-basic-multiple-2').select2();
 
-            // let btn_size = 1;
+            let btn_size = 1;
             createButtonSize();
 
             function createButtonSize() {
@@ -302,7 +305,7 @@
                 let get_add_size = document.querySelector('.add-color');
                 get_add_size.addEventListener("keydown", function(e) {
                     let i = 1
-                    if (e.keyCode === 13) {
+                    if (e.keyCode == 13) {
                         let value = this.value;
                         let create_button = document.createElement("div");
                         let create_span = document.createElement("span");
@@ -444,6 +447,13 @@
                     let product_type_sku = '';
                     let product_price = '';
                     let product_price_old = '';
+                    let id_product_detail = '';
+
+                    let idProductDetail = tr.querySelector('.id_product_detail')
+                    if (idProductDetail){
+                        id_product_detail = idProductDetail.value
+                        console.log(idProductDetail.value)
+                    }
                     let sizeOfProduct = tr.querySelector('.size')
                     if (sizeOfProduct) {
                         SizeOfProductValue = sizeOfProduct.value
@@ -476,7 +486,8 @@
                         product_stock: product_stock,
                         product_type_sku: product_type_sku,
                         product_price: product_price,
-                        product_price_old: product_price_old
+                        product_price_old: product_price_old,
+                        idProductDetail: id_product_detail
                     }
                     product_detail.push(option)
 
@@ -559,6 +570,7 @@
                 formData.append('product_sku', product_sku)
                 formData.append('parent_category[]', id_category)
                 formData.append('option',option)
+                formData.append('id',{{$_REQUEST['id']}})
                 formData.append('_token', "{{ csrf_token() }}")
                 $.ajax({
                     type: "POST",
@@ -570,11 +582,11 @@
                             console.log(res)
 
                         }else {
-                            // console.log(res)
+                            console.log(res)
                             // $('#table').DataTable().destroy()
                             // getDataTable();
-                            // $('.alert').toggleClass('active')
-                            // $('.popup-modal').removeClass('active');
+                            $('.alert').toggleClass('active')
+                            $('.popup-modal').removeClass('active');
                         }
                     },
                     cache: false,
@@ -610,12 +622,22 @@
                 show_image.append(image);
 
             })
+
+            $('.close-product-detail').click(function(){
+                let id = $(this).attr('data-id');
+                $.ajax({
+                    method:"delete",
+                    url: `{{route('admin.product.deleteProductDetail')}}`,
+                    data: {id:id,_token:"{{csrf_token()}}"},
+                    success: (res) => {
+                            $(this).parent().parent().remove()
+                    }
+                })
+            })
         });
 
         $('.delete-image').click(function(){
             $(this).parent().remove();
         })
-
-
     </script>
 @endpush

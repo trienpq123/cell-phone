@@ -78,9 +78,7 @@ class ProductController extends Controller
         $p->p_desc_short = $request->desc_short;
         $p->p_desc = $request->desc;
         $p->id_brand = $request->idBrand;
-
         $id_category = '';
-
         $p->product_SKU = $request->product_sku;
         $p->status = $request->status;
         $p->save();
@@ -166,7 +164,7 @@ class ProductController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => "required|"
+                'name' => "required"
             ],
             [
                 'name.required' => 'Tên sản phẩm không được bỏ trống',
@@ -183,12 +181,27 @@ class ProductController extends Controller
         $p->slug = $request->slug;
         $p->p_desc_short = $request->desc_short;
         $p->p_desc = $request->desc;
-        $p->id_brand = $request->idBrand;
-        $p->id_category = $request->id_category;
         $p->product_SKU = $request->product_sku;
         $p->status = $request->status;
-
         $p->save();
+        if($request->parent_category){
+
+            foreach($request->parent_category as $cate) {
+
+                $cateProduct = CategoryProductModel::where('id_category','=',$cate)->first();
+                if($cateProduct){
+                    $cateProduct->id_category =  $cate;
+                    $cateProduct->id_product = $request->id;
+                    $cateProduct->save();
+                }else{
+
+                    $cateProduct->id_category =  $cate;
+                    $cateProduct->id_product = $request->id;
+                    $cateProduct->save();
+                }
+            }
+
+        }
         if ($request->image) {
 
             foreach ($request->image as $image) {
@@ -197,7 +210,7 @@ class ProductController extends Controller
                 $name_image = time() . '_' . $imageName->getClientOriginalName();
                 $explode = explode('.', $name_image);
                 $typeImage = end($explode);
-                $imageExtensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'svgz', 'cgm', 'djv', 'djvu', 'ico', 'ief', 'jpe', 'pbm', 'pgm', 'pnm', 'ppm', 'ras', 'rgb', 'tif', 'tiff', 'wbmp', 'xbm', 'xpm', 'xwd'];
+                $imageExtensions = ['jpg', 'jpeg', 'gif', 'png','PNG', 'bmp', 'svg', 'svgz', 'cgm', 'djv', 'djvu', 'ico', 'ief', 'jpe', 'pbm', 'pgm', 'pnm', 'ppm', 'ras', 'rgb', 'tif', 'tiff', 'wbmp', 'xbm', 'xpm', 'xwd'];
                 if (in_array($typeImage, $imageExtensions)) {
                     $p_image = new ProductImageModel();
                     $path = 'public/uploads/images/products/';
@@ -217,45 +230,48 @@ class ProductController extends Controller
                 }
             }
         }
-        $a = [];
+        // $a = [];
         if (!empty($request->product_detail)) {
             $decoded = json_decode($request->product_detail);
+            return response()->json([
+                'status' => 200,
+                'product_detail' => $decoded
+            ]);
             if (!is_null($decoded) && count($decoded) > 0) {
-
                 foreach ($decoded as $item) {
-                    if(!empty($item->idProductDetail)){
-
+                    if($item->idProductDetail){
                         $PDetail = ProductDetailModel::where('id_product_detail','=',$item->idProductDetail)->first();
-                            // $PDetail->id_product = $request;
-                             $PDetail->price = 3;
+                        if($PDetail){
+                            $PDetail->price = 3;
                             $PDetail->price_sale = $item->product_price_old;
                             $PDetail->quanlity = $item->product_stock;
                             $PDetail->product_sku = $item->product_type_sku;
                             $PDetail->save();
-                    }
-                    else{
+                        } else{
+                            $PDetail = new ProductDetailModel();
+                            $PDetail->id_product = $request->id;
+                            $PDetail->size =$item->colorOfProductValue;
+                            $PDetail->color =$item->colorOfProductValue;
+                            $PDetail->price =$item->product_price;
+                            $PDetail->price_sale =$item->product_price_old;
+                            $PDetail->quanlity =$item->product_stock;
+                            $PDetail->product_sku =$item->product_type_sku;
+                            $PDetail->save();
+                        }
 
-                        $PDetail = new ProductDetailModel();
-                        $PDetail->id_product = $request->id;
-                        $PDetail->size =$item->colorOfProductValue;
-                        $PDetail->color =$item->colorOfProductValue;
-                        $PDetail->price =$item->product_price;
-                        $PDetail->price_sale =$item->product_price_old;
-                        $PDetail->quanlity =$item->product_stock;
-                        $PDetail->product_sku =$item->product_type_sku;
 
-                        $PDetail->save();
                     }
+
 
                 }
+
             }
         }
-        $produc_Data = ProductModel::all();
         return response()->json([
             'status' => 200,
             'product_detail' => $request->all(),
             'data' =>  json_decode($request->product_detail),
-            'a' => $a
+            'a' => $request->id
         ]);
     }
 
@@ -299,11 +315,11 @@ class ProductController extends Controller
             if(count($check_productDetail->get()) > 0){
                 $check_productDetail->delete();
             }
-            return response()->json([
-                'status' => 200,
-                'message' => 'Đã xoá thành công'
-            ]);
         }
+        return response()->json([
+            'status' => 200,
+            'message' => 'Đã xoá thành công'
+        ]);
     }
 
     public function deleteImageProduct(Request $request){
